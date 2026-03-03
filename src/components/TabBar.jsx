@@ -80,13 +80,13 @@ export function TabBar({ activeTab = 'connect' }) {
 
 // ─── Tab Icons ──────────────────────────────────────────────────────
 
-// Mutual "M" logo — two overlapping figures forming the brand mark (filled)
+// Open box / container icon — events tab
 function MutualLogoIcon({ color, size }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none">
-      <circle cx="7.5" cy="5.5" r="3" />
-      <circle cx="16.5" cy="5.5" r="3" />
-      <path d="M1 22 C1 15 3.5 10 7.5 10 C9.5 10 10.5 13 12 16.5 C13.5 13 14.5 10 16.5 10 C20.5 10 23 15 23 22 Z" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z" />
+      <path d="M2 8l3-5h14l3 5" />
     </svg>
   )
 }
