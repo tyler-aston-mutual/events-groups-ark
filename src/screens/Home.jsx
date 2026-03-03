@@ -11,7 +11,7 @@ const FEATURED_EVENTS = [
   {
     id: 1,
     title: 'Blind Speed Dating',
-    image: import.meta.env.BASE_URL + 'speed-dating.svg',
+    image: import.meta.env.BASE_URL + 'speed-dating.png',
     imageBg: '#000080',
     date: 'February 20, 2026 - 19:00',
     location: 'Virtual Speed Dating Session',
