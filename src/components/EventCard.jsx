@@ -7,9 +7,9 @@ export function EventCard({
   date,
   location,
   going,
-  interested,
   group,
   featured = false,
+  tag,
 }) {
   const { colors } = useTheme()
 
@@ -56,16 +56,26 @@ export function EventCard({
             <CalendarIcon color={colors.grey400} />
           </div>
 
-          {/* Title */}
+          {/* Title + tag */}
           <div style={{
-            fontSize: 17,
-            fontWeight: 700,
-            color: colors.grey1000,
-            lineHeight: '21px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
             marginBottom: 8,
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+            flexWrap: 'wrap',
           }}>
-            {title}
+            <span style={{
+              fontSize: 17,
+              fontWeight: 700,
+              color: colors.grey1000,
+              lineHeight: '21px',
+              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+            }}>
+              {title}
+            </span>
+            {tag && (
+              <Chip text={tag} variant="dark" size="compact" />
+            )}
           </div>
 
           {/* Date */}

@@ -10,6 +10,16 @@ const FILTERS = ['For You', 'Joined']
 const FEATURED_EVENTS = [
   {
     id: 1,
+    title: 'Blind Speed Dating',
+    image: 'https://images.unsplash.com/photo-1529543544282-ea61407b3569?w=400&h=400&fit=crop',
+    date: 'February 20, 2026 - 19:00',
+    location: 'Virtual Speed Dating Session',
+    going: 1032,
+    tag: 'Mutual Event',
+    featured: true,
+  },
+  {
+    id: 2,
     title: 'Y Mountain Group Hike',
     image: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=400&h=400&fit=crop',
     date: 'February 23, 2026 - 10:00',
@@ -18,15 +28,43 @@ const FEATURED_EVENTS = [
     featured: true,
   },
   {
-    id: 2,
+    id: 3,
+    title: 'Singles Pickleball Tournament',
+    image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=400&h=400&fit=crop',
+    date: 'February 27, 2026 - 14:00',
+    location: 'Lehi Pickleball Courts',
+    going: 12,
+    group: { name: 'Provo Pickleball', membersOnly: false },
+    featured: true,
+  },
+  {
+    id: 4,
     title: 'Temple Square Lights Walk',
     image: 'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=400&h=400&fit=crop',
     date: 'March 8, 2026 - 19:30',
     location: 'Temple Square, SLC',
     going: 32,
-    interested: 41,
     group: { name: 'SLC Singles', membersOnly: false },
     featured: true,
+  },
+]
+
+const UPCOMING_EVENTS = [
+  {
+    id: 5,
+    title: 'Karaoke Night',
+    image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=400&fit=crop',
+    date: 'February 26, 2026 - 20:00',
+    location: 'Velour Music Gallery',
+    going: 8,
+  },
+  {
+    id: 6,
+    title: "Trivia Night at Guru's",
+    image: 'https://images.unsplash.com/photo-1577702112390-17c1987bd5ac?w=400&h=400&fit=crop',
+    date: 'February 28, 2026 - 19:00',
+    location: "Guru's Cafe",
+    going: 10,
   },
 ]
 
@@ -107,6 +145,26 @@ export default function Home() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {FEATURED_EVENTS.map(event => (
+              <EventCard key={event.id} {...event} />
+            ))}
+          </div>
+        </div>
+
+        {/* Upcoming section */}
+        <div style={{ padding: '8px 16px 16px' }}>
+          <div style={{
+            fontSize: 14,
+            fontWeight: 500,
+            color: colors.grey400,
+            marginBottom: 10,
+            fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+          }}>
+            Upcoming
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {UPCOMING_EVENTS.map(event => (
               <EventCard key={event.id} {...event} />
             ))}
           </div>
