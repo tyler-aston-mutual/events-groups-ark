@@ -182,7 +182,9 @@ export default function Home() {
   const filtersActive = hasActiveFilters(filters)
 
   const isJoined = activeFilter === 'Joined'
-  const tabItems = isJoined ? ALL_ITEMS.filter(i => JOINED_IDS.includes(i.id)) : ALL_ITEMS
+  const tabItems = isJoined
+    ? ALL_ITEMS.filter(i => JOINED_IDS.includes(i.id))
+    : ALL_ITEMS.filter(i => !JOINED_IDS.includes(i.id))
   const baseItems = applyFilters(tabItems, filters)
   const items = sortItems(baseItems, activeSort)
   const activeSortLabel = SORT_OPTIONS.find(o => o.id === activeSort)?.label
