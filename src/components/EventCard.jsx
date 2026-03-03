@@ -135,6 +135,7 @@ export function EventCard({
         <div style={{
           display: 'flex',
           alignItems: 'center',
+          alignSelf: 'stretch',
           flexShrink: 0,
           paddingLeft: 4,
         }}>
