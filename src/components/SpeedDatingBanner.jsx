@@ -1,17 +1,23 @@
+import { useNavigate } from 'react-router-dom'
 import { useTheme } from '../design-system/context/ThemeProvider'
 import { Chip } from '../design-system'
 
 export function SpeedDatingBanner({ onDismiss }) {
   const { colors } = useTheme()
+  const navigate = useNavigate()
 
   return (
-    <div style={{
-      backgroundColor: colors.brandPrimary,
-      borderRadius: 16,
-      padding: 16,
-      position: 'relative',
-      overflow: 'hidden',
-    }}>
+    <div
+      onClick={() => navigate('/speed-dating')}
+      style={{
+        backgroundColor: colors.brandPrimary,
+        borderRadius: 16,
+        padding: 16,
+        position: 'relative',
+        overflow: 'hidden',
+        cursor: 'pointer',
+      }}
+    >
       {/* Top row: session chip + dismiss */}
       <div style={{
         display: 'flex',
@@ -37,7 +43,7 @@ export function SpeedDatingBanner({ onDismiss }) {
         </span>
 
         <button
-          onClick={onDismiss}
+          onClick={(e) => { e.stopPropagation(); onDismiss(); }}
           style={{
             width: 28,
             height: 28,
