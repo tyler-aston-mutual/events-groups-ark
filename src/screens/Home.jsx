@@ -7,7 +7,7 @@ import { useTheme } from '../design-system/context/ThemeProvider'
 
 const FILTERS = ['For You', 'Joined']
 
-const FEATURED_EVENTS = [
+const FEATURED_ITEMS = [
   {
     id: 1,
     title: 'Blind Speed Dating',
@@ -21,6 +21,15 @@ const FEATURED_EVENTS = [
   },
   {
     id: 2,
+    type: 'group',
+    title: 'Solo Saints',
+    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop',
+    location: 'Provo, UT',
+    going: 320,
+    featured: true,
+  },
+  {
+    id: 3,
     title: 'Y Mountain Group Hike',
     image: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=400&h=400&fit=crop',
     date: 'February 23, 2026 - 10:00',
@@ -29,7 +38,16 @@ const FEATURED_EVENTS = [
     featured: true,
   },
   {
-    id: 3,
+    id: 4,
+    type: 'group',
+    title: 'Provo Pickleball',
+    image: 'https://images.unsplash.com/photo-1526888935184-a82d2a4b7e67?w=400&h=400&fit=crop',
+    location: 'Lehi, UT',
+    going: 85,
+    featured: true,
+  },
+  {
+    id: 5,
     title: 'Singles Pickleball Tournament',
     image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=400&h=400&fit=crop',
     date: 'February 27, 2026 - 14:00',
@@ -39,7 +57,7 @@ const FEATURED_EVENTS = [
     featured: true,
   },
   {
-    id: 4,
+    id: 6,
     title: 'Temple Square Lights Walk',
     image: 'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=400&h=400&fit=crop',
     date: 'March 8, 2026 - 19:30',
@@ -50,9 +68,17 @@ const FEATURED_EVENTS = [
   },
 ]
 
-const UPCOMING_EVENTS = [
+const UPCOMING_ITEMS = [
   {
-    id: 5,
+    id: 7,
+    type: 'group',
+    title: 'Utah Valley Hiking',
+    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=400&fit=crop',
+    location: 'Provo, UT',
+    going: 210,
+  },
+  {
+    id: 8,
     title: 'Karaoke Night',
     image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=400&fit=crop',
     date: 'February 26, 2026 - 20:00',
@@ -60,12 +86,36 @@ const UPCOMING_EVENTS = [
     going: 8,
   },
   {
-    id: 6,
+    id: 9,
+    type: 'group',
+    title: 'Foodies',
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=400&fit=crop',
+    location: 'Salt Lake City, UT',
+    going: 150,
+  },
+  {
+    id: 10,
     title: "Trivia Night at Guru's",
     image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop',
     date: 'February 28, 2026 - 19:00',
     location: "Guru's Cafe",
     going: 10,
+  },
+  {
+    id: 11,
+    type: 'group',
+    title: 'Republicans',
+    image: 'https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?w=400&h=400&fit=crop',
+    location: 'Utah County, UT',
+    going: 95,
+  },
+  {
+    id: 12,
+    type: 'group',
+    title: 'Eagle Mountain YSA Ward',
+    image: 'https://images.unsplash.com/photo-1499988921418-b7df40ff03f9?w=400&h=400&fit=crop',
+    location: 'Eagle Mountain, UT',
+    going: 45,
   },
 ]
 
@@ -145,7 +195,7 @@ export default function Home() {
             Featured
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {FEATURED_EVENTS.map(event => (
+            {FEATURED_ITEMS.map(event => (
               <EventCard key={event.id} {...event} />
             ))}
           </div>
@@ -165,7 +215,7 @@ export default function Home() {
             Upcoming
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {UPCOMING_EVENTS.map(event => (
+            {UPCOMING_ITEMS.map(event => (
               <EventCard key={event.id} {...event} />
             ))}
           </div>

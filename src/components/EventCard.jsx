@@ -2,6 +2,7 @@ import { useTheme } from '../design-system/context/ThemeProvider'
 import { Chip } from '../design-system'
 
 export function EventCard({
+  type = 'event',
   title,
   image,
   date,
@@ -64,7 +65,10 @@ export function EventCard({
             {featured && (
               <Chip text="Featured" variant="accent5" size="compact" />
             )}
-            <CalendarIcon color={colors.grey400} />
+            {type === 'group'
+              ? <GroupBadgeIcon color={colors.grey400} />
+              : <CalendarIcon color={colors.grey400} />
+            }
           </div>
 
           {/* Title */}
@@ -79,10 +83,12 @@ export function EventCard({
             {title}
           </div>
 
-          {/* Date */}
-          <InfoRow icon={<DateIcon color={colors.grey400} />} color={colors.grey600}>
-            {date}
-          </InfoRow>
+          {/* Date (events only) */}
+          {type !== 'group' && date && (
+            <InfoRow icon={<DateIcon color={colors.grey400} />} color={colors.grey600}>
+              {date}
+            </InfoRow>
+          )}
 
           {/* Location */}
           <InfoRow icon={<LocationIcon color={colors.grey400} />} color={colors.grey600}>
@@ -91,7 +97,7 @@ export function EventCard({
 
           {/* Attendance */}
           <InfoRow icon={<PeopleIcon color={colors.grey400} />} color={colors.grey600}>
-            {going} going
+            {going} {type === 'group' ? 'members' : 'going'}
           </InfoRow>
 
           {/* Group tag */}
@@ -210,6 +216,19 @@ function PeopleIcon({ color }) {
       <circle cx="9.5" cy="4.5" r="1.75" />
       <path d="M1 12.5c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" />
       <path d="M9.5 9c2.2 0 3.5 1.5 3.5 3.5" />
+    </svg>
+  )
+}
+
+// Two-person silhouette — stroke-based, matches CalendarIcon style
+function GroupBadgeIcon({ color }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7" cy="6.5" r="2.5" />
+      <circle cx="13" cy="6.5" r="2.5" />
+      <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" />
+      <path d="M13 13.5c3 0 5.5 2 5.5 4.5" />
     </svg>
   )
 }
