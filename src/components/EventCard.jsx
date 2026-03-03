@@ -64,20 +64,24 @@ export function EventCard({
 
         {/* Details */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-          {/* Top row: badges + calendar icon */}
+          {/* Top row: Featured left, tag right */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'flex-end',
+            justifyContent: 'space-between',
             gap: 8,
             marginBottom: 6,
           }}>
-            {tag && (
-              <Chip text={tag} variant="constantPrimary" size="compact" />
-            )}
-            {featured && (
-              <Chip text="Featured" variant="accent5" size="compact" />
-            )}
+            <div>
+              {featured && (
+                <Chip text="Featured" variant="accent5" size="compact" />
+              )}
+            </div>
+            <div style={{ display: 'flex', gap: 8, paddingRight: 20 }}>
+              {tag && (
+                <Chip text={tag} variant="constantPrimary" size="compact" />
+              )}
+            </div>
           </div>
 
           {/* Title */}
