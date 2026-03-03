@@ -37,7 +37,7 @@ export default function Home() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Heading3>Connect</Heading3>
-            <Chip text="Beta" variant="light" size="compact" />
+            <Chip text="Beta" variant="accent5" size="compact" />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <IconButton colors={colors} icon={<PlusIcon />} />

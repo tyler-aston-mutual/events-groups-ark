@@ -25,7 +25,12 @@
       "Bash(git push)",
       "Bash(git add WORK_STATUS.md)",
       "Bash(git commit -m \"Update WORK_STATUS with design system integration details\")",
-      "Bash(git commit -m \"Add StatusBar, TabBar, and Connect screen header with Beta badge and filter pills\")"
+      "Bash(git commit -m \"Add StatusBar, TabBar, and Connect screen header with Beta badge and filter pills\")",
+      "Bash(gh run list --repo tyler-aston-mutual/events-groups --limit 3)",
+      "Bash(/opt/homebrew/opt/node@20/bin/npm run build)",
+      "Bash(export PATH=\"/opt/homebrew/opt/node@20/bin:$PATH\")",
+      "Bash(npm run build)",
+      "Bash(git commit -m \"Update tab icons to match Mutual app style, Beta badge to primary red\")"
     ]
   }
 }
