@@ -258,7 +258,12 @@ export default function Home() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <Heading3>Connect</Heading3>
-            <Chip text="Beta" variant="accent5" size="compact" />
+            <span style={{
+              fontSize: 13,
+              fontWeight: 700,
+              color: colors.brandAccent5,
+              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+            }}>Beta</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <IconButton colors={colors} icon={<PlusIcon />} onClick={openCreate} variant="accent" />
