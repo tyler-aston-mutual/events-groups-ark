@@ -463,13 +463,16 @@ export default function Home() {
           <div style={{
             position: 'fixed',
             bottom: 0,
-            left: 0,
-            right: 0,
+            left: '50%',
+            width: '100%',
+            maxWidth: '24rem',
             backgroundColor: colors.grey50,
             borderRadius: '20px 20px 0 0',
             padding: '24px 20px 40px',
             zIndex: 101,
-            transform: createVisible ? 'translateY(0)' : 'translateY(100%)',
+            transform: createVisible
+              ? 'translateX(-50%) translateY(0)'
+              : 'translateX(-50%) translateY(100%)',
             transition: 'transform 0.3s ease',
           }}>
             {/* Drag handle */}
