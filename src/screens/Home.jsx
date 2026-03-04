@@ -264,7 +264,7 @@ export default function Home() {
             <Chip text="Beta" variant="accent5" size="compact" />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <IconButton colors={colors} icon={<PlusIcon />} onClick={openCreate} />
+            <IconButton colors={colors} icon={<PlusIcon />} onClick={openCreate} variant="accent" />
             <IconButton
               colors={colors}
               icon={<FilterIcon />}
@@ -466,14 +466,16 @@ export default function Home() {
   )
 }
 
-function IconButton({ colors, icon, onClick, badge }) {
+function IconButton({ colors, icon, onClick, badge, variant }) {
+  const isAccent = variant === 'accent'
   return (
     <button onClick={onClick} style={{
       width: 36,
       height: 36,
       borderRadius: 10,
-      border: `1.5px solid ${colors.grey100}`,
-      backgroundColor: colors.grey0,
+      border: isAccent ? 'none' : `1.5px solid ${colors.grey100}`,
+      backgroundColor: isAccent ? colors.brandAccent5 : colors.grey0,
+      color: isAccent ? '#FFFFFF' : 'inherit',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
