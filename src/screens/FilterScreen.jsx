@@ -5,8 +5,6 @@ import { useTheme } from '../design-system/context/ThemeProvider'
 import { ThemedButton, SecondaryButton } from '../design-system'
 
 const DEFAULTS = {
-  showEvents: true,
-  showGroups: true,
   distance: 100,
   minParticipants: '',
   maxParticipants: '',
@@ -18,28 +16,21 @@ export default function FilterScreen() {
   const location = useLocation()
   const incoming = location.state?.filters || DEFAULTS
 
-  const [showEvents, setShowEvents] = useState(incoming.showEvents)
-  const [showGroups, setShowGroups] = useState(incoming.showGroups)
   const [distance, setDistance] = useState(incoming.distance)
   const [minParticipants, setMinParticipants] = useState(incoming.minParticipants)
   const [maxParticipants, setMaxParticipants] = useState(incoming.maxParticipants)
 
   const isDefault =
-    showEvents === DEFAULTS.showEvents &&
-    showGroups === DEFAULTS.showGroups &&
     distance === DEFAULTS.distance &&
     minParticipants === DEFAULTS.minParticipants &&
     maxParticipants === DEFAULTS.maxParticipants
 
   const activeCount = [
-    showEvents !== DEFAULTS.showEvents || showGroups !== DEFAULTS.showGroups,
     distance !== DEFAULTS.distance,
     minParticipants !== DEFAULTS.minParticipants || maxParticipants !== DEFAULTS.maxParticipants,
   ].filter(Boolean).length
 
   function handleReset() {
-    setShowEvents(DEFAULTS.showEvents)
-    setShowGroups(DEFAULTS.showGroups)
     setDistance(DEFAULTS.distance)
     setMinParticipants(DEFAULTS.minParticipants)
     setMaxParticipants(DEFAULTS.maxParticipants)
@@ -48,7 +39,7 @@ export default function FilterScreen() {
   function handleApply() {
     navigate('/', {
       state: {
-        filters: { showEvents, showGroups, distance, minParticipants, maxParticipants },
+        filters: { distance, minParticipants, maxParticipants },
       },
     })
   }
@@ -109,32 +100,6 @@ export default function FilterScreen() {
 
       {/* Scrollable content */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '8px 20px' }}>
-
-        {/* ── Type ── */}
-        <FilterSection
-          icon={<TypeIcon color={colors.grey400} />}
-          label="Type"
-          value={showEvents && showGroups ? 'Events & Groups' : showEvents ? 'Events Only' : showGroups ? 'Groups Only' : 'None'}
-          isActive={showEvents !== DEFAULTS.showEvents || showGroups !== DEFAULTS.showGroups}
-          colors={colors}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 12 }}>
-            <Checkbox
-              label="Events"
-              checked={showEvents}
-              onChange={setShowEvents}
-              colors={colors}
-            />
-            <Checkbox
-              label="Groups"
-              checked={showGroups}
-              onChange={setShowGroups}
-              colors={colors}
-            />
-          </div>
-        </FilterSection>
-
-        <Divider color={colors.grey100} />
 
         {/* ── Distance ── */}
         <FilterSection
@@ -280,49 +245,6 @@ function FilterSection({ icon, label, value, isActive, colors, children }) {
   )
 }
 
-function Checkbox({ label, checked, onChange, colors }) {
-  return (
-    <div
-      onClick={() => onChange(!checked)}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 12,
-        cursor: 'pointer',
-        paddingLeft: 42,
-      }}
-    >
-      <div style={{
-        width: 22,
-        height: 22,
-        borderRadius: 6,
-        border: checked ? 'none' : `2px solid ${colors.grey300}`,
-        backgroundColor: checked ? colors.brandPrimary : 'transparent',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0,
-        transition: 'background-color 0.15s',
-      }}>
-        {checked && (
-          <svg width="12" height="10" viewBox="0 0 12 10" fill="none"
-            stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M1 5l3.5 3.5L11 1" />
-          </svg>
-        )}
-      </div>
-      <span style={{
-        fontSize: 15,
-        fontWeight: 400,
-        color: colors.grey1000,
-        fontFamily: "'Goldman Sans', sans-serif",
-      }}>
-        {label}
-      </span>
-    </div>
-  )
-}
-
 function NumberInput({ placeholder, value, onChange, colors }) {
   return (
     <input
@@ -375,21 +297,6 @@ function FilterTitleIcon({ color }) {
       <line x1="2" y1="5" x2="4.5" y2="5" />
       <line x1="2" y1="15" x2="10.5" y2="15" />
       <line x1="15.5" y1="15" x2="18" y2="15" />
-    </svg>
-  )
-}
-
-function TypeIcon({ color }) {
-  return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
-      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="4" width="8" height="8" rx="1.5" />
-      <line x1="2" y1="7" x2="10" y2="7" />
-      <line x1="5" y1="2" x2="5" y2="5" />
-      <line x1="7" y1="2" x2="7" y2="5" />
-      <circle cx="16" cy="9" r="2" />
-      <circle cx="19" cy="9" r="2" />
-      <path d="M12.5 18c0-1.7 1.6-3 3.5-3s3.5 1.3 3.5 3" />
     </svg>
   )
 }

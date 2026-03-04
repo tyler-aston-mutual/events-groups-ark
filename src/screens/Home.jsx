@@ -171,18 +171,16 @@ function sortItems(items, sortId) {
 }
 
 const FILTER_DEFAULTS = {
-  showEvents: true,
-  showGroups: true,
   distance: 100,
   minParticipants: '',
   maxParticipants: '',
 }
 
-function applyFilters(items, filters) {
+function applyFilters(items, filters, typeFilter) {
   return items.filter(item => {
-    // Type filter
-    if (!filters.showEvents && item.type !== 'group') return false
-    if (!filters.showGroups && item.type === 'group') return false
+    // Type filter (from pills)
+    if (typeFilter === 'events' && item.type === 'group') return false
+    if (typeFilter === 'groups' && item.type !== 'group') return false
     // Participants filter
     const min = filters.minParticipants ? Number(filters.minParticipants) : 0
     const max = filters.maxParticipants ? Number(filters.maxParticipants) : Infinity
@@ -193,8 +191,6 @@ function applyFilters(items, filters) {
 
 function hasActiveFilters(filters) {
   return (
-    filters.showEvents !== FILTER_DEFAULTS.showEvents ||
-    filters.showGroups !== FILTER_DEFAULTS.showGroups ||
     filters.distance !== FILTER_DEFAULTS.distance ||
     filters.minParticipants !== FILTER_DEFAULTS.minParticipants ||
     filters.maxParticipants !== FILTER_DEFAULTS.maxParticipants
@@ -203,6 +199,7 @@ function hasActiveFilters(filters) {
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('For You')
+  const [typeFilter, setTypeFilter] = useState('all')
   const [activeSort, setActiveSort] = useState('featured')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
@@ -230,7 +227,7 @@ export default function Home() {
   const tabItems = isJoined
     ? ALL_ITEMS.filter(i => JOINED_IDS.includes(i.id))
     : ALL_ITEMS.filter(i => !JOINED_IDS.includes(i.id))
-  const baseItems = applyFilters(tabItems, filters)
+  const baseItems = applyFilters(tabItems, filters, typeFilter)
   const items = sortItems(baseItems, activeSort)
   const activeSortLabel = SORT_OPTIONS.find(o => o.id === activeSort)?.label
 
@@ -274,12 +271,12 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Filter pills + sort */}
+        {/* Tab pills + sort */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          paddingBottom: 14,
+          paddingBottom: 8,
         }}>
           <div style={{ display: 'flex', gap: 8 }}>
             {FILTERS.map(filter => (
@@ -351,6 +348,19 @@ export default function Home() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Type filter pills */}
+        <div style={{ display: 'flex', gap: 8, paddingBottom: 14 }}>
+          {[{ id: 'all', label: 'All' }, { id: 'events', label: 'Events' }, { id: 'groups', label: 'Groups' }].map(t => (
+            <Chip
+              key={t.id}
+              text={t.label}
+              variant={typeFilter === t.id ? 'primary' : 'light'}
+              size="regular"
+              onClick={() => setTypeFilter(t.id)}
+            />
+          ))}
         </div>
       </div>
 
