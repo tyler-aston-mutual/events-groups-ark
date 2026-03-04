@@ -118,6 +118,16 @@ export default function DetailScreen() {
           display: 'flex',
           alignItems: 'center',
         }}>
+          <ShareIcon color={colors.grey1000} />
+        </button>
+        <button style={{
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          padding: 8,
+          display: 'flex',
+          alignItems: 'center',
+        }}>
           <MoreIcon color={colors.grey1000} />
         </button>
       </div>
@@ -543,6 +553,17 @@ function BackArrow({ color }) {
     <svg width="10" height="18" viewBox="0 0 10 18" fill="none"
       stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M9 1L1 9l8 8" />
+    </svg>
+  )
+}
+
+function ShareIcon({ color }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 2v10" />
+      <path d="M6 6l4-4 4 4" />
+      <path d="M4 10v6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-6" />
     </svg>
   )
 }
