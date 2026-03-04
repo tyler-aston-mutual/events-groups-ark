@@ -361,32 +361,6 @@ export default function DetailScreen() {
               />
             </div>
 
-            {/* Header row */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: 16,
-            }}>
-              <div style={{
-                fontSize: 16,
-                fontWeight: 700,
-                color: colors.grey1000,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-              }}>
-                {isGroup ? 'Group Members (Men)' : 'Event Attendees (Men)'}
-              </div>
-              <div style={{
-                fontSize: 13,
-                fontWeight: 500,
-                color: colors.grey400,
-                fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-                cursor: 'pointer',
-              }}>
-                Recently Active First ›
-              </div>
-            </div>
-
             {/* 2-column photo grid */}
             <div style={{
               display: 'grid',
