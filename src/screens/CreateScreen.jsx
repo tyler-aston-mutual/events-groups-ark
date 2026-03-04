@@ -22,6 +22,7 @@ export default function CreateScreen({ type }) {
   // Event-only state
   const [eventDate, setEventDate] = useState('')
   const [eventTime, setEventTime] = useState('')
+  const [visibilityRadius, setVisibilityRadius] = useState('Global')
 
   // Tab visibility
   const [showParticipants, setShowParticipants] = useState(true)
@@ -209,6 +210,50 @@ export default function CreateScreen({ type }) {
           onChange={setLocation}
           colors={colors}
         />
+
+        {/* Visibility Radius — events only, when location is provided */}
+        {isEvent && location.trim() && (
+          <div style={{ marginTop: 14 }}>
+            <div style={{
+              fontSize: 14,
+              fontWeight: 700,
+              color: colors.grey1000,
+              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+              marginBottom: 2,
+            }}>
+              Visible To
+            </div>
+            <div style={{
+              fontSize: 13,
+              color: colors.grey400,
+              fontFamily: "'Goldman Sans', sans-serif",
+              marginBottom: 10,
+              lineHeight: '17px',
+            }}>
+              Who can discover this event
+            </div>
+            <div style={{ display: 'flex', gap: 8 }}>
+              {['Global', '100 mi', '50 mi', '10 mi'].map(option => (
+                <div
+                  key={option}
+                  onClick={() => setVisibilityRadius(option)}
+                  style={{
+                    padding: '6px 14px',
+                    borderRadius: 8,
+                    backgroundColor: visibilityRadius === option ? colors.grey1000 : colors.grey50,
+                    color: visibilityRadius === option ? colors.grey0 : colors.grey600,
+                    fontSize: 13,
+                    fontWeight: 600,
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    cursor: 'pointer',
+                  }}
+                >
+                  {option}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* 5. Description */}
         <SectionLabel colors={colors} text="Description" optional />
