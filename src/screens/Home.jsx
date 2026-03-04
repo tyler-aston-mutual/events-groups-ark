@@ -28,6 +28,9 @@ const ALL_ITEMS = [
     location: 'Provo, UT',
     going: 320,
     featured: true,
+    description: 'A community for single Latter-day Saints in Utah Valley. We plan weekly activities, service projects, and social events to help you meet new people and build lasting friendships.',
+    createdDate: 'September 5, 2025  6:00PM',
+    creator: { name: 'McKenna', age: 26, image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
   },
   {
     id: 3,
@@ -37,6 +40,9 @@ const ALL_ITEMS = [
     location: 'Y Mountain Trailhead',
     going: 18,
     featured: true,
+    description: 'Join us for a group hike up Y Mountain! We\'ll meet at the trailhead and take the main trail to the Y. All fitness levels welcome — we go at a comfortable pace and take plenty of breaks.',
+    createdDate: 'February 10, 2026  8:30AM',
+    creator: { name: 'Jordan', age: 28, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
   },
   {
     id: 4,
@@ -46,6 +52,9 @@ const ALL_ITEMS = [
     location: 'Lehi, UT',
     going: 85,
     featured: true,
+    description: 'Weekly pickleball meetups around Utah County. All skill levels welcome! We play at various courts and host tournaments monthly.',
+    createdDate: 'October 12, 2025  7:30PM',
+    creator: { name: 'Jordan', age: 28, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
   },
   {
     id: 5,
@@ -56,6 +65,9 @@ const ALL_ITEMS = [
     going: 12,
     group: { name: 'Provo Pickleball', membersOnly: false },
     featured: true,
+    description: 'Casual doubles tournament for singles! We\'ll mix up partners each round so you get to meet everyone. Beginners and experienced players alike — come have fun and maybe find a doubles partner for life.',
+    createdDate: 'February 15, 2026  12:00PM',
+    creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
   },
   {
     id: 6,
@@ -66,6 +78,9 @@ const ALL_ITEMS = [
     going: 32,
     group: { name: 'SLC Singles', membersOnly: false },
     featured: true,
+    description: 'Evening stroll around Temple Square to enjoy the lights and good company. We\'ll grab hot chocolate afterward at a nearby cafe. Great way to meet people in a relaxed setting.',
+    createdDate: 'February 20, 2026  3:00PM',
+    creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
   },
   {
     id: 7,
@@ -74,6 +89,9 @@ const ALL_ITEMS = [
     image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=400&fit=crop',
     location: 'Provo, UT',
     going: 210,
+    description: 'Exploring the best trails in Utah Valley together. We organize group hikes every weekend ranging from easy canyon walks to challenging summit scrambles. New members always welcome!',
+    createdDate: 'August 15, 2025  9:00AM',
+    creator: { name: 'Dallin', age: 27, image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' },
   },
   {
     id: 8,
@@ -82,6 +100,9 @@ const ALL_ITEMS = [
     date: 'February 26, 2026 - 20:00',
     location: 'Velour Music Gallery',
     going: 8,
+    description: 'Sing your heart out at Velour! Whether you\'re a shower singer or the next American Idol, come join us for a fun night of karaoke, laughs, and meeting new friends.',
+    createdDate: 'February 18, 2026  5:00PM',
+    creator: { name: 'Bri', age: 23, image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop' },
   },
   {
     id: 9,
@@ -90,6 +111,9 @@ const ALL_ITEMS = [
     image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=400&fit=crop',
     location: 'Salt Lake City, UT',
     going: 150,
+    description: 'For people who love trying new restaurants and cooking together. We do group dinners at local spots, potlucks, and cooking classes. Come hungry, leave with new friends.',
+    createdDate: 'July 22, 2025  6:30PM',
+    creator: { name: 'Sophie', age: 26, image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop' },
   },
   {
     id: 10,
@@ -98,6 +122,9 @@ const ALL_ITEMS = [
     date: 'February 28, 2026 - 19:00',
     location: "Guru's Cafe",
     going: 10,
+    description: "Team trivia at Guru's Cafe! We'll form teams of 4-5 and compete for bragging rights. Topics range from pop culture to church history. No trivia experience required — just bring your brain.",
+    createdDate: 'February 19, 2026  11:00AM',
+    creator: { name: 'Ethan', age: 29, image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' },
   },
   {
     id: 11,
@@ -106,6 +133,9 @@ const ALL_ITEMS = [
     image: 'https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?w=400&h=400&fit=crop',
     location: 'Utah County, UT',
     going: 95,
+    description: 'A group for politically engaged young adults who lean conservative. We host watch parties, discussion nights, and volunteer for local campaigns together.',
+    createdDate: 'November 1, 2025  4:00PM',
+    creator: { name: 'Tyler', age: 30, image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
   },
   {
     id: 12,
@@ -114,6 +144,9 @@ const ALL_ITEMS = [
     image: 'https://images.unsplash.com/photo-1499988921418-b7df40ff03f9?w=400&h=400&fit=crop',
     location: 'Eagle Mountain, UT',
     going: 45,
+    description: 'Connect with members of the Eagle Mountain YSA Ward! Stay updated on ward activities, FHE groups, and service opportunities. A great way to stay in the loop.',
+    createdDate: 'January 8, 2026  10:00AM',
+    creator: { name: 'Rachel', age: 24, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop' },
   },
 ]
 
@@ -338,7 +371,13 @@ export default function Home() {
             <SpeedDatingBanner onDismiss={() => setBannerDismissed(true)} />
           )}
           {items.map(item => (
-            <EventCard key={item.id} {...item} />
+            <div
+              key={item.id}
+              onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: isJoined } })}
+              style={{ cursor: 'pointer' }}
+            >
+              <EventCard {...item} />
+            </div>
           ))}
         </div>
       </div>
