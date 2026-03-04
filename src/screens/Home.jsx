@@ -549,11 +549,14 @@ function PlusIcon() {
 
 function FilterIcon() {
   return (
-    <svg width="16" height="13" viewBox="0 0 16 13" fill="none"
-      stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
-      <line x1="0"  y1="1.5"  x2="16" y2="1.5"  />
-      <line x1="3"  y1="6.5"  x2="13" y2="6.5"  />
-      <line x1="6"  y1="11.5" x2="10" y2="11.5" />
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+      stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+      <circle cx="7" cy="5" r="2.5" />
+      <circle cx="13" cy="15" r="2.5" />
+      <line x1="9.5" y1="5" x2="18" y2="5" />
+      <line x1="2" y1="5" x2="4.5" y2="5" />
+      <line x1="2" y1="15" x2="10.5" y2="15" />
+      <line x1="15.5" y1="15" x2="18" y2="15" />
     </svg>
   )
 }
