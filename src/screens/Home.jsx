@@ -204,6 +204,7 @@ export default function Home() {
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [createOpen, setCreateOpen] = useState(false)
   const [createVisible, setCreateVisible] = useState(false)
+  const [expandedGroups, setExpandedGroups] = useState(new Set())
   const { colors } = useTheme()
   const navigate = useNavigate()
   const location = useLocation()
@@ -246,6 +247,21 @@ export default function Home() {
   const baseItems = applyFilters(tabItems, filters, typeFilter)
   const items = sortItems(baseItems, activeSort)
   const activeSortLabel = SORT_OPTIONS.find(o => o.id === activeSort)?.label
+
+  // Build map of group title → child events for nesting
+  const groupChildrenMap = {}
+  const childEventIds = new Set()
+  items.forEach(item => {
+    if (item.group?.name) {
+      const parentGroup = items.find(g => g.type === 'group' && g.title === item.group.name)
+      if (parentGroup) {
+        if (!groupChildrenMap[parentGroup.id]) groupChildrenMap[parentGroup.id] = []
+        groupChildrenMap[parentGroup.id].push(item)
+        childEventIds.add(item.id)
+      }
+    }
+  })
+  const topLevelItems = items.filter(i => !childEventIds.has(i.id))
 
   return (
     <div style={{
@@ -402,20 +418,133 @@ export default function Home() {
           {!bannerDismissed && !isYoursTab && (
             <SpeedDatingBanner onDismiss={() => setBannerDismissed(true)} />
           )}
-          {items.map(item => (
-            <div
-              key={item.id}
-              onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
-              style={{
-                cursor: 'pointer',
-                ...(item.id === newlyJoinedId ? {
-                  animation: 'cardSlideIn 0.4s ease-out both',
-                } : {}),
-              }}
-            >
-              <EventCard {...item} />
-            </div>
-          ))}
+          {topLevelItems.map(item => {
+            const childEvents = groupChildrenMap[item.id]
+            const isExpanded = expandedGroups.has(item.id)
+            return (
+              <div
+                key={item.id}
+                style={{
+                  ...(item.id === newlyJoinedId ? {
+                    animation: 'cardSlideIn 0.4s ease-out both',
+                  } : {}),
+                }}
+              >
+                <div
+                  onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <EventCard {...item} />
+                </div>
+
+                {/* Expandable child events section */}
+                {childEvents && childEvents.length > 0 && (
+                  <div style={{
+                    backgroundColor: colors.grey0,
+                    borderRadius: '0 0 16px 16px',
+                    marginTop: -12,
+                    paddingTop: 4,
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+                    overflow: 'hidden',
+                  }}>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setExpandedGroups(prev => {
+                          const next = new Set(prev)
+                          if (next.has(item.id)) next.delete(item.id)
+                          else next.add(item.id)
+                          return next
+                        })
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        width: '100%',
+                        padding: '10px 16px',
+                        background: 'none',
+                        border: 'none',
+                        borderTop: `1px solid ${colors.grey100}`,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <span style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: colors.brandPrimary,
+                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                      }}>
+                        {childEvents.length} upcoming event{childEvents.length > 1 ? 's' : ''}
+                      </span>
+                      <ExpandChevron color={colors.brandPrimary} open={isExpanded} />
+                    </button>
+
+                    {isExpanded && (
+                      <div style={{ padding: '0 12px 12px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                        {childEvents.map(child => (
+                          <div
+                            key={child.id}
+                            onClick={() => navigate(`/detail/${child.id}`, { state: { item: child, joined: joinedIds.has(child.id) } })}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 10,
+                              padding: 10,
+                              backgroundColor: colors.grey50,
+                              borderRadius: 12,
+                              cursor: 'pointer',
+                            }}
+                          >
+                            <img
+                              src={child.image}
+                              alt={child.title}
+                              style={{
+                                width: 56,
+                                height: 56,
+                                borderRadius: 10,
+                                objectFit: 'cover',
+                                flexShrink: 0,
+                              }}
+                            />
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <div style={{
+                                fontSize: 14,
+                                fontWeight: 700,
+                                color: colors.grey1000,
+                                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                                lineHeight: '18px',
+                                marginBottom: 3,
+                              }}>
+                                {child.title}
+                              </div>
+                              {child.date && (
+                                <div style={{
+                                  fontSize: 12,
+                                  color: colors.grey600,
+                                  fontFamily: "'Goldman Sans', sans-serif",
+                                }}>
+                                  {child.date}
+                                </div>
+                              )}
+                              <div style={{
+                                fontSize: 12,
+                                color: colors.grey400,
+                                fontFamily: "'Goldman Sans', sans-serif",
+                              }}>
+                                {child.going} interested
+                              </div>
+                            </div>
+                            <ChevronRightSmall color={colors.grey300} />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )
+          })}
 
           {/* Bottom create CTA */}
           <button
@@ -681,6 +810,26 @@ function SortChevron({ color, open }) {
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
       style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
       <path d="M2 4l3 3 3-3" />
+    </svg>
+  )
+}
+
+function ExpandChevron({ color, open }) {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s', flexShrink: 0 }}>
+      <path d="M2 4l4 4 4-4" />
+    </svg>
+  )
+}
+
+function ChevronRightSmall({ color }) {
+  return (
+    <svg width="6" height="10" viewBox="0 0 6 10" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+      style={{ flexShrink: 0 }}>
+      <path d="M1 1l4 4-4 4" />
     </svg>
   )
 }
