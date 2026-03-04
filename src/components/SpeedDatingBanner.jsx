@@ -101,7 +101,7 @@ export function SpeedDatingBanner({ onDismiss }) {
             lineHeight: '18px',
             fontFamily: "'Goldman Sans', sans-serif",
           }}>
-            Meet new people to talk to.
+            We'll pair you for 5-min text chats
           </div>
         </div>
       </div>
