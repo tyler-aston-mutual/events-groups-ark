@@ -93,23 +93,66 @@ export default function DetailScreen() {
 
       {/* Scrollable content */}
       <div style={{ flex: 1, overflowY: 'auto' }}>
-        {/* Hero image */}
+        {/* Compact card header: photo + title + icons */}
         <div style={{
-          width: '60%',
-          margin: '0 auto',
-          aspectRatio: '1',
-          overflow: 'hidden',
-          borderRadius: 12,
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0 20px 8px',
+          gap: 16,
+          position: 'relative',
         }}>
-          <img
-            src={item.image}
-            alt={item.title}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-          />
+          {/* Photo with featured overlay */}
+          <div style={{
+            width: 120,
+            height: 120,
+            borderRadius: 14,
+            overflow: 'hidden',
+            flexShrink: 0,
+            position: 'relative',
+          }}>
+            <img
+              src={item.image}
+              alt={item.title}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+            {item.featured && (
+              <div style={{
+                position: 'absolute',
+                bottom: 8,
+                left: 8,
+              }}>
+                <Chip text="Featured" variant="accent5" size="compact" />
+              </div>
+            )}
+          </div>
+
+          {/* Title */}
+          <div style={{
+            flex: 1,
+            fontSize: 22,
+            fontWeight: 700,
+            color: colors.grey1000,
+            lineHeight: '26px',
+            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+          }}>
+            {item.title}
+          </div>
+
+          {/* Type icon — top right */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            right: 20,
+          }}>
+            {isGroup
+              ? <GroupTypeIcon color={colors.grey400} />
+              : <CalendarTypeIcon color={colors.grey400} />
+            }
+          </div>
         </div>
 
         {/* Tab pills */}
@@ -362,6 +405,30 @@ function PeopleInfoIcon({ color }) {
       <circle cx="16" cy="7" r="2.5" />
       <path d="M2 19c0-2.8 2.7-5 6-5s6 2.2 6 5" />
       <path d="M16 14c2.5 0 4.5 2 4.5 5" />
+    </svg>
+  )
+}
+
+function CalendarTypeIcon({ color }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2.5" y="4" width="15" height="13.5" rx="2" />
+      <line x1="2.5" y1="8.5" x2="17.5" y2="8.5" />
+      <line x1="6.5" y1="2" x2="6.5" y2="5.5" />
+      <line x1="13.5" y1="2" x2="13.5" y2="5.5" />
+    </svg>
+  )
+}
+
+function GroupTypeIcon({ color }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7" cy="6.5" r="2.5" />
+      <circle cx="13" cy="6.5" r="2.5" />
+      <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" />
+      <path d="M13 13.5c3 0 5.5 2 5.5 4.5" />
     </svg>
   )
 }
