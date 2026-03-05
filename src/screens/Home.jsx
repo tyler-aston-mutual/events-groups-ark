@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, Fragment } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { StatusBar } from '../components/StatusBar'
 import { TabBar } from '../components/TabBar'
@@ -234,6 +234,7 @@ export default function Home() {
   const [activeSort, setActiveSort] = useState('featured')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
+  const [createBannerDismissed, setCreateBannerDismissed] = useState(false)
   const [createOpen, setCreateOpen] = useState(false)
   const [createVisible, setCreateVisible] = useState(false)
   const [expandedGroups, setExpandedGroups] = useState(new Set())
@@ -502,12 +503,12 @@ export default function Home() {
           {!bannerDismissed && !isYoursTab && (
             <SpeedDatingBanner onDismiss={() => setBannerDismissed(true)} />
           )}
-          {topLevelItems.map(item => {
+          {topLevelItems.map((item, index) => {
             const childEvents = groupChildrenMap[item.id]
             const isExpanded = expandedGroups.has(item.id)
             return (
+              <Fragment key={item.id}>
               <div
-                key={item.id}
                 style={{
                   ...(item.id === newlyJoinedId ? {
                     animation: 'cardSlideIn 0.4s ease-out both',
@@ -627,6 +628,90 @@ export default function Home() {
                   </div>
                 )}
               </div>
+
+              {/* Create banner — after 5th card */}
+              {index === 4 && !createBannerDismissed && !isYoursTab && (
+                <div
+                  onClick={openCreate}
+                  style={{
+                    position: 'relative',
+                    backgroundColor: colors.brandAccent5,
+                    borderRadius: 16,
+                    padding: 16,
+                    cursor: 'pointer',
+                    marginTop: 12,
+                  }}
+                >
+                  {/* Dismiss X */}
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setCreateBannerDismissed(true) }}
+                    style={{
+                      position: 'absolute',
+                      top: 12,
+                      right: 12,
+                      width: 28,
+                      height: 28,
+                      borderRadius: 14,
+                      backgroundColor: 'rgba(255,255,255,0.15)',
+                      border: 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'rgba(255,255,255,0.85)',
+                      fontSize: 16,
+                      lineHeight: 1,
+                      padding: 0,
+                    }}
+                  >
+                    ×
+                  </button>
+
+                  {/* Content */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 4 }}>
+                    {/* + Icon circle */}
+                    <div style={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: 24,
+                      backgroundColor: 'rgba(255,255,255,0.2)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                    }}>
+                      <span style={{
+                        fontSize: 28,
+                        fontWeight: 300,
+                        color: '#FFFFFF',
+                        lineHeight: 1,
+                        marginTop: -1,
+                      }}>+</span>
+                    </div>
+                    <div>
+                      <div style={{
+                        fontSize: 22,
+                        fontWeight: 700,
+                        color: '#FFFFFF',
+                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                        lineHeight: '26px',
+                      }}>
+                        Add Your Own!
+                      </div>
+                      <div style={{
+                        fontSize: 14,
+                        fontWeight: 400,
+                        color: 'rgba(255,255,255,0.8)',
+                        fontFamily: "'Goldman Sans', sans-serif",
+                        marginTop: 4,
+                      }}>
+                        Share something with the community
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              </Fragment>
             )
           })}
 
