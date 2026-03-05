@@ -475,7 +475,7 @@ export default function Home() {
                         color: colors.brandPrimary,
                         fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                       }}>
-                        {childEvents.length} upcoming event{childEvents.length > 1 ? 's' : ''}
+                        {childEvents.length} event{childEvents.length > 1 ? 's' : ''}
                       </span>
                       <ExpandChevron color={colors.brandPrimary} open={isExpanded} />
                     </button>
