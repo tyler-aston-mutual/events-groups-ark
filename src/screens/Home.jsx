@@ -20,7 +20,7 @@ const SORT_OPTIONS = [
 
 const BASE = import.meta.env.BASE_URL
 
-const ALL_ITEMS = [
+export const ALL_ITEMS = [
   {
     id: 2,
     type: 'group',
@@ -98,12 +98,12 @@ const ALL_ITEMS = [
   },
   {
     id: 8,
-    title: 'Karaoke Night',
+    title: 'Friday Date Night',
     image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=400&fit=crop',
     date: 'February 26, 2026 - 20:00',
     location: 'Velour Music Gallery',
     going: 8,
-    description: 'Sing your heart out at Velour! Whether you\'re a shower singer or the next American Idol, come join us for a fun night of karaoke, laughs, and meeting new friends.',
+    description: 'Looking for a fun Friday night out? Come join us at Velour for a laid-back evening of good music, great people, and the perfect chance to meet someone new.',
     createdDate: 'February 18, 2026  5:00PM',
     creator: { name: 'Bri', age: 23, image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop' },
   },

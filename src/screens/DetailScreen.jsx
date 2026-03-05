@@ -4,6 +4,8 @@ import { StatusBar } from '../components/StatusBar'
 import { Chip, PrimaryButton, ThemedDialog } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 import { useJoined } from '../context/JoinedContext'
+import { EventCard } from '../components/EventCard'
+import { ALL_ITEMS } from './Home'
 
 const GATED_TABS = ['Participants', 'Events', 'Chat']
 
@@ -579,6 +581,40 @@ export default function DetailScreen() {
             </div>
           </div>
         )}
+
+        {/* Events content */}
+        {activeTab === 'Events' && (() => {
+          const groupEvents = ALL_ITEMS.filter(
+            i => i.type !== 'group' && i.group?.name === item.title
+          )
+          return (
+            <div style={{ padding: '20px 20px 0' }}>
+              {groupEvents.length === 0 ? (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '40px 0',
+                  fontSize: 15,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                }}>
+                  No events yet.
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {groupEvents.map(event => (
+                    <div
+                      key={event.id}
+                      onClick={() => navigate(`/detail/${event.id}`, { state: { item: event } })}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <EventCard {...event} />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )
+        })()}
       </div>
 
       {/* Bottom action — join button or "You're in" confirmation */}
