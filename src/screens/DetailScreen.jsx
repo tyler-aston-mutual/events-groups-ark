@@ -746,11 +746,6 @@ function CalendarInfoIcon({ color }) {
       <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"/>
       <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"/>
       <line x1="2.5" y1="8" x2="17.5" y2="8"/>
-      <rect x="3.5" y="9.5" width="2.5" height="2" rx="0.5"/>
-      <rect x="7.5" y="9.5" width="2.5" height="2" rx="0.5"/>
-      <rect x="11.5" y="9.5" width="2" height="2" rx="0.5"/>
-      <rect x="3.5" y="13" width="2.5" height="2" rx="0.5"/>
-      <path d="M10,12.6 L10.32,13.55 L11.33,13.57 L10.52,14.17 L10.82,15.13 L10,14.55 L9.18,15.13 L9.48,14.17 L8.67,13.57 L9.68,13.55 Z"/>
     </svg>
   )
 }
@@ -797,11 +792,6 @@ function CalendarTypeIcon({ color }) {
       <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"/>
       <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"/>
       <line x1="2.5" y1="8" x2="17.5" y2="8"/>
-      <rect x="3.5" y="9.5" width="2.5" height="2" rx="0.5"/>
-      <rect x="7.5" y="9.5" width="2.5" height="2" rx="0.5"/>
-      <rect x="11.5" y="9.5" width="2" height="2" rx="0.5"/>
-      <rect x="3.5" y="13" width="2.5" height="2" rx="0.5"/>
-      <path d="M10,12.6 L10.32,13.55 L11.33,13.57 L10.52,14.17 L10.82,15.13 L10,14.55 L9.18,15.13 L9.48,14.17 L8.67,13.57 L9.68,13.55 Z"/>
     </svg>
   )
 }

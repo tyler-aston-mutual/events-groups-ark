@@ -1014,21 +1014,11 @@ function CalendarCreateIcon({ color }) {
   return (
     <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      {/* Body with page curl */}
       <path d="M5,3.5 H16 Q20,3.5 20,7 V15.5 L16,20 H5 Q3,20 3,17 V7 Q3,3.5 5,3.5Z"/>
       <path d="M16,20 L16,16.5 L20,15.5" fill="none"/>
-      {/* Binding rings */}
       <rect x="7" y="1.5" width="2.5" height="4" rx="1.25"/>
       <rect x="13" y="1.5" width="2.5" height="4" rx="1.25"/>
-      {/* Divider */}
       <line x1="3" y1="9" x2="20" y2="9"/>
-      {/* Top row: 3 cells */}
-      <rect x="4.5" y="10.5" width="3" height="2.5" rx="0.5"/>
-      <rect x="9" y="10.5" width="3" height="2.5" rx="0.5"/>
-      <rect x="13.5" y="10.5" width="2.5" height="2.5" rx="0.5"/>
-      {/* Bottom row: 1 cell + star */}
-      <rect x="4.5" y="14.5" width="3" height="2.5" rx="0.5"/>
-      <path d="M11.5,13.2 L11.87,14.3 L13.1,14.32 L12.14,15.08 L12.5,16.2 L11.5,15.55 L10.5,16.2 L10.86,15.08 L9.9,14.32 L11.13,14.3 Z"/>
       {/* Plus badge */}
       <circle cx="21" cy="21" r="4.5" fill={color} stroke={color}/>
       <line x1="21" y1="18.8" x2="21" y2="23.2" stroke="white" strokeWidth="1.75"/>
