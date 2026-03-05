@@ -74,7 +74,8 @@ const ALL_ITEMS = [
   {
     id: 6,
     title: 'Temple Square Lights Walk',
-    image: 'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=400&h=400&fit=crop',
+    image: BASE + 'placeholder_logo.png',
+    imageBg: '#FFFFFF',
     date: 'March 8, 2026 - 19:30',
     location: 'Temple Square, SLC',
     going: 32,
