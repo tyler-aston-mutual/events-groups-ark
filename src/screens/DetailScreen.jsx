@@ -42,7 +42,7 @@ export default function DetailScreen() {
   const { colors } = useTheme()
   const navigate = useNavigate()
   const location = useLocation()
-  const { isJoined: checkJoined, addJoinedId } = useJoined()
+  const { isJoined: checkJoined, addJoinedId, getJoinDate } = useJoined()
   const { item } = location.state || {}
   const joined = item ? checkJoined(item.id) : false
   const [activeTab, setActiveTab] = useState('About')
@@ -566,13 +566,39 @@ export default function DetailScreen() {
         )}
       </div>
 
-      {/* Bottom join button — only for non-joined items */}
-      {!joined && (
-        <div style={{
-          padding: '12px 20px 28px',
-          flexShrink: 0,
-          backgroundColor: colors.grey0,
-        }}>
+      {/* Bottom action — join button or "You're in" confirmation */}
+      <div style={{
+        padding: '12px 20px 28px',
+        flexShrink: 0,
+        backgroundColor: colors.grey0,
+      }}>
+        {joined ? (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 8,
+            padding: '12px 0',
+          }}>
+            <CheckCircleIcon color={colors.brandPrimary} />
+            <span style={{
+              fontSize: 15,
+              fontWeight: 600,
+              color: colors.grey1000,
+              fontFamily: "'Goldman Sans', sans-serif",
+            }}>
+              You're in!
+            </span>
+            <span style={{
+              fontSize: 15,
+              fontWeight: 400,
+              color: colors.grey400,
+              fontFamily: "'Goldman Sans', sans-serif",
+            }}>
+              Added {getJoinDate(item.id) || '—'}
+            </span>
+          </div>
+        ) : (
           <PrimaryButton
             title={isGroup ? 'Join Group' : 'Interested'}
             size="medium"
@@ -584,8 +610,8 @@ export default function DetailScreen() {
               }, 300)
             }}
           />
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Join gate dialog */}
       <ThemedDialog
@@ -735,6 +761,15 @@ function SearchIcon({ color }) {
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="7.5" cy="7.5" r="5.5" />
       <line x1="12" y1="12" x2="16" y2="16" />
+    </svg>
+  )
+}
+
+function CheckCircleIcon({ color }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="9" stroke={color} strokeWidth="1.5" />
+      <path d="M6.5 10.5l2.5 2.5 5-5.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
