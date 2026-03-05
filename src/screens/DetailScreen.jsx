@@ -252,14 +252,18 @@ export default function DetailScreen() {
             overflow: 'hidden',
             flexShrink: 0,
             position: 'relative',
+            backgroundColor: item.imageBg || colors.grey100,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}>
             <img
               src={item.image}
               alt={item.title}
               style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
+                width: item.imageBg ? '60%' : '100%',
+                height: item.imageBg ? '60%' : '100%',
+                objectFit: item.imageBg ? 'contain' : 'cover',
               }}
             />
             {item.featured && (
