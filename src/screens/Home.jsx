@@ -715,25 +715,6 @@ export default function Home() {
             )
           })}
 
-          {/* Bottom create CTA */}
-          <button
-            onClick={openCreate}
-            style={{
-              width: '100%',
-              padding: '14px 0',
-              borderRadius: 24,
-              border: 'none',
-              backgroundColor: colors.brandAccent5,
-              color: '#FFFFFF',
-              fontSize: 16,
-              fontWeight: 700,
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-              cursor: 'pointer',
-              marginTop: 4,
-            }}
-          >
-            Create Event or Group
-          </button>
         </div>
       </div>
 
