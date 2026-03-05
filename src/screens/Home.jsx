@@ -206,11 +206,11 @@ const FILTER_DEFAULTS = {
   maxParticipants: '',
 }
 
-function applyFilters(items, filters, typeFilter) {
+function applyFilters(items, filters, showEvents, showGroups) {
   return items.filter(item => {
-    // Type filter (from pills)
-    if (typeFilter === 'events' && item.type === 'group') return false
-    if (typeFilter === 'groups' && item.type !== 'group') return false
+    // Type toggles
+    if (!showEvents && item.type !== 'group') return false
+    if (!showGroups && item.type === 'group') return false
     // Participants filter
     const min = filters.minParticipants ? Number(filters.minParticipants) : 0
     const max = filters.maxParticipants ? Number(filters.maxParticipants) : Infinity
@@ -229,7 +229,8 @@ function hasActiveFilters(filters) {
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('For You')
-  const [typeFilter, setTypeFilter] = useState('all')
+  const [showEvents, setShowEvents] = useState(true)
+  const [showGroups, setShowGroups] = useState(true)
   const [activeSort, setActiveSort] = useState('featured')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
@@ -275,7 +276,7 @@ export default function Home() {
   const tabItems = isYoursTab
     ? ALL_ITEMS.filter(i => joinedIds.has(i.id))
     : ALL_ITEMS.filter(i => !joinedIds.has(i.id))
-  const baseItems = applyFilters(tabItems, filters, typeFilter)
+  const baseItems = applyFilters(tabItems, filters, showEvents, showGroups)
   const items = sortItems(baseItems, activeSort)
   const activeSortLabel = SORT_OPTIONS.find(o => o.id === activeSort)?.label
 
@@ -339,36 +340,88 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Tab pills */}
+        {/* Primary tab bar — icon above, label below */}
         <div style={{
           display: 'flex',
-          alignItems: 'center',
-          paddingBottom: 8,
+          borderBottom: `2px solid ${colors.grey100}`,
+          marginLeft: -20,
+          marginRight: -16,
+          paddingLeft: 20,
+          paddingRight: 16,
         }}>
-          <div style={{ display: 'flex', gap: 8 }}>
-            {FILTERS.map(filter => (
-              <Chip
-                key={filter}
-                text={filter}
-                variant={activeFilter === filter ? 'primary' : 'light'}
-                size="regular"
-                onClick={() => setActiveFilter(filter)}
-              />
-            ))}
-          </div>
+          {[
+            { id: 'For You', label: 'Start Connecting', Icon: StartConnectingIcon },
+            { id: 'Yours', label: 'Your Connections', Icon: YourConnectionsIcon },
+          ].map(tab => {
+            const active = activeFilter === tab.id
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveFilter(tab.id)}
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 5,
+                  padding: '12px 0 10px',
+                  background: 'none',
+                  border: 'none',
+                  borderBottom: `2px solid ${active ? colors.brandPrimary : 'transparent'}`,
+                  marginBottom: -2,
+                  cursor: 'pointer',
+                  color: active ? colors.brandPrimary : colors.grey400,
+                }}
+              >
+                <tab.Icon color={active ? colors.brandPrimary : colors.grey400} />
+                <span style={{
+                  fontSize: 11,
+                  fontWeight: active ? 700 : 400,
+                  fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
+                  whiteSpace: 'nowrap',
+                }}>
+                  {tab.label}
+                </span>
+              </button>
+            )
+          })}
         </div>
 
-        {/* Type filter pills + sort */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 14 }}>
-          <div style={{ display: 'flex', gap: 8 }}>
-            {[{ id: 'all', label: 'All' }, { id: 'events', label: 'Events' }, { id: 'groups', label: 'Groups' }].map(t => (
-              <Chip
+        {/* Show: toggles + sort */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, paddingBottom: 14 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{
+              fontSize: 12,
+              fontWeight: 500,
+              color: colors.grey400,
+              fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+              marginRight: 2,
+            }}>Show:</span>
+            {[
+              { id: 'events', label: 'Events', active: showEvents, Icon: CalendarToggleIcon, toggle: () => { if (showEvents && showGroups) setShowEvents(false); else if (!showEvents) setShowEvents(true) } },
+              { id: 'groups', label: 'Groups', active: showGroups, Icon: GroupToggleIcon, toggle: () => { if (showGroups && showEvents) setShowGroups(false); else if (!showGroups) setShowGroups(true) } },
+            ].map(t => (
+              <button
                 key={t.id}
-                text={t.label}
-                variant={typeFilter === t.id ? 'dark' : 'light'}
-                size="compact"
-                onClick={() => setTypeFilter(t.id)}
-              />
+                onClick={t.toggle}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 5,
+                  padding: '5px 10px',
+                  borderRadius: 20,
+                  border: `1.5px solid ${t.active ? colors.brandPrimary : colors.grey200}`,
+                  backgroundColor: t.active ? `${colors.brandPrimary}14` : 'transparent',
+                  cursor: 'pointer',
+                  color: t.active ? colors.brandPrimary : colors.grey400,
+                  fontSize: 12,
+                  fontWeight: t.active ? 600 : 400,
+                  fontFamily: t.active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
+                }}
+              >
+                <t.Icon color={t.active ? colors.brandPrimary : colors.grey400} />
+                {t.label}
+              </button>
             ))}
           </div>
           <div style={{ position: 'relative' }}>
@@ -722,6 +775,71 @@ function IconButton({ colors, icon, onClick, badge, variant }) {
     </button>
   )
 }
+
+// ─── Primary tab icons ───────────────────────────────────────────
+
+function StartConnectingIcon({ color }) {
+  // 5-person pyramid: 2 top, 2 sides, 1 bottom-center
+  return (
+    <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      {/* Top row: 2 people */}
+      <circle cx="8" cy="3.5" r="2" />
+      <path d="M4 10c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" />
+      <circle cx="18" cy="3.5" r="2" />
+      <path d="M14 10c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" />
+      {/* Bottom-center: 1 person */}
+      <circle cx="13" cy="14" r="2" />
+      <path d="M9 21c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" />
+    </svg>
+  )
+}
+
+function YourConnectionsIcon({ color }) {
+  // Two people connected by circular arrows with checkmark in center
+  return (
+    <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      {/* Left person */}
+      <circle cx="4.5" cy="5" r="2" />
+      <path d="M1 12c0-1.9 1.6-3.5 3.5-3.5S8 10.1 8 12" />
+      {/* Right person */}
+      <circle cx="21.5" cy="5" r="2" />
+      <path d="M18 12c0-1.9 1.6-3.5 3.5-3.5S25 10.1 25 12" />
+      {/* Circular arrows connecting them */}
+      <path d="M9 9.5 C10.5 7 15.5 7 17 9.5" strokeDasharray="0" />
+      <path d="M17 13.5 C15.5 16 10.5 16 9 13.5" />
+      <polyline points="16.5,7.5 17,9.5 15,9.5" />
+      <polyline points="9.5,15.5 9,13.5 11,13.5" />
+      {/* Checkmark center */}
+      <path d="M11 11.5l1.5 1.5 3-3" strokeWidth="1.6" />
+    </svg>
+  )
+}
+
+// ─── Secondary Show: toggle icons ────────────────────────────────
+
+function CalendarToggleIcon({ color }) {
+  return (
+    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="2.5" width="12" height="10.5" rx="1.5" />
+      <line x1="1" y1="6" x2="13" y2="6" />
+      <line x1="4.5" y1="1" x2="4.5" y2="3.5" />
+      <line x1="9.5" y1="1" x2="9.5" y2="3.5" />
+    </svg>
+  )
+}
+
+function GroupToggleIcon({ color }) {
+  return (
+    <svg width="15" height="13" viewBox="0 0 16 13" fill="none" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="5.5" cy="4" r="2.2" />
+      <circle cx="11.5" cy="4" r="2.2" />
+      <path d="M1 12c0-2 2-3.5 4.5-3.5 1.2 0 2.3.4 3.1 1" />
+      <path d="M11.5 8.5c2.5 0 4.5 1.5 4.5 3.5" />
+    </svg>
+  )
+}
+
+// ─── Action icons ─────────────────────────────────────────────────
 
 function PlusIcon() {
   return (
