@@ -705,7 +705,7 @@ export default function Home() {
                         fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                         lineHeight: '26px',
                       }}>
-                        Add Your Own!
+                        Create Your Own
                       </div>
                       <div style={{
                         fontSize: 14,
@@ -714,7 +714,7 @@ export default function Home() {
                         fontFamily: "'Goldman Sans', sans-serif",
                         marginTop: 4,
                       }}>
-                        Share something with the community
+                        Create an event or group to connect with your community
                       </div>
                     </div>
                   </div>
