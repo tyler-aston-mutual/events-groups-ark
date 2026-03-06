@@ -309,8 +309,8 @@ export default function DetailScreen() {
             right: 20,
           }}>
             {isGroup
-              ? <GroupTypeIcon color={colors.brandAccent5} />
-              : <CalendarTypeIcon color={colors.brandAccent5} />
+              ? <GroupTypeIcon color={colors.brandPrimary} />
+              : <CalendarTypeIcon color={colors.brandPrimary} />
             }
           </div>
         </div>

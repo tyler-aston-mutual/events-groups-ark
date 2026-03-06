@@ -31,8 +31,8 @@ export function EventCard({
         right: 12,
       }}>
         {type === 'group'
-          ? <GroupBadgeIcon color={colors.brandAccent5} />
-          : <CalendarIcon color={colors.brandAccent5} />
+          ? <GroupBadgeIcon color={colors.brandPrimary} />
+          : <CalendarIcon color={colors.brandPrimary} />
         }
       </div>
 
@@ -259,13 +259,12 @@ function GroupBadgeIcon({ color }) {
 
 function GroupIcon({ color }) {
   return (
-    <svg width="16" height="14" viewBox="0 0 16 14" fill={color} stroke="none">
-      <circle cx="4" cy="3.5" r="2" />
-      <circle cx="8" cy="3.5" r="2" />
-      <circle cx="12" cy="3.5" r="2" />
-      <path d="M0 12.5c0-2 1.8-3.5 4-3.5 1.2 0 2.3.5 3 1.3" />
-      <path d="M5 10.3c.7-.8 1.8-1.3 3-1.3s2.3.5 3 1.3" />
-      <path d="M11 10.3c.7-.8 1.8-1.3 3-1.3 2.2 0 4 1.5 4 3.5H12.5" />
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7" cy="6.5" r="2.5" />
+      <circle cx="13" cy="6.5" r="2.5" />
+      <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" />
+      <path d="M13 13.5c3 0 5.5 2 5.5 4.5" />
     </svg>
   )
 }
