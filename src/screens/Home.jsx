@@ -357,7 +357,7 @@ export default function Home() {
         }}>
           {[
             { id: 'For You', label: 'Explore', Icon: ExploreIcon },
-            { id: 'Yours', label: 'Your Connections', Icon: StartConnectingIcon },
+            { id: 'Yours', label: 'Your Communities', Icon: StartConnectingIcon },
           ].map(tab => {
             const active = activeFilter === tab.id
             return (
