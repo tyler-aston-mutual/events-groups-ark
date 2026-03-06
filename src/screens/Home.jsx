@@ -347,7 +347,7 @@ export default function Home() {
           borderBottom: `1.5px solid ${colors.grey100}`,
         }}>
           {[
-            { id: 'For You', label: 'Find Connections', Icon: StartConnectingIcon },
+            { id: 'For You', label: 'Explore', Icon: StartConnectingIcon },
             { id: 'Yours', label: 'Your Connections', Icon: YourConnectionsIcon },
           ].map(tab => {
             const active = activeFilter === tab.id
