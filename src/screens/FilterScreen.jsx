@@ -141,7 +141,7 @@ export default function FilterScreen() {
         {/* ── Participants ── */}
         <FilterSection
           icon={<ParticipantsIcon color={colors.grey400} />}
-          label="Participants"
+          label="Number of Participants"
           value={
             minParticipants || maxParticipants
               ? `${minParticipants || '0'} – ${maxParticipants || '∞'}`
