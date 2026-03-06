@@ -536,7 +536,7 @@ export default function Home() {
                 onClick={openCreate}
                 style={{
                   position: 'relative',
-                  backgroundColor: colors.brandAccent5,
+                  backgroundColor: colors.grey1000,
                   borderRadius: 16,
                   padding: 16,
                   cursor: 'pointer',
@@ -736,7 +736,7 @@ export default function Home() {
                   onClick={openCreate}
                   style={{
                     position: 'relative',
-                    backgroundColor: colors.brandAccent5,
+                    backgroundColor: colors.grey1000,
                     borderRadius: 16,
                     padding: 16,
                     cursor: 'pointer',
@@ -916,7 +916,7 @@ function IconButton({ colors, icon, onClick, badge, variant }) {
       height: 36,
       borderRadius: 10,
       border: isAccent ? 'none' : `1.5px solid ${colors.grey100}`,
-      backgroundColor: isAccent ? colors.brandAccent5 : colors.grey0,
+      backgroundColor: isAccent ? colors.grey1000 : colors.grey0,
       color: isAccent ? '#FFFFFF' : 'inherit',
       display: 'flex',
       alignItems: 'center',
