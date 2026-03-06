@@ -31,8 +31,8 @@ export function EventCard({
         right: 12,
       }}>
         {type === 'group'
-          ? <GroupBadgeIcon color={colors.grey400} />
-          : <CalendarIcon color={colors.grey400} />
+          ? <GroupBadgeIcon color={colors.brandAccent5} />
+          : <CalendarIcon color={colors.brandAccent5} />
         }
       </div>
 

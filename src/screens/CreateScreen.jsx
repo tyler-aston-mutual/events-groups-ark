@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StatusBar } from '../components/StatusBar'
+import { ThemedDialog } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 
 export default function CreateScreen({ type }) {
@@ -28,6 +29,9 @@ export default function CreateScreen({ type }) {
   const [showParticipants, setShowParticipants] = useState(true)
   const [showEvents, setShowEvents] = useState(true)
   const [showChat, setShowChat] = useState(true)
+
+  // Confirmation modal
+  const [confirmOpen, setConfirmOpen] = useState(false)
 
   const canCreate = name.trim().length > 0
 
@@ -72,6 +76,7 @@ export default function CreateScreen({ type }) {
           Create {isEvent ? 'Event' : 'Group'}
         </div>
         <button
+          onClick={() => { if (canCreate) setConfirmOpen(true) }}
           style={{
             background: 'none',
             border: 'none',
@@ -529,6 +534,21 @@ export default function CreateScreen({ type }) {
         </div>
 
       </div>
+
+      {/* Confirmation modal */}
+      <ThemedDialog
+        open={confirmOpen}
+        onClose={() => setConfirmOpen(false)}
+        title={`Submit ${isEvent ? 'Event' : 'Group'}`}
+        message="Confirm submission for Mutual to review. Future visibility and appropriate content is up to Mutual."
+        buttons={[
+          { title: 'Cancel', variant: 'secondary', onClick: () => setConfirmOpen(false) },
+          { title: 'Submit', variant: 'primary', onClick: () => {
+            setConfirmOpen(false)
+            navigate(-1)
+          }},
+        ]}
+      />
     </div>
   )
 }

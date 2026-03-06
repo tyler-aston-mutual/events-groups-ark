@@ -410,16 +410,16 @@ export default function Home() {
                   gap: 5,
                   padding: '5px 10px',
                   borderRadius: 20,
-                  border: `1.5px solid ${t.active ? colors.brandPrimary : colors.grey200}`,
-                  backgroundColor: t.active ? `${colors.brandPrimary}14` : 'transparent',
+                  border: `1.5px solid ${t.active ? colors.brandAccent5 : colors.grey200}`,
+                  backgroundColor: t.active ? `${colors.brandAccent5}14` : 'transparent',
                   cursor: 'pointer',
-                  color: t.active ? colors.brandPrimary : colors.grey400,
+                  color: t.active ? colors.brandAccent5 : colors.grey400,
                   fontSize: 12,
                   fontWeight: t.active ? 600 : 400,
                   fontFamily: t.active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
                 }}
               >
-                <t.Icon color={t.active ? colors.brandPrimary : colors.grey400} />
+                <t.Icon color={t.active ? colors.brandAccent5 : colors.grey400} />
                 {t.label}
               </button>
             ))}

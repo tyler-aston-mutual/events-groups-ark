@@ -309,8 +309,8 @@ export default function DetailScreen() {
             right: 20,
           }}>
             {isGroup
-              ? <GroupTypeIcon color={colors.grey400} />
-              : <CalendarTypeIcon color={colors.grey400} />
+              ? <GroupTypeIcon color={colors.brandAccent5} />
+              : <CalendarTypeIcon color={colors.brandAccent5} />
             }
           </div>
         </div>
@@ -631,6 +631,23 @@ export default function DetailScreen() {
             </div>
           )
         })()}
+
+        {/* Disclaimer fine print */}
+        <div style={{
+          padding: '32px 20px 20px',
+          textAlign: 'center',
+        }}>
+          <p style={{
+            fontSize: 11,
+            fontWeight: 400,
+            color: colors.grey400,
+            fontFamily: "'Goldman Sans', sans-serif",
+            lineHeight: '15px',
+            margin: 0,
+          }}>
+            This {isGroup ? 'group' : 'event'} wasn't made by and is not endorsed by Mutual LLC. Please report anything that doesn't meet your expectations for our community.
+          </p>
+        </div>
       </div>
 
       {/* Bottom action — join button or "You're in" confirmation */}
