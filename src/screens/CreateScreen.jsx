@@ -76,15 +76,15 @@ export default function CreateScreen({ type }) {
           Create {isEvent ? 'Event' : 'Group'}
         </div>
         <button
-          onClick={() => { if (canCreate) setConfirmOpen(true) }}
+          onClick={() => setConfirmOpen(true)}
           style={{
             background: 'none',
             border: 'none',
-            cursor: canCreate ? 'pointer' : 'default',
+            cursor: 'pointer',
             padding: 8,
             fontSize: 16,
             fontWeight: 700,
-            color: canCreate ? colors.brandPrimary : colors.grey400,
+            color: colors.brandPrimary,
             fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             transition: 'color 0.2s ease',
           }}
