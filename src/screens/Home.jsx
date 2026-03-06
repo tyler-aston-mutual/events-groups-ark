@@ -409,8 +409,8 @@ export default function Home() {
               marginRight: 2,
             }}>Show:</span>
             {[
-              { id: 'events', label: 'Events', active: showEvents, Icon: CalendarToggleIcon, toggle: () => { if (showEvents && showGroups) setShowEvents(false); else if (!showEvents) setShowEvents(true) } },
-              { id: 'groups', label: 'Groups', active: activeSort === 'soonest' ? showGroups : showGroups, Icon: GroupToggleIcon, toggle: () => { if (activeSort === 'soonest') { setShowGroups(!showGroups) } else { if (showGroups && showEvents) setShowGroups(false); else if (!showGroups) setShowGroups(true) } } },
+              { id: 'events', label: 'Events', active: showEvents, Icon: CalendarToggleIcon, activeColor: colors.grey1000, toggle: () => { if (showEvents && showGroups) setShowEvents(false); else if (!showEvents) setShowEvents(true) } },
+              { id: 'groups', label: 'Groups', active: activeSort === 'soonest' ? showGroups : showGroups, Icon: GroupToggleIcon, activeColor: colors.brandPrimary, toggle: () => { if (activeSort === 'soonest') { setShowGroups(!showGroups) } else { if (showGroups && showEvents) setShowGroups(false); else if (!showGroups) setShowGroups(true) } } },
             ].map(t => (
               <button
                 key={t.id}
@@ -421,16 +421,16 @@ export default function Home() {
                   gap: 5,
                   padding: '5px 10px',
                   borderRadius: 20,
-                  border: `1.5px solid ${t.active ? colors.brandPrimary : colors.grey200}`,
-                  backgroundColor: t.active ? `${colors.brandPrimary}14` : 'transparent',
+                  border: `1.5px solid ${t.active ? t.activeColor : colors.grey200}`,
+                  backgroundColor: t.active ? `${t.activeColor}14` : 'transparent',
                   cursor: 'pointer',
-                  color: t.active ? colors.brandPrimary : colors.grey400,
+                  color: t.active ? t.activeColor : colors.grey400,
                   fontSize: 12,
                   fontWeight: t.active ? 600 : 400,
                   fontFamily: t.active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
                 }}
               >
-                <t.Icon color={t.active ? colors.brandPrimary : colors.grey400} />
+                <t.Icon color={t.active ? t.activeColor : colors.grey400} />
                 {t.label}
               </button>
             ))}

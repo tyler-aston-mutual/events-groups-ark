@@ -24,16 +24,31 @@ export function EventCard({
       boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
       position: 'relative',
     }}>
-      {/* Type icon — top-right corner */}
+      {/* Type pill — top-right corner */}
       <div style={{
         position: 'absolute',
-        top: 12,
-        right: 12,
+        top: 10,
+        right: 10,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 4,
+        padding: '4px 8px',
+        borderRadius: 20,
+        border: `1.5px solid ${type === 'group' ? colors.brandPrimary : colors.grey1000}`,
+        backgroundColor: type === 'group' ? `${colors.brandPrimary}14` : `${colors.grey1000}14`,
       }}>
         {type === 'group'
-          ? <GroupBadgeIcon color={colors.brandPrimary} />
-          : <CalendarIcon color={colors.brandPrimary} />
+          ? <GroupBadgeIcon color={colors.brandPrimary} size={14} />
+          : <CalendarIcon color={colors.grey1000} size={14} />
         }
+        <span style={{
+          fontSize: 11,
+          fontWeight: 600,
+          color: type === 'group' ? colors.brandPrimary : colors.grey1000,
+          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+        }}>
+          {type === 'group' ? 'Group' : 'Event'}
+        </span>
       </div>
 
       <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'center' }}>
@@ -199,9 +214,9 @@ function InfoRow({ icon, color, children }) {
 
 // ─── Icons ────────────────────────────────────────────────────────
 
-function CalendarIcon({ color }) {
+function CalendarIcon({ color, size = 20 }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none"
       stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4.5,3 H13.5 Q17.5,3 17.5,6.5 V14.5 L13.5,19 H4.5 Q2.5,19 2.5,15.5 V6.5 Q2.5,3 4.5,3Z"/>
       <path d="M13.5,19 L13.5,15.5 L17.5,14.5" fill="none"/>
@@ -247,9 +262,9 @@ function PeopleIcon({ color }) {
 }
 
 // Two-person silhouette — stroke-based, matches CalendarIcon style
-function GroupBadgeIcon({ color }) {
+function GroupBadgeIcon({ color, size = 20 }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none"
       stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="7" cy="6.5" r="2.5" />
       <circle cx="13" cy="6.5" r="2.5" />
