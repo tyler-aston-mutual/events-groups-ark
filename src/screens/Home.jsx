@@ -236,7 +236,17 @@ export default function Home() {
   const [createBannerDismissed, setCreateBannerDismissed] = useState(false)
   const [createOpen, setCreateOpen] = useState(false)
   const [createVisible, setCreateVisible] = useState(false)
-  const [expandedGroups, setExpandedGroups] = useState(new Set())
+  const [expandedGroups, setExpandedGroups] = useState(() => {
+    // Default all groups with child events to expanded
+    const ids = new Set()
+    ALL_ITEMS.forEach(item => {
+      if (item.group?.name) {
+        const parent = ALL_ITEMS.find(g => g.type === 'group' && g.title === item.group.name)
+        if (parent) ids.add(parent.id)
+      }
+    })
+    return ids
+  })
   const { colors } = useTheme()
   const navigate = useNavigate()
   const location = useLocation()
@@ -520,12 +530,8 @@ export default function Home() {
                 {/* Expandable child events section */}
                 {childEvents && childEvents.length > 0 && (
                   <div style={{
-                    backgroundColor: colors.grey0,
-                    borderRadius: '0 0 16px 16px',
-                    marginTop: -12,
-                    paddingTop: 4,
-                    boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
-                    overflow: 'hidden',
+                    marginLeft: 20,
+                    marginTop: 4,
                   }}>
                     <button
                       onClick={(e) => {
@@ -540,12 +546,10 @@ export default function Home() {
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
-                        width: '100%',
-                        padding: '10px 16px',
+                        gap: 6,
+                        padding: '6px 0',
                         background: 'none',
                         border: 'none',
-                        borderTop: `1px solid ${colors.grey100}`,
                         cursor: 'pointer',
                       }}
                     >
@@ -561,7 +565,7 @@ export default function Home() {
                     </button>
 
                     {isExpanded && (
-                      <div style={{ padding: '0 12px 12px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 4 }}>
                         {childEvents.map(child => (
                           <div
                             key={child.id}
@@ -571,11 +575,13 @@ export default function Home() {
                               alignItems: 'center',
                               gap: 10,
                               padding: 10,
-                              backgroundColor: colors.grey50,
+                              backgroundColor: colors.grey0,
                               borderRadius: 12,
                               cursor: 'pointer',
+                              boxShadow: '0 1px 6px rgba(0,0,0,0.1)',
                             }}
                           >
+                            <ChildEventIcon color={colors.brandPrimary} />
                             <img
                               src={child.image}
                               alt={child.title}
@@ -1034,6 +1040,20 @@ function SortChevron({ color, open }) {
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
       style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
       <path d="M2 4l3 3 3-3" />
+    </svg>
+  )
+}
+
+function ChildEventIcon({ color }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"
+      style={{ flexShrink: 0 }}>
+      <path d="M4.5,3 H13.5 Q17.5,3 17.5,6.5 V14.5 L13.5,19 H4.5 Q2.5,19 2.5,15.5 V6.5 Q2.5,3 4.5,3Z"/>
+      <path d="M13.5,19 L13.5,15.5 L17.5,14.5" fill="none"/>
+      <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"/>
+      <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"/>
+      <line x1="2.5" y1="8" x2="17.5" y2="8"/>
     </svg>
   )
 }
