@@ -671,6 +671,7 @@ export default function Home() {
                             key={child.id}
                             onClick={() => navigate(`/detail/${child.id}`, { state: { item: child, joined: joinedIds.has(child.id) } })}
                             style={{
+                              position: 'relative',
                               display: 'flex',
                               alignItems: 'center',
                               gap: 10,
@@ -681,7 +682,13 @@ export default function Home() {
                               boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
                             }}
                           >
-                            <ChildEventIcon color={colors.brandPrimary} />
+                            <div style={{
+                              position: 'absolute',
+                              top: 8,
+                              right: 8,
+                            }}>
+                              <ChildEventIcon color={colors.brandPrimary} />
+                            </div>
                             <img
                               src={child.image}
                               alt={child.title}
