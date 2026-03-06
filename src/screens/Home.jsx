@@ -518,11 +518,6 @@ export default function Home() {
                   ...(item.id === newlyJoinedId ? {
                     animation: 'cardSlideIn 0.4s ease-out both',
                   } : {}),
-                  ...(childEvents && childEvents.length > 0 ? {
-                    border: `1.5px solid ${colors.grey200}`,
-                    borderRadius: 16,
-                    overflow: 'hidden',
-                  } : {}),
                 }}
               >
                 <div
@@ -534,7 +529,8 @@ export default function Home() {
 
                 {/* Expandable child events section */}
                 {childEvents && childEvents.length > 0 && (
-                  <div>
+                  <div style={{ position: 'relative' }}>
+                    {/* Chevron toggle on the boundary between cards */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
@@ -546,31 +542,29 @@ export default function Home() {
                         })
                       }}
                       style={{
+                        position: 'absolute',
+                        top: -12,
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        zIndex: 2,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: 6,
-                        width: '100%',
-                        padding: '8px 16px',
-                        background: 'none',
+                        width: 28,
+                        height: 28,
+                        borderRadius: 14,
+                        backgroundColor: colors.grey0,
+                        boxShadow: '0 1px 4px rgba(0,0,0,0.12)',
                         border: 'none',
-                        borderTop: `1.5px solid ${colors.grey200}`,
                         cursor: 'pointer',
+                        padding: 0,
                       }}
                     >
-                      <span style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: colors.brandPrimary,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                      }}>
-                        {childEvents.length} event{childEvents.length > 1 ? 's' : ''}
-                      </span>
                       <ExpandChevron color={colors.brandPrimary} open={isExpanded} />
                     </button>
 
                     {isExpanded && (
-                      <div style={{ padding: '0 12px 12px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ paddingTop: 6, display: 'flex', flexDirection: 'column', gap: 8 }}>
                         {childEvents.map(child => (
                           <div
                             key={child.id}
@@ -580,9 +574,10 @@ export default function Home() {
                               alignItems: 'center',
                               gap: 10,
                               padding: 10,
-                              backgroundColor: colors.grey50,
+                              backgroundColor: colors.grey0,
                               borderRadius: 12,
                               cursor: 'pointer',
+                              boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
                             }}
                           >
                             <ChildEventIcon color={colors.brandPrimary} />
