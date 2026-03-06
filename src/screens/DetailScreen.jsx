@@ -208,28 +208,6 @@ export default function DetailScreen() {
                 >
                   Report
                 </button>
-                {item.creator?.name === 'Tyler' && (
-                  <button
-                    onClick={() => setMenuOpen(false)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      width: '100%',
-                      padding: '10px 16px',
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontSize: 14,
-                      fontWeight: 400,
-                      color: colors.grey600,
-                      fontFamily: "'Goldman Sans', sans-serif",
-                      textAlign: 'left',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    Edit {isGroup ? 'Group' : 'Event'}
-                  </button>
-                )}
               </div>
             </>
           )}
