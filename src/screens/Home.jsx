@@ -184,10 +184,13 @@ function sortItems(items, sortId) {
   switch (sortId) {
     case 'featured':
       return sorted.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
-    case 'soonest':
-      return sorted
+    case 'soonest': {
+      const events = sorted
         .filter(item => item.type !== 'group' && item.date)
         .sort((a, b) => new Date(a.date.replace(/ - /, ' ')) - new Date(b.date.replace(/ - /, ' ')))
+      const groups = sorted.filter(item => item.type === 'group')
+      return [...events, ...groups]
+    }
     case 'newest':
       return sorted.sort((a, b) => b.id - a.id)
     case 'popular':
@@ -229,7 +232,7 @@ function hasActiveFilters(filters) {
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('For You')
   const [showEvents, setShowEvents] = useState(true)
-  const [showGroups, setShowGroups] = useState(true)
+  const [showGroups, setShowGroups] = useState(false)
   const [activeSort, setActiveSort] = useState('soonest')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
@@ -405,7 +408,7 @@ export default function Home() {
             }}>Show:</span>
             {[
               { id: 'events', label: 'Events', active: showEvents, Icon: CalendarToggleIcon, toggle: () => { if (showEvents && showGroups) setShowEvents(false); else if (!showEvents) setShowEvents(true) } },
-              { id: 'groups', label: 'Groups', active: showGroups, Icon: GroupToggleIcon, toggle: () => { if (showGroups && showEvents) setShowGroups(false); else if (!showGroups) setShowGroups(true) } },
+              { id: 'groups', label: 'Groups', active: activeSort === 'soonest' ? showGroups : showGroups, Icon: GroupToggleIcon, toggle: () => { if (activeSort === 'soonest') { setShowGroups(!showGroups) } else { if (showGroups && showEvents) setShowGroups(false); else if (!showGroups) setShowGroups(true) } } },
             ].map(t => (
               <button
                 key={t.id}
@@ -466,7 +469,12 @@ export default function Home() {
                 {SORT_OPTIONS.map(option => (
                   <button
                     key={option.id}
-                    onClick={() => { setActiveSort(option.id); setSortOpen(false) }}
+                    onClick={() => {
+                      setActiveSort(option.id)
+                      setSortOpen(false)
+                      if (option.id === 'soonest') setShowGroups(false)
+                      else if (activeSort === 'soonest') setShowGroups(true)
+                    }}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
