@@ -374,18 +374,20 @@ export default function Home() {
                   justifyContent: 'center',
                   gap: 6,
                   paddingBottom: 10,
-                  background: 'none',
+                  paddingTop: 10,
+                  background: active ? colors.grey50 : 'none',
                   border: 'none',
-                  borderBottom: `2px solid ${active ? colors.brandPrimary : 'transparent'}`,
+                  borderBottom: `2px solid ${active ? colors.grey1000 : 'transparent'}`,
                   marginBottom: -1.5,
                   cursor: 'pointer',
+                  borderRadius: '8px 8px 0 0',
                 }}
               >
-                <tab.Icon color={active ? colors.brandPrimary : colors.grey400} />
+                <tab.Icon color={active ? colors.grey1000 : colors.grey400} />
                 <span style={{
                   fontSize: 15,
                   fontWeight: active ? 700 : 500,
-                  color: active ? colors.brandPrimary : colors.grey400,
+                  color: active ? colors.grey1000 : colors.grey400,
                   fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
                   whiteSpace: 'nowrap',
                 }}>
