@@ -750,6 +750,11 @@ function InfoRow({ icon, colors, children, tappable, onTap }) {
         fontWeight: 500,
         color: tappable ? colors.brandPrimary : colors.grey1000,
         fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+        ...(tappable ? {
+          textDecoration: 'underline',
+          textDecorationStyle: 'dotted',
+          textUnderlineOffset: 3,
+        } : {}),
       }}>
         {children}
       </div>
