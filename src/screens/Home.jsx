@@ -515,7 +515,21 @@ export default function Home() {
       >
         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
           {!bannerDismissed && !isYoursTab && (
-            <SpeedDatingBanner onDismiss={() => setBannerDismissed(true)} />
+            <div
+              onClick={() => navigate('/speed-dating')}
+              style={{ cursor: 'pointer' }}
+            >
+              <EventCard
+                type="event"
+                title="Virtual Speed Dating"
+                image={BASE + 'speed-dating.png'}
+                imageBg="#FFFFFF"
+                date="Wednesday 7PM MST"
+                location="Virtual"
+                going={0}
+                tag="Weekly"
+              />
+            </div>
           )}
 
           {/* "You Created" section — Yours tab only */}
