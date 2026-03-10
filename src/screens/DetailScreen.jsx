@@ -9,36 +9,86 @@ import { ALL_ITEMS } from './Home'
 
 const GATED_TABS = ['Participants', 'Events', 'Chat']
 
-const FAKE_PARTICIPANTS = [
-  {
-    id: 1,
-    name: 'McKenna',
-    age: 26,
-    location: 'Salt Lake City, UT',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=530&fit=crop&crop=face',
-  },
-  {
-    id: 2,
-    name: 'Sophie',
-    age: 24,
-    location: 'Provo, UT',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=530&fit=crop&crop=face',
-  },
-  {
-    id: 3,
-    name: 'Emily',
-    age: 25,
-    location: 'Draper, UT',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=530&fit=crop&crop=face',
-  },
-  {
-    id: 4,
-    name: 'Rachel',
-    age: 23,
-    location: 'Lehi, UT',
-    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=530&fit=crop&crop=face',
-  },
-]
+// Pool of 114 unique participants — interleaved female/male for a natural mix per item
+const PARTICIPANT_POOL = (() => {
+  const fNames = [
+    'McKenna','Sophie','Emily','Rachel','Bri','Hannah','Lauren','Mia',
+    'Olivia','Ava','Ella','Grace','Lily','Chloe','Emma','Abby',
+    'Kate','Sarah','Jessica','Ashley','Madison','Hailey','Brooklyn','Savannah',
+    'Natalie','Camille','Ellie','Aubrey','Claire','Stella',
+    'Aria','Riley','Zoey','Layla','Penelope','Nora',
+    'Hazel','Luna','Nova','Aurora','Ivy','Willow',
+    'Emery','Evelyn','Isla','Piper','Ruby','Jade',
+    'Summer','Autumn','Scarlett','Violet','Harper','Quinn',
+  ]
+  const mNames = [
+    'Tyler','Jordan','Tanner','Ethan','Dallin','Jake',
+    'Mason','Liam','Noah','Logan','Ben','Caleb',
+    'Owen','Luke','Jack','Ryan','Nate','Will',
+    'Sam','Carter','Gavin','Dylan','Bryce','Colton',
+    'Hunter','Jaxon','Landon','Wyatt','Cooper','Chase',
+    'Kai','Asher','Leo','Ezra','Finn','Miles',
+    'Theo','Beckett','Austin','Blake','Reed','Grant',
+    'Eli','Parker','Max','Cole','Milo','Axel',
+    'Zane','Cruz','Silas','Atlas','Knox','Jude',
+    'Hayes','Dean','Brooks','Cash','Griffin','Rhett',
+  ]
+  const fPhotos = [
+    '1494790108377-be9c29b29330','1534528741775-53994a69daeb',
+    '1438761681033-6461ffad8d80','1517841905240-472988babdf9',
+    '1544005313-94ddf0286df2','1524504388940-b1c1722653e1',
+    '1488426862026-3ee34a7d66df','1531746020798-e6953c6e8e04',
+    '1502823403499-6ccfcf4fb453','1529626455594-4ff0802cfb7e',
+    '1487412720507-e7ab37603c6f','1524250502761-1ac6f2e30d43',
+    '1519699047748-de8e457a634e','1542206395-9feb3edaa68d',
+    '1580489944761-15a19d654956','1557555187-23d685287bc3',
+    '1573496359142-b8d87734a5a2','1567532939604-b6b5b0db2604',
+  ]
+  const mPhotos = [
+    '1506794778202-cad84cf45f1d','1507003211169-0a1dd7228f2d',
+    '1539571696357-5a69c17a67c6','1500648767791-00dcc994a43e',
+    '1472099645785-5658abf4ff4e','1519345182560-3f2917c472ef',
+    '1492562080023-ab3db95bfbce','1504257432389-52343af06ae3',
+    '1519085360753-af0119f7cbe7','1531891437562-4301cf35b7e4',
+    '1463453091185-61582044d556','1500048993953-d23a436266cf',
+    '1556157382-97eda2d62296','1522075469751-3a6694fb2f61',
+    '1530268729831-4b0b9e170218','1560250097-0b93528c311a',
+    '1504593811423-6dd665756598','1603415526960-f7e0328c63b1',
+  ]
+  const locs = [
+    'Salt Lake City, UT','Provo, UT','Lehi, UT','Draper, UT',
+    'Orem, UT','Sandy, UT','American Fork, UT','Eagle Mountain, UT',
+  ]
+  const pool = []
+  const max = Math.max(fNames.length, mNames.length)
+  for (let i = 0; i < max; i++) {
+    if (i < fNames.length) {
+      pool.push({
+        id: pool.length + 1, name: fNames[i],
+        age: 20 + ((i * 3 + 2) % 13),
+        location: locs[(i * 2) % locs.length],
+        image: `https://images.unsplash.com/photo-${fPhotos[i % fPhotos.length]}?w=400&h=530&fit=crop&crop=face`,
+      })
+    }
+    if (i < mNames.length) {
+      pool.push({
+        id: pool.length + 1, name: mNames[i],
+        age: 21 + ((i * 3 + 5) % 12),
+        location: locs[(i * 2 + 1) % locs.length],
+        image: `https://images.unsplash.com/photo-${mPhotos[i % mPhotos.length]}?w=400&h=530&fit=crop&crop=face`,
+      })
+    }
+  }
+  return pool
+})()
+
+const ITEM_IDS_SORTED = ALL_ITEMS.map(i => i.id).sort((a, b) => a - b)
+
+function getParticipantsForItem(itemId) {
+  const idx = ITEM_IDS_SORTED.indexOf(itemId)
+  if (idx === -1) return PARTICIPANT_POOL.slice(0, 8)
+  return PARTICIPANT_POOL.slice(idx * 8, idx * 8 + 8)
+}
 
 export default function DetailScreen() {
   const { colors } = useTheme()
@@ -458,7 +508,7 @@ export default function DetailScreen() {
               gap: 12,
               marginBottom: 20,
             }}>
-              {FAKE_PARTICIPANTS.map(p => (
+              {getParticipantsForItem(item.id).map(p => (
                 <div key={p.id} style={{
                   position: 'relative',
                   borderRadius: 14,
