@@ -678,7 +678,7 @@ export default function Home() {
               </div>
 
               {/* Create banner — after 5th card */}
-              {index === 4 && !createBannerDismissed && !isYoursTab && (
+              {index === 3 && !createBannerDismissed && !isYoursTab && (
                 <div style={{ position: 'relative', marginTop: 12 }}>
                   {/* Dismiss X */}
                   <button
@@ -987,6 +987,41 @@ function CreateOption({ colors, icon, title, description, onClick }) {
   )
 }
 
+function SplitCreateIllustration({ colors }) {
+  return (
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+      {/* Event calendar icon — left side, pink */}
+      <g transform="translate(4, 14) scale(1.6)">
+        <path d="M4.5,3 H13.5 Q17.5,3 17.5,6.5 V14.5 L13.5,19 H4.5 Q2.5,19 2.5,15.5 V6.5 Q2.5,3 4.5,3Z"
+          fill="none" stroke={colors.brandAccent5} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M13.5,19 L13.5,15.5 L17.5,14.5" fill="none"
+          stroke={colors.brandAccent5} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"
+          fill="none" stroke={colors.brandAccent5} strokeWidth="1.5"/>
+        <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"
+          fill="none" stroke={colors.brandAccent5} strokeWidth="1.5"/>
+        <line x1="2.5" y1="8" x2="17.5" y2="8"
+          stroke={colors.brandAccent5} strokeWidth="1.5"/>
+      </g>
+      {/* Group icon — right side, blue */}
+      <g transform="translate(38, 8) scale(1.6)">
+        <circle cx="7" cy="6.5" r="2.5" fill="none"
+          stroke={colors.brandPrimary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="16" cy="6.5" r="2.5" fill="none"
+          stroke={colors.brandPrimary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" fill="none"
+          stroke={colors.brandPrimary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M16 13.5c3 0 5.5 2 5.5 4.5" fill="none"
+          stroke={colors.brandPrimary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </g>
+      {/* Black plus circle — bottom center */}
+      <circle cx="48" cy="62" r="10" fill={colors.grey1000} />
+      <line x1="48" y1="56" x2="48" y2="68" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="42" y1="62" x2="54" y2="62" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 function CreateBanner({ colors, activeNav, onTap, navigate }) {
   const isEvents = activeNav === 'events'
   const isGroups = activeNav === 'groups'
@@ -994,20 +1029,23 @@ function CreateBanner({ colors, activeNav, onTap, navigate }) {
   // Determine color, text, icon, and action based on active tab
   let accentColor = colors.grey1000
   let label = '+ Create'
-  let prompt = 'Have an idea for a meetup?'
+  let prompt = 'Add Your Own!'
+  let subtitle = 'Create an event or group for the community'
   let handleClick = onTap // default: open bottom sheet
-  let illustration = <MapIllustration accentColor={colors.brandAccent5} />
+  let illustration = <SplitCreateIllustration colors={colors} />
 
   if (isEvents) {
     accentColor = colors.brandAccent5
     label = '+ Create Event'
     prompt = 'Have an idea for an event?'
+    subtitle = null
     handleClick = () => navigate('/create/event')
     illustration = <CalendarCreateIcon color={colors.brandAccent5} />
   } else if (isGroups) {
     accentColor = colors.brandPrimary
     label = '+ Create Group'
     prompt = 'Looking to start a community?'
+    subtitle = null
     handleClick = () => navigate('/create/group')
     illustration = <GroupCreateIcon color={colors.brandPrimary} />
   }
@@ -1047,10 +1085,22 @@ function CreateBanner({ colors, activeNav, onTap, navigate }) {
           color: colors.grey900,
           fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
           lineHeight: '20px',
-          marginBottom: 10,
+          marginBottom: subtitle ? 4 : 10,
         }}>
           {prompt}
         </div>
+        {subtitle && (
+          <div style={{
+            fontSize: 13,
+            fontWeight: 400,
+            color: colors.grey600,
+            fontFamily: "'Goldman Sans', sans-serif",
+            lineHeight: '17px',
+            marginBottom: 10,
+          }}>
+            {subtitle}
+          </div>
+        )}
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
