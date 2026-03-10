@@ -10,9 +10,15 @@ import { useJoined } from '../context/JoinedContext'
 
 const FILTERS = ['For You', 'Yours']
 
-const SORT_OPTIONS = [
+const SORT_OPTIONS_ALL = [
   { id: 'newest', label: 'Newest' },
-  { id: 'soonest', label: 'Soonest (Events)' },
+  { id: 'soonest', label: 'Soonest' },
+  { id: 'popular', label: 'Most Popular' },
+  { id: 'nearest', label: 'Nearest' },
+]
+
+const SORT_OPTIONS_GROUPS = [
+  { id: 'newest', label: 'Newest' },
   { id: 'popular', label: 'Most Popular' },
   { id: 'nearest', label: 'Nearest' },
 ]
@@ -279,12 +285,13 @@ export default function Home() {
   const isYoursTab = activeNav === 'mine'
   const showEvents = activeNav === 'events' || activeNav === 'all' || activeNav === 'mine'
   const showGroups = activeNav === 'groups' || activeNav === 'all' || activeNav === 'mine'
+  const sortOptions = activeNav === 'groups' ? SORT_OPTIONS_GROUPS : SORT_OPTIONS_ALL
   const tabItems = isYoursTab
     ? ALL_ITEMS.filter(i => joinedIds.has(i.id))
     : ALL_ITEMS.filter(i => !joinedIds.has(i.id))
   const baseItems = applyFilters(tabItems, filters, showEvents, showGroups)
   const items = sortItems(baseItems, activeSort)
-  const activeSortLabel = SORT_OPTIONS.find(o => o.id === activeSort)?.label
+  const activeSortLabel = sortOptions.find(o => o.id === activeSort)?.label
 
   // Build map of group title → child events for nesting
   const groupChildrenMap = {}
@@ -358,7 +365,12 @@ export default function Home() {
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveNav(tab.id)}
+                onClick={() => {
+                  setActiveNav(tab.id)
+                  if (tab.id === 'events') setActiveSort('soonest')
+                  else if (tab.id === 'groups') setActiveSort('nearest')
+                  else setActiveSort('newest')
+                }}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -427,7 +439,7 @@ export default function Home() {
                 zIndex: 10,
                 minWidth: 160,
               }}>
-                {SORT_OPTIONS.map(option => (
+                {sortOptions.map(option => (
                   <button
                     key={option.id}
                     onClick={() => {
