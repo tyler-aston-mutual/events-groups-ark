@@ -93,20 +93,7 @@ export default function DetailScreen() {
         >
           <BackArrow color={colors.grey1000} />
         </button>
-        <div style={{
-          flex: 1,
-          textAlign: 'center',
-          fontSize: 17,
-          fontWeight: 700,
-          color: colors.grey1000,
-          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          padding: '0 8px',
-        }}>
-          {item.title} {isGroup ? 'Group' : 'Event'}
-        </div>
+        <div style={{ flex: 1 }} />
         <button style={{
           background: 'none',
           border: 'none',
@@ -260,7 +247,7 @@ export default function DetailScreen() {
             fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             textAlign: item.image ? 'left' : 'center',
           }}>
-            {item.title}
+            {item.title} <span style={{ fontWeight: 400, fontSize: 18, color: colors.grey400 }}>{isGroup ? 'Group' : 'Event'}</span>
           </div>
 
           {/* Type icon pill — top right */}
