@@ -588,29 +588,14 @@ export default function DetailScreen() {
           )
         })()}
 
-        {/* Disclaimer fine print */}
-        <div style={{
-          padding: '32px 20px 20px',
-          textAlign: 'center',
-        }}>
-          <p style={{
-            fontSize: 11,
-            fontWeight: 400,
-            color: colors.grey400,
-            fontFamily: "'Goldman Sans', sans-serif",
-            lineHeight: '15px',
-            margin: 0,
-          }}>
-            This {isGroup ? 'group' : 'event'} wasn't made by and is not endorsed by Mutual LLC. Please report anything that doesn't meet your expectations for our community.
-          </p>
-        </div>
       </div>
 
-      {/* Bottom action — join button or "You're in" confirmation */}
+      {/* Bottom action — join button or "You're in" confirmation + disclaimer */}
       <div style={{
-        padding: '12px 20px 28px',
+        padding: '12px 20px 20px',
         flexShrink: 0,
         backgroundColor: colors.grey0,
+        borderTop: `1px solid ${colors.grey100}`,
       }}>
         {joined ? (
           <div style={{
@@ -644,6 +629,17 @@ export default function DetailScreen() {
             }}
           />
         )}
+        <p style={{
+          fontSize: 11,
+          fontWeight: 400,
+          color: colors.grey400,
+          fontFamily: "'Goldman Sans', sans-serif",
+          lineHeight: '15px',
+          margin: '12px 0 0',
+          textAlign: 'center',
+        }}>
+          This {isGroup ? 'group' : 'event'} wasn't made by and is not endorsed by Mutual LLC. Please report anything that doesn't meet your expectations for our community.
+        </p>
       </div>
 
       {/* Join gate dialog */}

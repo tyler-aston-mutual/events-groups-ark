@@ -17,10 +17,17 @@ const SORT_OPTIONS_ALL = [
   { id: 'nearest', label: 'Nearest' },
 ]
 
-const SORT_OPTIONS_GROUPS = [
+const SORT_OPTIONS_EVENTS = [
+  { id: 'soonest', label: 'Soonest' },
   { id: 'newest', label: 'Newest' },
   { id: 'popular', label: 'Most Popular' },
   { id: 'nearest', label: 'Nearest' },
+]
+
+const SORT_OPTIONS_GROUPS = [
+  { id: 'nearest', label: 'Nearest' },
+  { id: 'newest', label: 'Newest' },
+  { id: 'popular', label: 'Most Popular' },
 ]
 
 const BASE = import.meta.env.BASE_URL
@@ -285,7 +292,7 @@ export default function Home() {
   const isYoursTab = activeNav === 'mine'
   const showEvents = activeNav === 'events' || activeNav === 'all' || activeNav === 'mine'
   const showGroups = activeNav === 'groups' || activeNav === 'all' || activeNav === 'mine'
-  const sortOptions = activeNav === 'groups' ? SORT_OPTIONS_GROUPS : SORT_OPTIONS_ALL
+  const sortOptions = activeNav === 'groups' ? SORT_OPTIONS_GROUPS : activeNav === 'events' ? SORT_OPTIONS_EVENTS : SORT_OPTIONS_ALL
   const tabItems = isYoursTab
     ? ALL_ITEMS.filter(i => joinedIds.has(i.id))
     : ALL_ITEMS.filter(i => !joinedIds.has(i.id))
