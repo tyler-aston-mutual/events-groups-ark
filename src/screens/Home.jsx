@@ -508,55 +508,45 @@ export default function Home() {
               }}>
                 Created by you
               </div>
-              {/* Placeholder — Create Your Own banner until user creates something */}
+              {/* Placeholder — Create Your Own banner */}
               <div
                 onClick={openCreate}
                 style={{
-                  position: 'relative',
-                  backgroundColor: colors.grey1000,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  backgroundColor: colors.grey0,
                   borderRadius: 16,
-                  padding: 16,
+                  border: `1px solid ${colors.grey100}`,
+                  padding: '12px 16px',
                   cursor: 'pointer',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 4 }}>
+                <MapIllustration accentColor={colors.brandAccent5} />
+                <div style={{ flex: 1 }}>
                   <div style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 24,
-                    backgroundColor: 'rgba(255,255,255,0.2)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
+                    fontSize: 15,
+                    fontWeight: 700,
+                    color: colors.grey900,
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    lineHeight: '20px',
+                    marginBottom: 10,
                   }}>
-                    <span style={{
-                      fontSize: 28,
-                      fontWeight: 300,
-                      color: '#FFFFFF',
-                      lineHeight: 1,
-                      marginTop: -1,
-                    }}>+</span>
+                    Have an idea for a meetup?
                   </div>
-                  <div>
-                    <div style={{
-                      fontSize: 22,
-                      fontWeight: 700,
-                      color: '#FFFFFF',
-                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                      lineHeight: '26px',
-                    }}>
-                      Create Your Own
-                    </div>
-                    <div style={{
-                      fontSize: 14,
-                      fontWeight: 400,
-                      color: 'rgba(255,255,255,0.8)',
-                      fontFamily: "'Goldman Sans', sans-serif",
-                      marginTop: 4,
-                    }}>
-                      Create an event or group to connect with your community
-                    </div>
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 4,
+                    backgroundColor: colors.brandAccent5,
+                    color: '#FFFFFF',
+                    borderRadius: 20,
+                    padding: '8px 16px',
+                    fontSize: 13,
+                    fontWeight: 700,
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  }}>
+                    + Create
                   </div>
                 </div>
               </div>
@@ -728,9 +718,13 @@ export default function Home() {
                   onClick={openCreate}
                   style={{
                     position: 'relative',
-                    backgroundColor: colors.grey1000,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 12,
+                    backgroundColor: colors.grey0,
                     borderRadius: 16,
-                    padding: 16,
+                    border: `1px solid ${colors.grey100}`,
+                    padding: '12px 16px',
                     cursor: 'pointer',
                     marginTop: 12,
                   }}
@@ -740,19 +734,19 @@ export default function Home() {
                     onClick={(e) => { e.stopPropagation(); setCreateBannerDismissed(true) }}
                     style={{
                       position: 'absolute',
-                      top: 12,
-                      right: 12,
-                      width: 28,
-                      height: 28,
-                      borderRadius: 14,
-                      backgroundColor: 'rgba(255,255,255,0.15)',
+                      top: 8,
+                      right: 8,
+                      width: 24,
+                      height: 24,
+                      borderRadius: 12,
+                      backgroundColor: colors.grey100,
                       border: 'none',
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'rgba(255,255,255,0.85)',
-                      fontSize: 16,
+                      color: colors.grey400,
+                      fontSize: 14,
                       lineHeight: 1,
                       padding: 0,
                     }}
@@ -760,46 +754,31 @@ export default function Home() {
                     ×
                   </button>
 
-                  {/* Content */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 4 }}>
-                    {/* + Icon circle */}
+                  <MapIllustration accentColor={colors.brandAccent5} />
+                  <div style={{ flex: 1 }}>
                     <div style={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: 24,
-                      backgroundColor: 'rgba(255,255,255,0.2)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
+                      fontSize: 15,
+                      fontWeight: 700,
+                      color: colors.grey900,
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                      lineHeight: '20px',
+                      marginBottom: 10,
                     }}>
-                      <span style={{
-                        fontSize: 28,
-                        fontWeight: 300,
-                        color: '#FFFFFF',
-                        lineHeight: 1,
-                        marginTop: -1,
-                      }}>+</span>
+                      Have an idea for a meetup?
                     </div>
-                    <div>
-                      <div style={{
-                        fontSize: 22,
-                        fontWeight: 700,
-                        color: '#FFFFFF',
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                        lineHeight: '26px',
-                      }}>
-                        Create Your Own
-                      </div>
-                      <div style={{
-                        fontSize: 14,
-                        fontWeight: 400,
-                        color: 'rgba(255,255,255,0.8)',
-                        fontFamily: "'Goldman Sans', sans-serif",
-                        marginTop: 4,
-                      }}>
-                        Create an event or group to connect with your community
-                      </div>
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 4,
+                      backgroundColor: colors.brandAccent5,
+                      color: '#FFFFFF',
+                      borderRadius: 20,
+                      padding: '8px 16px',
+                      fontSize: 13,
+                      fontWeight: 700,
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    }}>
+                      + Create
                     </div>
                   </div>
                 </div>
@@ -1125,6 +1104,29 @@ function SortChevron({ color, open }) {
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
       style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
       <path d="M2 4l3 3 3-3" />
+    </svg>
+  )
+}
+
+function MapIllustration({ accentColor }) {
+  return (
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+      {/* Background blob */}
+      <ellipse cx="40" cy="42" rx="36" ry="32" fill="#F0F0F0" />
+      {/* Map folds */}
+      <rect x="16" y="22" width="48" height="36" rx="4" fill="#E5E5E5" stroke="#D4D4D4" strokeWidth="1" />
+      <line x1="32" y1="22" x2="32" y2="58" stroke="#D4D4D4" strokeWidth="0.75" />
+      <line x1="48" y1="22" x2="48" y2="58" stroke="#D4D4D4" strokeWidth="0.75" />
+      {/* Dotted path */}
+      <path d="M22 50 C28 42, 34 48, 40 38 S52 30, 58 34" stroke={accentColor} strokeWidth="2" strokeDasharray="3 3" fill="none" strokeLinecap="round" />
+      {/* Location pin */}
+      <g transform="translate(38, 20)">
+        <path d="M4 14S-4 7-4 3.5a4 4 0 1 1 8 0C4 7 4 14 4 14z" fill={accentColor} />
+        <circle cx="0" cy="3.5" r="1.5" fill="white" />
+      </g>
+      {/* Small dot markers */}
+      <circle cx="22" cy="50" r="2.5" fill={accentColor} opacity="0.5" />
+      <circle cx="58" cy="34" r="2.5" fill={accentColor} opacity="0.5" />
     </svg>
   )
 }
