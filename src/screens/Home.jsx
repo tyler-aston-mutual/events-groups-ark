@@ -83,6 +83,18 @@ export const ALL_ITEMS = [
     creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
   },
   {
+    id: 15,
+    type: 'group',
+    title: 'SLC Singles',
+    image: BASE + 'placeholder_logo.png',
+    imageBg: '#FFFFFF',
+    location: 'Salt Lake City, UT',
+    going: 175,
+    description: 'The go-to community for single Latter-day Saints in the Salt Lake City area. We organize weekly activities, weekend outings, and seasonal events to help you connect with other singles in the valley.',
+    createdDate: 'December 1, 2025  10:00AM',
+    creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
+  },
+  {
     id: 6,
     title: 'Temple Square Lights Walk',
     image: BASE + 'placeholder_logo.png',
