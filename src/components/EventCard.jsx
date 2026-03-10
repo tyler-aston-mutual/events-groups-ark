@@ -129,9 +129,11 @@ export function EventCard({
           </InfoRow>
 
           {/* Attendance */}
-          <InfoRow icon={<PeopleIcon color={colors.grey400} />} color={colors.grey600}>
-            {going} {type === 'group' ? 'members' : 'interested'}
-          </InfoRow>
+          {going > 0 && (
+            <InfoRow icon={<PeopleIcon color={colors.grey400} />} color={colors.grey600}>
+              {going} {type === 'group' ? 'members' : 'interested'}
+            </InfoRow>
+          )}
 
           {/* Group tag */}
           {group && (
