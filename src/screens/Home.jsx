@@ -223,9 +223,7 @@ function hasActiveFilters(filters) {
 }
 
 export default function Home() {
-  const [activeFilter, setActiveFilter] = useState('For You')
-  const [showEvents, setShowEvents] = useState(true)
-  const [showGroups, setShowGroups] = useState(true)
+  const [activeNav, setActiveNav] = useState('all')
   const [activeSort, setActiveSort] = useState('newest')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
@@ -248,21 +246,21 @@ export default function Home() {
   const location = useLocation()
   const { joinedIds, newlyJoinedId, clearNewlyJoined } = useJoined()
 
-  // Auto-switch to Yours tab when returning from a join action
+  // Auto-switch to Mine tab when returning from a join action
   useEffect(() => {
     if (location.state?.switchToYours) {
-      setActiveFilter('Yours')
+      setActiveNav('mine')
       window.history.replaceState({}, '')
     }
   }, [location.state?.switchToYours])
 
   // Clear animation flag after it plays
   useEffect(() => {
-    if (newlyJoinedId && activeFilter === 'Yours') {
+    if (newlyJoinedId && activeNav === 'mine') {
       const timer = setTimeout(() => clearNewlyJoined(), 600)
       return () => clearTimeout(timer)
     }
-  }, [newlyJoinedId, activeFilter, clearNewlyJoined])
+  }, [newlyJoinedId, activeNav, clearNewlyJoined])
 
   // Read filters from route state (set by FilterScreen on Apply)
   const filters = location.state?.filters || FILTER_DEFAULTS
@@ -278,7 +276,9 @@ export default function Home() {
     setTimeout(() => setCreateOpen(false), 300)
   }, [])
 
-  const isYoursTab = activeFilter === 'Yours'
+  const isYoursTab = activeNav === 'mine'
+  const showEvents = activeNav === 'events' || activeNav === 'all' || activeNav === 'mine'
+  const showGroups = activeNav === 'groups' || activeNav === 'all' || activeNav === 'mine'
   const tabItems = isYoursTab
     ? ALL_ITEMS.filter(i => joinedIds.has(i.id))
     : ALL_ITEMS.filter(i => !joinedIds.has(i.id))
@@ -346,91 +346,57 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Primary tabs — text with underline, 50/50 width */}
-        <div style={{
-          display: 'flex',
-          borderBottom: `1.5px solid ${colors.grey100}`,
-        }}>
+        {/* Navigation pills */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 4, paddingBottom: 14 }}>
           {[
-            { id: 'For You', label: 'Explore', Icon: ExploreIcon },
-            { id: 'Yours', label: 'Joined or Interested', Icon: HeartTabIcon },
+            { id: 'events', label: 'Events', Icon: CalendarToggleIcon, activeColor: colors.brandAccent5 },
+            { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, activeColor: colors.brandPrimary },
+            { id: 'all', label: 'All', Icon: ExploreIcon, activeColor: colors.grey1000 },
+            { id: 'mine', label: 'Mine', Icon: HeartTabIcon, activeColor: colors.grey1000 },
           ].map(tab => {
-            const active = activeFilter === tab.id
+            const active = activeNav === tab.id
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveFilter(tab.id)}
-                style={{
-                  flex: 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 6,
-                  paddingBottom: 10,
-                  paddingTop: 10,
-                  background: active ? colors.grey50 : 'none',
-                  border: 'none',
-                  borderBottom: `2px solid ${active ? colors.grey1000 : 'transparent'}`,
-                  marginBottom: -1.5,
-                  cursor: 'pointer',
-                  borderRadius: '8px 8px 0 0',
-                }}
-              >
-                <tab.Icon color={active ? colors.grey1000 : colors.grey400} />
-                <span style={{
-                  fontSize: 15,
-                  fontWeight: active ? 700 : 500,
-                  color: active ? colors.grey1000 : colors.grey400,
-                  fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-                  whiteSpace: 'nowrap',
-                }}>
-                  {tab.label}
-                </span>
-              </button>
-            )
-          })}
-        </div>
-
-        {/* Show: toggles + sort */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, paddingBottom: 14 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{
-              fontSize: 12,
-              fontWeight: 500,
-              color: colors.grey400,
-              fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-              marginRight: 2,
-            }}>Show:</span>
-            {[
-              { id: 'events', label: 'Events', active: showEvents, Icon: CalendarToggleIcon, activeColor: colors.brandAccent5, toggle: () => { if (showEvents && showGroups) setShowEvents(false); else if (!showEvents) setShowEvents(true) } },
-              { id: 'groups', label: 'Groups', active: activeSort === 'soonest' ? showGroups : showGroups, Icon: GroupToggleIcon, activeColor: colors.brandPrimary, toggle: () => { if (activeSort === 'soonest') { setShowGroups(!showGroups) } else { if (showGroups && showEvents) setShowGroups(false); else if (!showGroups) setShowGroups(true) } } },
-            ].map(t => (
-              <button
-                key={t.id}
-                onClick={t.toggle}
+                onClick={() => setActiveNav(tab.id)}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: 5,
-                  padding: '5px 10px',
+                  padding: '6px 12px',
                   borderRadius: 20,
-                  border: `1.5px solid ${t.active ? t.activeColor : colors.grey200}`,
-                  backgroundColor: t.active ? `${t.activeColor}14` : 'transparent',
+                  border: `1.5px solid ${active ? tab.activeColor : colors.grey200}`,
+                  backgroundColor: active ? (tab.activeColor === colors.grey1000 ? `${colors.grey1000}0A` : `${tab.activeColor}14`) : 'transparent',
                   cursor: 'pointer',
-                  color: t.active ? t.activeColor : colors.grey400,
-                  fontSize: 12,
-                  fontWeight: t.active ? 600 : 400,
-                  fontFamily: t.active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
+                  fontSize: 13,
+                  fontWeight: active ? 600 : 400,
+                  color: active ? tab.activeColor : colors.grey400,
+                  fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
+                  whiteSpace: 'nowrap',
                 }}
               >
-                <t.Icon color={t.active ? t.activeColor : colors.grey400} />
-                {t.label}
+                <tab.Icon color={active ? tab.activeColor : colors.grey400} />
+                {tab.label}
               </button>
-            ))}
-          </div>
-          <div style={{ position: 'relative' }}>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Content area */}
+      <div
+        style={{
+          flex: 1,
+          overflowY: 'auto',
+          backgroundColor: colors.grey50,
+        }}
+        onClick={() => sortOpen && setSortOpen(false)}
+      >
+        <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {/* Sort dropdown */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative', marginBottom: -4 }}>
             <button
-              onClick={() => setSortOpen(!sortOpen)}
+              onClick={(e) => { e.stopPropagation(); setSortOpen(!sortOpen) }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -467,8 +433,6 @@ export default function Home() {
                     onClick={() => {
                       setActiveSort(option.id)
                       setSortOpen(false)
-                      if (option.id === 'soonest') setShowGroups(false)
-                      else if (activeSort === 'soonest') setShowGroups(true)
                     }}
                     style={{
                       display: 'flex',
@@ -492,23 +456,8 @@ export default function Home() {
               </div>
             )}
           </div>
-        </div>
-      </div>
 
-      {/* Divider */}
-      <div style={{ height: 1, backgroundColor: colors.grey100, flexShrink: 0 }} />
-
-      {/* Content area */}
-      <div
-        style={{
-          flex: 1,
-          overflowY: 'auto',
-          backgroundColor: colors.grey50,
-        }}
-        onClick={() => sortOpen && setSortOpen(false)}
-      >
-        <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {!bannerDismissed && !isYoursTab && (
+          {!bannerDismissed && activeNav !== 'mine' && activeNav !== 'groups' && (
             <div
               onClick={() => navigate('/speed-dating')}
               style={{ cursor: 'pointer' }}
