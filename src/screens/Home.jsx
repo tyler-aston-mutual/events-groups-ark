@@ -521,13 +521,12 @@ export default function Home() {
             >
               <EventCard
                 type="event"
-                title="Virtual Speed Dating"
+                title="Blind Speed Dating"
                 image={BASE + 'speed-dating.png'}
                 imageBg="#FFFFFF"
                 date="Wednesday 7PM MST"
                 location="Virtual"
                 going={0}
-                tag="Weekly"
               />
             </div>
           )}
