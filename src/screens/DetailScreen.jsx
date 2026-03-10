@@ -359,10 +359,8 @@ export default function DetailScreen() {
                 More Info
               </InfoRow>
               <InfoRow
-                icon={<HeartInfoIcon color={colors.brandPrimary} />}
+                icon={<HeartInfoIcon color={colors.grey600} />}
                 colors={colors}
-                tappable
-                onTap={() => handleTabTap('Participants')}
               >
                 <GenderBreakdown total={item.going} itemId={item.id} colors={colors} />
               </InfoRow>
