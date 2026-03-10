@@ -236,8 +236,8 @@ function hasActiveFilters(filters) {
 }
 
 export default function Home() {
-  const [activeNav, setActiveNav] = useState('all')
-  const [activeSort, setActiveSort] = useState('newest')
+  const [activeNav, setActiveNav] = useState('events')
+  const [activeSort, setActiveSort] = useState('soonest')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [createBannerDismissed, setCreateBannerDismissed] = useState(false)
