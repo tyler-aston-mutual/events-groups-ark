@@ -36,7 +36,6 @@ export const ALL_ITEMS = [
   {
     id: 3,
     title: 'Y Mountain Group Hike',
-    image: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=400&h=400&fit=crop',
     date: 'March 23, 2026 - 10:00',
     location: 'Y Mountain Trailhead',
     going: 18,
@@ -87,7 +86,6 @@ export const ALL_ITEMS = [
     id: 7,
     type: 'group',
     title: 'Utah Valley Hiking',
-    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=400&fit=crop',
     location: 'Provo, UT',
     going: 210,
     description: 'Exploring the best trails in Utah Valley together. We organize group hikes every weekend ranging from easy canyon walks to challenging summit scrambles. New members always welcome!',
@@ -97,7 +95,6 @@ export const ALL_ITEMS = [
   {
     id: 8,
     title: 'Friday Date Night',
-    image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=400&fit=crop',
     date: 'March 26, 2026 - 20:00',
     location: 'Velour Music Gallery',
     going: 8,
@@ -119,7 +116,6 @@ export const ALL_ITEMS = [
   {
     id: 10,
     title: "Trivia Night at Guru's",
-    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop',
     date: 'March 28, 2026 - 19:00',
     location: "Guru's Cafe",
     going: 10,
@@ -131,7 +127,6 @@ export const ALL_ITEMS = [
     id: 11,
     type: 'group',
     title: 'Republicans',
-    image: 'https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?w=400&h=400&fit=crop',
     location: 'Utah County, UT',
     going: 95,
     description: 'A group for politically engaged young adults who lean conservative. We host watch parties, discussion nights, and volunteer for local campaigns together.',
@@ -142,7 +137,6 @@ export const ALL_ITEMS = [
     id: 12,
     type: 'group',
     title: 'Eagle Mountain YSA Ward',
-    image: 'https://images.unsplash.com/photo-1499988921418-b7df40ff03f9?w=400&h=400&fit=crop',
     location: 'Eagle Mountain, UT',
     going: 45,
     description: 'Connect with members of the Eagle Mountain YSA Ward! Stay updated on ward activities, FHE groups, and service opportunities. A great way to stay in the loop.',

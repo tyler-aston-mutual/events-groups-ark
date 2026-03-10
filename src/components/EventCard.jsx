@@ -46,20 +46,20 @@ export function EventCard({
       </div>
 
       <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'center' }}>
-        {/* Image — anchors the Featured chip */}
-        <div style={{
-          position: 'relative',
-          width: 100,
-          height: 100,
-          borderRadius: 12,
-          overflow: 'hidden',
-          flexShrink: 0,
-          backgroundColor: imageBg || colors.grey100,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-          {image && (
+        {/* Image */}
+        {image && (
+          <div style={{
+            position: 'relative',
+            width: 100,
+            height: 100,
+            borderRadius: 12,
+            overflow: 'hidden',
+            flexShrink: 0,
+            backgroundColor: imageBg || colors.grey100,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
             <img
               src={image}
               alt={title}
@@ -77,23 +77,8 @@ export function EventCard({
                 objectFit: 'cover',
               }}
             />
-          )}
-          {/* Featured/Official chips hidden for now
-          {(featured || official) && (
-            <div style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              zIndex: 1,
-            }}>
-              {official
-                ? <Chip text="Mutual" variant="dark" size="compact" leadingIcon={<VerifiedIcon />} />
-                : <Chip text="Featured" variant="accent5" size="compact" />
-              }
-            </div>
-          )}
-          */}
-        </div>
+          </div>
+        )}
 
         {/* Details */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
