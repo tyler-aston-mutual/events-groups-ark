@@ -509,47 +509,12 @@ export default function Home() {
                 Created by you
               </div>
               {/* Placeholder — Create Your Own banner */}
-              <div
-                onClick={openCreate}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 12,
-                  backgroundColor: colors.grey0,
-                  borderRadius: 16,
-                  border: `1px solid ${colors.grey100}`,
-                  padding: '12px 16px',
-                  cursor: 'pointer',
-                }}
-              >
-                <MapIllustration accentColor={colors.brandAccent5} />
-                <div style={{ flex: 1 }}>
-                  <div style={{
-                    fontSize: 15,
-                    fontWeight: 700,
-                    color: colors.grey900,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                    lineHeight: '20px',
-                    marginBottom: 10,
-                  }}>
-                    Have an idea for a meetup?
-                  </div>
-                  <div style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 4,
-                    backgroundColor: colors.brandAccent5,
-                    color: '#FFFFFF',
-                    borderRadius: 20,
-                    padding: '8px 16px',
-                    fontSize: 13,
-                    fontWeight: 700,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                  }}>
-                    + Create
-                  </div>
-                </div>
-              </div>
+              <CreateBanner
+                colors={colors}
+                activeNav={activeNav}
+                onTap={openCreate}
+                navigate={navigate}
+              />
 
               {/* "Created by Others" section header */}
               <div style={{
@@ -714,21 +679,7 @@ export default function Home() {
 
               {/* Create banner — after 5th card */}
               {index === 4 && !createBannerDismissed && !isYoursTab && (
-                <div
-                  onClick={openCreate}
-                  style={{
-                    position: 'relative',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 12,
-                    backgroundColor: colors.grey0,
-                    borderRadius: 16,
-                    border: `1px solid ${colors.grey100}`,
-                    padding: '12px 16px',
-                    cursor: 'pointer',
-                    marginTop: 12,
-                  }}
-                >
+                <div style={{ position: 'relative', marginTop: 12 }}>
                   {/* Dismiss X */}
                   <button
                     onClick={(e) => { e.stopPropagation(); setCreateBannerDismissed(true) }}
@@ -749,38 +700,17 @@ export default function Home() {
                       fontSize: 14,
                       lineHeight: 1,
                       padding: 0,
+                      zIndex: 1,
                     }}
                   >
                     ×
                   </button>
-
-                  <MapIllustration accentColor={colors.brandAccent5} />
-                  <div style={{ flex: 1 }}>
-                    <div style={{
-                      fontSize: 15,
-                      fontWeight: 700,
-                      color: colors.grey900,
-                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                      lineHeight: '20px',
-                      marginBottom: 10,
-                    }}>
-                      Have an idea for a meetup?
-                    </div>
-                    <div style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 4,
-                      backgroundColor: colors.brandAccent5,
-                      color: '#FFFFFF',
-                      borderRadius: 20,
-                      padding: '8px 16px',
-                      fontSize: 13,
-                      fontWeight: 700,
-                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                    }}>
-                      + Create
-                    </div>
-                  </div>
+                  <CreateBanner
+                    colors={colors}
+                    activeNav={activeNav}
+                    onTap={openCreate}
+                    navigate={navigate}
+                  />
                 </div>
               )}
               </Fragment>
@@ -1053,6 +983,89 @@ function CreateOption({ colors, icon, title, description, onClick }) {
         </div>
       </div>
       <CreateChevron color={colors.grey300} />
+    </div>
+  )
+}
+
+function CreateBanner({ colors, activeNav, onTap, navigate }) {
+  const isEvents = activeNav === 'events'
+  const isGroups = activeNav === 'groups'
+
+  // Determine color, text, icon, and action based on active tab
+  let accentColor = colors.grey1000
+  let label = '+ Create'
+  let prompt = 'Have an idea for a meetup?'
+  let handleClick = onTap // default: open bottom sheet
+  let illustration = <MapIllustration accentColor={colors.brandAccent5} />
+
+  if (isEvents) {
+    accentColor = colors.brandAccent5
+    label = '+ Create Event'
+    prompt = 'Have an idea for an event?'
+    handleClick = () => navigate('/create/event')
+    illustration = <CalendarCreateIcon color={colors.brandAccent5} />
+  } else if (isGroups) {
+    accentColor = colors.brandPrimary
+    label = '+ Create Group'
+    prompt = 'Looking to start a community?'
+    handleClick = () => navigate('/create/group')
+    illustration = <GroupCreateIcon color={colors.brandPrimary} />
+  }
+
+  return (
+    <div
+      onClick={handleClick}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        backgroundColor: colors.grey0,
+        borderRadius: 16,
+        border: `1px solid ${colors.grey100}`,
+        padding: '12px 16px',
+        cursor: 'pointer',
+      }}
+    >
+      {isEvents || isGroups ? (
+        <div style={{
+          width: 80,
+          height: 80,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+        }}>
+          <div style={{ transform: 'scale(2.2)' }}>
+            {illustration}
+          </div>
+        </div>
+      ) : illustration}
+      <div style={{ flex: 1 }}>
+        <div style={{
+          fontSize: 15,
+          fontWeight: 700,
+          color: colors.grey900,
+          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+          lineHeight: '20px',
+          marginBottom: 10,
+        }}>
+          {prompt}
+        </div>
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 4,
+          backgroundColor: accentColor,
+          color: '#FFFFFF',
+          borderRadius: 20,
+          padding: '8px 16px',
+          fontSize: 13,
+          fontWeight: 700,
+          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+        }}>
+          {label}
+        </div>
+      </div>
     </div>
   )
 }
