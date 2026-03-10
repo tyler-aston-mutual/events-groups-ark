@@ -412,8 +412,8 @@ export default function Home() {
         onClick={() => sortOpen && setSortOpen(false)}
       >
         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {/* Sort dropdown */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative', marginBottom: -4 }}>
+          {/* Sort dropdown — hidden on Mine tab */}
+          {activeNav !== 'mine' && <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative', marginBottom: -4 }}>
             <button
               onClick={(e) => { e.stopPropagation(); setSortOpen(!sortOpen) }}
               style={{
@@ -475,6 +475,7 @@ export default function Home() {
               </div>
             )}
           </div>
+          }
 
           {!bannerDismissed && activeNav !== 'mine' && activeNav !== 'groups' && (
             <div
