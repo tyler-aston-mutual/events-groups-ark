@@ -199,6 +199,7 @@ export const ALL_ITEMS = [
     id: 16,
     type: 'group',
     title: 'Dinner Club',
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop',
     location: 'Rotating Homes in the Neighborhood',
     going: 82,
     men: 36,
@@ -210,6 +211,7 @@ export const ALL_ITEMS = [
   {
     id: 17,
     title: 'Game Night',
+    image: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=600&h=400&fit=crop',
     date: 'April 12, 2026 - 19:00',
     location: 'Community Room or Hosted Home',
     going: 48,
@@ -259,6 +261,7 @@ export const ALL_ITEMS = [
     id: 21,
     type: 'group',
     title: 'Book Club',
+    image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop',
     location: 'Rotating Homes',
     going: 53,
     men: 27,
@@ -282,6 +285,7 @@ export const ALL_ITEMS = [
   {
     id: 23,
     title: 'Cooking Night',
+    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&h=400&fit=crop',
     date: 'April 15, 2026 - 18:30',
     location: 'Hosted Home Kitchen',
     going: 26,
@@ -294,6 +298,7 @@ export const ALL_ITEMS = [
   {
     id: 24,
     title: 'Breakfast & Conversation',
+    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=400&fit=crop',
     date: 'April 6, 2026 - 09:00',
     location: 'Local Coffee Shop',
     going: 31,
@@ -330,6 +335,7 @@ export const ALL_ITEMS = [
   {
     id: 27,
     title: 'Music Share Night',
+    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&h=400&fit=crop',
     date: 'April 24, 2026 - 20:00',
     location: 'Hosted Home or Lounge Area',
     going: 49,
@@ -342,6 +348,7 @@ export const ALL_ITEMS = [
   {
     id: 28,
     title: 'Volunteer Together',
+    image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop',
     date: 'April 26, 2026 - 10:00',
     location: 'Local Community Organization',
     going: 27,
