@@ -9,7 +9,7 @@ import { ALL_ITEMS } from './Home'
 
 const GATED_TABS = ['Participants', 'Events', 'Chat']
 
-// Pool of 114 unique participants — interleaved female/male for a natural mix per item
+// Pool of 232 unique participants — interleaved female/male for a natural mix per item
 const PARTICIPANT_POOL = (() => {
   const fNames = [
     'McKenna','Sophie','Emily','Rachel','Bri','Hannah','Lauren','Mia',
@@ -20,6 +20,18 @@ const PARTICIPANT_POOL = (() => {
     'Hazel','Luna','Nova','Aurora','Ivy','Willow',
     'Emery','Evelyn','Isla','Piper','Ruby','Jade',
     'Summer','Autumn','Scarlett','Violet','Harper','Quinn',
+    'Kinsley','Addison','Paisley','Naomi','Elena','Lyla',
+    'Raegan','Brynn','Sienna','Daisy','Juniper','Margot',
+    'Sage','Wren','Rosie','Thea','Maeve','Freya',
+    'Ada','Leah','Lucy','Paige','Reese','Gemma',
+    'Alina','Tessa','Finley','Kira','Fiona','Esme',
+    'Clara','Vera','Lena','June','Cora','Daphne',
+    'Sloane','Maren','Hadley','Sutton','Andie','Blair',
+    'Poppy','Millie','Willa','Lennon','Palmer','Shea',
+    'Jolie','Rory','Indie','Briar','Harlow','Marlowe',
+    'Elsie','Darcy','Liv','Gwen','Mabel','Lydia',
+    'Iris','Pearl','Nia','Zara','Tatum','Haven',
+    'Ainsley','Teagan','Remi','Collins','Oakley','Amara',
   ]
   const mNames = [
     'Tyler','Jordan','Tanner','Ethan','Dallin','Jake',
@@ -32,6 +44,16 @@ const PARTICIPANT_POOL = (() => {
     'Eli','Parker','Max','Cole','Milo','Axel',
     'Zane','Cruz','Silas','Atlas','Knox','Jude',
     'Hayes','Dean','Brooks','Cash','Griffin','Rhett',
+    'Beau','Porter','Gage','Dawson','Emmett','Jasper',
+    'Roman','Archer','Weston','Nash','Rowan','Sterling',
+    'Flynn','Callum','Nolan','Trevor','Kendrick','Holden',
+    'Wells','Barrett','Soren','Lennox','Bridger','Bowen',
+    'Tate','Sullivan','Cade','Paxton','Ryder','Keaton',
+    'Arlo','Jensen','Hugo','Maddox','Crew','Hendrix',
+    'Thatcher','Pierce','Cannon','Everett','Walsh','Shepherd',
+    'Briggs','Otto','Leif','Magnus','Heath','Forrest',
+    'Quincy','Vaughn','Clyde','Ellis','Ren','Foster',
+    'Irving','Calder','Boyd','Mercer','Stetson','Harlan',
   ]
   const fPhotos = [
     '1494790108377-be9c29b29330','1534528741775-53994a69daeb',
@@ -413,7 +435,7 @@ export default function DetailScreen() {
                 icon={<HeartInfoIcon color={colors.grey600} />}
                 colors={colors}
               >
-                <GenderBreakdown total={item.going} itemId={item.id} colors={colors} />
+                <GenderBreakdown total={item.going} itemId={item.id} men={item.men} women={item.women} colors={colors} />
               </InfoRow>
             </div>
 
@@ -708,11 +730,16 @@ export default function DetailScreen() {
 
 // ─── Gender Breakdown ────────────────────────────────────────────
 
-function GenderBreakdown({ total, itemId, colors }) {
-  // Deterministic split based on item id for consistent fake data
-  const ratio = 0.4 + ((itemId * 7) % 20) / 100 // 0.40–0.59
-  const guys = Math.round(total * ratio)
-  const girls = total - guys
+function GenderBreakdown({ total, itemId, men, women, colors }) {
+  let guys, girls
+  if (men !== undefined && women !== undefined) {
+    guys = men; girls = women
+  } else {
+    // Deterministic split based on item id for consistent fake data
+    const ratio = 0.4 + ((itemId * 7) % 20) / 100 // 0.40–0.59
+    guys = Math.round(total * ratio)
+    girls = total - guys
+  }
   return (
     <span><span style={{ color: colors.brandPrimary, fontWeight: 600 }}>{guys} men</span> · <span style={{ color: colors.brandAccent5, fontWeight: 600 }}>{girls} women</span></span>
   )
