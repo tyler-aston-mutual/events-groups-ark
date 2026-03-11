@@ -199,7 +199,7 @@ export const ALL_ITEMS = [
     id: 16,
     type: 'group',
     title: 'Dinner Club',
-    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=600&h=400&fit=crop',
     location: 'Rotating Homes in the Neighborhood',
     going: 82,
     men: 36,
