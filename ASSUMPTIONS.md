@@ -1,6 +1,6 @@
-# Connect Tab — Assumptions Log
+# Circles Tab — Assumptions Log
 
-This document tracks the assumptions baked into the Connect tab prototype. Each assumption should be validated or invalidated through user research. Keeping these explicit helps us avoid building toward conclusions the research never actually tested.
+This document tracks the assumptions baked into the Circles tab prototype. Each assumption should be validated or invalidated through user research. Keeping these explicit helps us avoid building toward conclusions the research never actually tested.
 
 **How to use this doc:**
 - Review before each interview round — know what you're testing

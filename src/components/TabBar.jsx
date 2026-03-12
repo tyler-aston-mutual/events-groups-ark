@@ -5,11 +5,11 @@ const TABS = [
   { id: 'matches',  image: 'tab_bar_icon_1.png' },
   { id: 'likes',    image: 'tab_bar_icon_2.png' },
   { id: 'messages', image: 'tab_bar_icon_3.png', badge: 6 },
-  { id: 'connect',  Icon: ConnectIcon },
+  { id: 'circles',  Icon: CirclesIcon },
   { id: 'profile',  image: 'tab_bar_icon_5.png' },
 ]
 
-export function TabBar({ activeTab = 'connect' }) {
+export function TabBar({ activeTab = 'circles' }) {
   const { colors } = useTheme()
   const isMobile = useIsMobile()
 
@@ -95,15 +95,13 @@ export function TabBar({ activeTab = 'connect' }) {
 
 // ─── Tab Icons ──────────────────────────────────────────────────────
 
-// Two people side by side — Connect tab (our new tab, no exported asset)
-function ConnectIcon({ color, size }) {
+// Two overlapping rings — Circles tab icon
+function CirclesIcon({ color, size }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="8"  cy="7" r="3" />
-      <circle cx="16" cy="7" r="3" />
-      <path d="M1 21c0-3 3.1-5.5 7-5.5s7 2.5 7 5.5" />
-      <path d="M16 15.5c3.9 0 7 2.5 7 5.5" />
+      stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="12" r="7" />
+      <circle cx="15" cy="12" r="7" />
     </svg>
   )
 }

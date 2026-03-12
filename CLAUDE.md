@@ -1,7 +1,7 @@
-# Connect Tab — Prototype
+# Circles Tab — Prototype
 
 ## What We're Building
-A new tab called **Connect** for an existing mobile app. The tab lets members find and publish opportunities to meet other members in person.
+A new tab called **Circles** for an existing mobile app. The tab lets members find and publish opportunities to meet other members in person.
 
 This is a **research prototype** used in user interviews. The goal is to learn what's needed for a first release — specifically, what would give people:
 1. The desire to visit the tab
