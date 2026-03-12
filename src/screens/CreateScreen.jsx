@@ -29,7 +29,6 @@ export default function CreateScreen({ type }) {
   // Tab visibility
   const [showParticipants, setShowParticipants] = useState(true)
   const [showEvents, setShowEvents] = useState(true)
-  const [showChat, setShowChat] = useState(true)
 
   // Confirmation modal
   const [confirmOpen, setConfirmOpen] = useState(false)
@@ -578,12 +577,6 @@ export default function CreateScreen({ type }) {
               colors={colors}
             />
           )}
-          <ToggleRow
-            label="Chat"
-            value={showChat}
-            onChange={setShowChat}
-            colors={colors}
-          />
         </div>
 
       </div>
