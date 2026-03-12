@@ -488,6 +488,13 @@ export default function Home() {
     setTimeout(() => setCreateOpen(false), 300)
   }, [])
 
+  const handleGroupClick = useCallback((groupName) => {
+    const groupItem = ALL_ITEMS.find(g => g.type === 'group' && g.title === groupName)
+    if (groupItem) {
+      navigate(`/detail/${groupItem.id}`, { state: { item: groupItem, joined: joinedIds.has(groupItem.id) } })
+    }
+  }, [navigate, joinedIds])
+
   const isYoursTab = activeNav === 'mine'
   const showEvents = activeNav === 'events' || activeNav === 'all' || activeNav === 'mine'
   const showGroups = activeNav === 'groups' || activeNav === 'all' || activeNav === 'mine'
@@ -747,7 +754,7 @@ export default function Home() {
                   onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
                   style={{ cursor: 'pointer' }}
                 >
-                  <EventCard {...item} />
+                  <EventCard {...item} onGroupClick={handleGroupClick} />
                 </div>
 
                 {/* Expandable child events section */}

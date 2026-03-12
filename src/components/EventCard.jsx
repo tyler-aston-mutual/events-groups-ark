@@ -13,6 +13,7 @@ export function EventCard({
   official = false,
   tag,
   imageBg,
+  onGroupClick,
 }) {
   const { colors } = useTheme()
 
@@ -122,12 +123,16 @@ export function EventCard({
 
           {/* Group tag */}
           {group && (
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
-              marginTop: 4,
-            }}>
+            <div
+              onClick={onGroupClick ? (e) => { e.stopPropagation(); onGroupClick(group.name) } : undefined}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                marginTop: 4,
+                cursor: onGroupClick ? 'pointer' : undefined,
+              }}
+            >
               <GroupIcon color={colors.brandPrimary} />
               <span style={{
                 fontSize: 13,

@@ -115,6 +115,13 @@ export default function DetailScreen() {
     ? ['About', 'Participants', 'Events']
     : ['About', 'Participants']
 
+  function handleGroupClick(groupName) {
+    const groupItem = ALL_ITEMS.find(g => g.type === 'group' && g.title === groupName)
+    if (groupItem) {
+      navigate(`/detail/${groupItem.id}`, { state: { item: groupItem } })
+    }
+  }
+
   function handleTabTap(tab) {
     setActiveTab(tab)
   }
@@ -634,7 +641,7 @@ export default function DetailScreen() {
                       onClick={() => navigate(`/detail/${event.id}`, { state: { item: event } })}
                       style={{ cursor: 'pointer' }}
                     >
-                      <EventCard {...event} />
+                      <EventCard {...event} onGroupClick={handleGroupClick} />
                     </div>
                   ))}
                 </div>
