@@ -369,7 +369,7 @@ export default function CreateScreen({ type }) {
         {/* 7. Add to Group (events only) */}
         {isEvent && (
           <>
-            <SectionLabel colors={colors} text="Add to Group" />
+            <SectionLabel colors={colors} text="Add to Group" optional />
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -392,6 +392,14 @@ export default function CreateScreen({ type }) {
                 Choose a Group
               </div>
               <ChevronRight color={colors.grey300} />
+            </div>
+            <div style={{
+              fontSize: 13,
+              color: colors.grey400,
+              fontFamily: "'Goldman Sans', sans-serif",
+              marginTop: 6,
+            }}>
+              Link this event to a group you manage. Not required.
             </div>
           </>
         )}
