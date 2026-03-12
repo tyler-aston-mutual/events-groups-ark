@@ -11,7 +11,8 @@ export default function CreateScreen({ type }) {
 
   // Form state
   const [name, setName] = useState('')
-  const [location, setLocation] = useState(isEvent ? '' : 'Anywhere')
+  const [locationType, setLocationType] = useState('ask') // 'ask' | 'anywhere' | 'virtual' | 'map'
+  const [locationDetail, setLocationDetail] = useState('')
   const [description, setDescription] = useState('')
   const [link, setLink] = useState('')
   const [displayCreator, setDisplayCreator] = useState(true)
@@ -23,7 +24,6 @@ export default function CreateScreen({ type }) {
   // Event-only state
   const [eventDate, setEventDate] = useState('')
   const [eventTime, setEventTime] = useState('')
-  const [isVirtual, setIsVirtual] = useState(false)
   const [visibilityRadius, setVisibilityRadius] = useState('50 mi')
 
   // Tab visibility
@@ -214,62 +214,98 @@ export default function CreateScreen({ type }) {
         )}
 
         {/* 4. Location */}
-        <SectionLabel colors={colors} text="Location" optional />
-        <FormInput
-          placeholder={isEvent && isVirtual ? "Paste a Zoom or meeting link" : "Add a place"}
-          value={location}
-          onChange={setLocation}
-          colors={colors}
-        />
-
-        {/* Virtual Meeting checkbox — events only */}
-        {isEvent && (
-          <div
-            onClick={() => setIsVirtual(!isVirtual)}
-            style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            marginTop: 10,
-            cursor: 'pointer',
-          }}>
+        <SectionLabel colors={colors} text="Location" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {[
+            { key: 'ask', label: 'Ask the Creator' },
+            { key: 'anywhere', label: 'Anywhere' },
+            { key: 'virtual', label: 'Virtual' },
+            { key: 'map', label: 'Map Location' },
+          ].map(opt => (
             <div
+              key={opt.key}
+              onClick={() => { setLocationType(opt.key); setLocationDetail('') }}
               style={{
-                width: 22,
-                height: 22,
-                borderRadius: 6,
-                borderWidth: '1.5px',
-                borderStyle: 'solid',
-                borderColor: isVirtual ? colors.brandPrimary : colors.grey300,
-                backgroundColor: isVirtual ? colors.brandPrimary : colors.grey0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-                transition: 'all 0.2s ease',
+                padding: '6px 14px',
+                borderRadius: 8,
+                backgroundColor: locationType === opt.key ? colors.grey1000 : colors.grey50,
+                color: locationType === opt.key ? colors.grey0 : colors.grey600,
+                fontSize: 13,
+                fontWeight: 600,
+                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                 cursor: 'pointer',
-                boxSizing: 'border-box',
               }}
             >
-              {isVirtual && (
-                <svg width="13" height="10" viewBox="0 0 13 10" fill="none">
-                  <path d="M1.5 5L5 8.5L11.5 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              )}
+              {opt.label}
             </div>
-            <span style={{
-              fontSize: 15,
-              fontWeight: 500,
-              color: colors.grey1000,
-              fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-            }}>
-              Virtual Meeting
-            </span>
+          ))}
+        </div>
+
+        {/* Virtual — link input */}
+        {locationType === 'virtual' && (
+          <div style={{ marginTop: 10 }}>
+            <FormInput
+              placeholder="Paste a Zoom or meeting link"
+              value={locationDetail}
+              onChange={setLocationDetail}
+              colors={colors}
+            />
           </div>
         )}
 
-        {/* Visibility Radius — events only, when location is provided and not virtual */}
-        {isEvent && location.trim() && !isVirtual && (
+        {/* Map Location — fake map + address input */}
+        {locationType === 'map' && (
+          <div style={{ marginTop: 10 }}>
+            <div style={{
+              height: 120,
+              borderRadius: 12,
+              backgroundColor: colors.grey100,
+              backgroundImage: 'url(https://api.mapbox.com/styles/v1/mapbox/light-v11/static/-111.89,40.76,11,0/400x200@2x?access_token=placeholder)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 10,
+              overflow: 'hidden',
+              position: 'relative',
+            }}>
+              {/* Fake map placeholder with pin */}
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: `linear-gradient(135deg, ${colors.grey100} 0%, ${colors.grey200} 100%)`,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 6,
+              }}>
+                <svg width="28" height="36" viewBox="0 0 28 36" fill="none">
+                  <path d="M14 0C6.268 0 0 6.268 0 14c0 10.5 14 22 14 22s14-11.5 14-22C28 6.268 21.732 0 14 0z" fill={colors.brandAccent5 || colors.brandPrimary} />
+                  <circle cx="14" cy="14" r="5" fill="white" />
+                </svg>
+                <span style={{
+                  fontSize: 12,
+                  fontWeight: 500,
+                  color: colors.grey500,
+                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                }}>
+                  Tap to set pin on map
+                </span>
+              </div>
+            </div>
+            <FormInput
+              placeholder="Enter address or venue name"
+              value={locationDetail}
+              onChange={setLocationDetail}
+              colors={colors}
+            />
+          </div>
+        )}
+
+        {/* Visibility Radius — events only, when a physical map location is set */}
+        {isEvent && locationType === 'map' && (
           <div style={{ marginTop: 14 }}>
             <div style={{
               fontSize: 14,
