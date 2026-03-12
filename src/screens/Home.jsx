@@ -540,7 +540,7 @@ export default function Home() {
           marginBottom: 14,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Heading3>Connect</Heading3>
+            <Heading3>Circles</Heading3>
             <span style={{
               fontSize: 13,
               fontWeight: 700,
@@ -919,7 +919,7 @@ export default function Home() {
         </div>
       </div>
 
-      <TabBar activeTab="connect" />
+      <TabBar activeTab="circles" />
 
       {/* Create bottom sheet */}
       {createOpen && (

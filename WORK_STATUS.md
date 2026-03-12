@@ -1,7 +1,7 @@
 # Work Status
 
 ## Current State
-Connect tab prototype is functional with a full feed, detail screens, create flow (event + group forms), filtering, and participant profiles. Ready for interview testing.
+Circles tab prototype is functional with a full feed, detail screens, create flow (event + group forms), filtering, and participant profiles. Ready for interview testing.
 
 ## Live URL
 https://tyler-aston-mutual.github.io/events-groups/
@@ -9,7 +9,7 @@ https://tyler-aston-mutual.github.io/events-groups/
 ## Screens
 | Screen | Status | Notes |
 |--------|--------|-------|
-| Home (Connect feed) | Built | For You / Joined tabs, Featured First sort, Speed Dating banner, EventCards with photos, create bottom sheet via '+' button, type filter pills (All/Events/Groups), bottom CTA |
+| Home (Circles feed) | Built | For You / Joined tabs, Featured First sort, Speed Dating banner, EventCards with photos, create bottom sheet via '+' button, type filter pills (All/Events/Groups), bottom CTA |
 | FilterScreen | Built | Distance and participants filters |
 | SpeedDating | Built | Detail screen for Virtual Speed Dating feature |
 | DetailScreen | Built | Event/group detail with compact card header, About tab, Participants tab (joined items), join-gating, creator profiles |

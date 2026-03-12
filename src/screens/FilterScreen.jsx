@@ -97,7 +97,7 @@ export default function FilterScreen() {
             color: colors.grey1000,
             fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
           }}>
-            Filter Connect
+            Filter Circles
           </span>
         </div>
         {/* Spacer to balance back arrow */}
