@@ -96,6 +96,33 @@ function getParticipantsForItem(itemId) {
   return PARTICIPANT_POOL.slice(idx * 8, idx * 8 + 8)
 }
 
+// Chat message templates — participant indices are offset by item.id for variety
+const CHAT_TEMPLATES = [
+  { pIdx: 0, text: "Hey everyone! So excited for this 🙌", time: '2h ago' },
+  { pIdx: 1, text: "Same! Is there parking nearby?", time: '1h ago' },
+  { pIdx: 2, text: "I went last time, it was awesome. You'll love it", time: '58m ago' },
+  { pIdx: 0, text: "Good to know! How early should we get there?", time: '45m ago' },
+  { pIdx: 3, text: "I'd say 15 min early to find each other", time: '40m ago' },
+  { isMe: true, text: "Can't wait! See you all there", time: '32m ago' },
+  { pIdx: 1, text: "Does anyone want to carpool from Provo?", time: '25m ago' },
+  { pIdx: 4, text: "I'm driving from Provo! Happy to pick people up", time: '20m ago' },
+  { pIdx: 1, text: "Perfect, I'll DM you 🚗", time: '18m ago' },
+  { isMe: true, text: "I'm coming from SLC, anyone else?", time: '10m ago' },
+  { pIdx: 2, text: "Me! Let's coordinate", time: '5m ago' },
+  { pIdx: 5, text: "Just joined — is this still happening?", time: '2m ago' },
+  { pIdx: 3, text: "Yes! See you all soon 😊", time: '1m ago' },
+]
+
+function getChatMessages(itemId) {
+  const participants = getParticipantsForItem(itemId)
+  const offset = (itemId * 3) % participants.length
+  return CHAT_TEMPLATES.map((msg, i) => {
+    if (msg.isMe) return { ...msg, id: i }
+    const p = participants[(msg.pIdx + offset) % participants.length]
+    return { ...msg, id: i, name: p.name, image: p.image }
+  })
+}
+
 export default function DetailScreen() {
   const { colors } = useTheme()
   const navigate = useNavigate()
@@ -118,8 +145,8 @@ export default function DetailScreen() {
 
   const isGroup = item.type === 'group'
   const tabs = isGroup
-    ? ['About', 'Participants', 'Events']
-    : ['About', 'Participants']
+    ? ['About', 'Participants', 'Events', 'Chat']
+    : ['About', 'Participants', 'Chat']
 
   function handleGroupClick(groupName) {
     const groupItem = ALL_ITEMS.find(g => g.type === 'group' && g.title === groupName)
@@ -621,6 +648,145 @@ export default function DetailScreen() {
                   ))}
                 </div>
               )}
+            </div>
+          )
+        })()}
+
+        {/* Chat content */}
+        {activeTab === 'Chat' && (() => {
+          const messages = getChatMessages(item.id)
+          return (
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '16px 16px 0',
+              minHeight: '100%',
+            }}>
+              {/* Messages */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
+                {messages.map(msg => (
+                  msg.isMe ? (
+                    <div key={msg.id} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <div>
+                        <div style={{
+                          backgroundColor: colors.brandAccent5,
+                          color: '#FFFFFF',
+                          padding: '10px 14px',
+                          borderRadius: '18px 18px 4px 18px',
+                          fontSize: 15,
+                          fontWeight: 400,
+                          fontFamily: "'Goldman Sans', sans-serif",
+                          maxWidth: 260,
+                          lineHeight: '20px',
+                        }}>
+                          {msg.text}
+                        </div>
+                        <div style={{
+                          fontSize: 11,
+                          color: colors.grey400,
+                          fontFamily: "'Goldman Sans', sans-serif",
+                          textAlign: 'right',
+                          marginTop: 4,
+                        }}>
+                          {msg.time}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div key={msg.id} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                      <img
+                        src={msg.image}
+                        alt={msg.name}
+                        style={{
+                          width: 32,
+                          height: 32,
+                          borderRadius: 16,
+                          objectFit: 'cover',
+                          flexShrink: 0,
+                        }}
+                      />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{
+                          fontSize: 13,
+                          fontWeight: 700,
+                          color: colors.grey800,
+                          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                          marginBottom: 3,
+                        }}>
+                          {msg.name}
+                        </div>
+                        <div style={{
+                          backgroundColor: colors.grey100,
+                          padding: '10px 14px',
+                          borderRadius: '4px 18px 18px 18px',
+                          fontSize: 15,
+                          fontWeight: 400,
+                          fontFamily: "'Goldman Sans', sans-serif",
+                          maxWidth: 260,
+                          lineHeight: '20px',
+                          color: colors.grey1000,
+                        }}>
+                          {msg.text}
+                        </div>
+                        <div style={{
+                          fontSize: 11,
+                          color: colors.grey400,
+                          fontFamily: "'Goldman Sans', sans-serif",
+                          marginTop: 4,
+                        }}>
+                          {msg.time}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                ))}
+              </div>
+
+              {/* Fake input bar */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                padding: '12px 0 16px',
+                marginTop: 16,
+                borderTop: `1px solid ${colors.grey100}`,
+                position: 'sticky',
+                bottom: 0,
+                backgroundColor: colors.grey0,
+              }}>
+                <div style={{
+                  flex: 1,
+                  height: 42,
+                  borderRadius: 21,
+                  border: `1.5px solid ${colors.grey200}`,
+                  backgroundColor: colors.grey50,
+                  padding: '0 16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  fontSize: 15,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                }}>
+                  Type a message...
+                </div>
+                <button style={{
+                  width: 42,
+                  height: 42,
+                  borderRadius: 21,
+                  backgroundColor: colors.brandAccent5,
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M22 2L11 13" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           )
         })()}
