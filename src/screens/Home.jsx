@@ -623,7 +623,32 @@ export default function Home() {
       >
         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
           {/* Sort dropdown — hidden on Mine tab */}
-          {activeNav !== 'mine' && <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative', marginBottom: -4 }}>
+          {activeNav !== 'mine' && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', position: 'relative', marginBottom: -4, gap: 10 }}>
+            {activeNav === 'all' && (
+              <div style={{
+                flex: 1,
+                height: 36,
+                borderRadius: 18,
+                border: `1.5px solid ${colors.grey200}`,
+                backgroundColor: colors.grey0,
+                padding: '0 12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={colors.grey400} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <span style={{
+                  fontSize: 14,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                }}>
+                  Search
+                </span>
+              </div>
+            )}
             <button
               onClick={(e) => { e.stopPropagation(); setSortOpen(!sortOpen) }}
               style={{
