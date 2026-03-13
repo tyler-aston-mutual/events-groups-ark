@@ -23,6 +23,19 @@ export function JoinedProvider({ children }) {
     setNewlyJoinedId(id)
   }, [])
 
+  const removeJoinedId = useCallback((id) => {
+    setJoinedIds(prev => {
+      const next = new Set(prev)
+      next.delete(id)
+      return next
+    })
+    setJoinDates(prev => {
+      const next = new Map(prev)
+      next.delete(id)
+      return next
+    })
+  }, [])
+
   const isJoined = useCallback((id) => joinedIds.has(id), [joinedIds])
 
   const getJoinDate = useCallback((id) => joinDates.get(id) || null, [joinDates])
@@ -31,7 +44,7 @@ export function JoinedProvider({ children }) {
 
   return (
     <JoinedContext.Provider value={{
-      joinedIds, addJoinedId, isJoined, getJoinDate, newlyJoinedId, clearNewlyJoined,
+      joinedIds, addJoinedId, removeJoinedId, isJoined, getJoinDate, newlyJoinedId, clearNewlyJoined,
     }}>
       {children}
     </JoinedContext.Provider>
