@@ -37,7 +37,7 @@ export default function CreateScreen({ type }) {
   // Confirmation modal
   const [confirmOpen, setConfirmOpen] = useState(false)
 
-  const canCreate = name.trim().length > 0
+  const canCreate = name.trim().length > 0 && description.trim().length > 0
 
   return (
     <div style={{
@@ -113,7 +113,7 @@ export default function CreateScreen({ type }) {
         />
 
         {/* 2. Photo Upload */}
-        <SectionLabel colors={colors} text="Photo" />
+        <SectionLabel colors={colors} text="Photo" optional />
         <div style={{
           height: 160,
           borderRadius: 14,
@@ -222,7 +222,7 @@ export default function CreateScreen({ type }) {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {[
             { key: 'ask', label: 'Ask the Creator' },
-            { key: 'anywhere', label: 'Anywhere' },
+            { key: 'anywhere', label: 'Global' },
             { key: 'virtual', label: 'Virtual' },
             { key: 'map', label: 'Map Location' },
           ].map(opt => (
@@ -353,7 +353,7 @@ export default function CreateScreen({ type }) {
         )}
 
         {/* 5. Description */}
-        <SectionLabel colors={colors} text="Description" optional />
+        <SectionLabel colors={colors} text="Description" />
         <FormTextarea
           placeholder="What should people know about this?"
           value={description}
@@ -362,7 +362,7 @@ export default function CreateScreen({ type }) {
         />
 
         {/* 6. Link for More Info */}
-        <SectionLabel colors={colors} text="Link for More Info" />
+        <SectionLabel colors={colors} text="Link for More Info" optional />
         <FormInput
           placeholder="https://"
           value={link}
