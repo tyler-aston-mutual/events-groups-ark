@@ -588,42 +588,6 @@ export default function DetailScreen() {
               ))}
             </div>
 
-            {/* Footer banner */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-              backgroundColor: colors.grey50,
-              borderRadius: 14,
-              padding: '14px 16px',
-              marginBottom: 24,
-            }}>
-              <InfoCircleIcon color={colors.grey400} />
-              <div style={{
-                flex: 1,
-                fontSize: 13,
-                fontWeight: 400,
-                color: colors.grey600,
-                fontFamily: "'Goldman Sans', sans-serif",
-                lineHeight: '18px',
-              }}>
-                Recently Active List limited to 50 profiles.
-              </div>
-              <button style={{
-                background: colors.brandPrimary,
-                color: '#FFFFFF',
-                border: 'none',
-                borderRadius: 8,
-                padding: '8px 14px',
-                fontSize: 13,
-                fontWeight: 700,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-              }}>
-                View Full List
-              </button>
-            </div>
           </div>
         )}
 
