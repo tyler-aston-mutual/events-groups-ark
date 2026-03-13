@@ -435,7 +435,11 @@ function hasActiveFilters(filters) {
 }
 
 export default function Home() {
-  const [activeNav, setActiveNav] = useState('events')
+  const [activeNav, setActiveNavRaw] = useState(() => sessionStorage.getItem('circlesActiveTab') || 'events')
+  const setActiveNav = useCallback((tab) => {
+    setActiveNavRaw(tab)
+    sessionStorage.setItem('circlesActiveTab', tab)
+  }, [])
   const [activeSort, setActiveSort] = useState('soonest')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
