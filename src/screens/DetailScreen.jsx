@@ -100,13 +100,14 @@ export default function DetailScreen() {
   const { colors } = useTheme()
   const navigate = useNavigate()
   const location = useLocation()
-  const { isJoined: checkJoined, addJoinedId, getJoinDate } = useJoined()
+  const { isJoined: checkJoined, addJoinedId, removeJoinedId, getJoinDate } = useJoined()
   const { item } = location.state || {}
   const joined = item ? checkJoined(item.id) : false
   const [activeTab, setActiveTab] = useState('About')
   const [dialogOpen, setDialogOpen] = useState(false)
   const [blockedSection, setBlockedSection] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [leaveDialogOpen, setLeaveDialogOpen] = useState(false)
 
   // Reset to About tab when navigating between detail pages
   useEffect(() => {
@@ -670,23 +671,28 @@ export default function DetailScreen() {
         borderTop: `1px solid ${colors.grey100}`,
       }}>
         {joined ? (
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 8,
-            padding: '12px 0',
-          }}>
-            <HeartFilledIcon color={colors.brandAccent5} />
-            <span style={{
-              fontSize: 15,
-              fontWeight: 400,
-              color: colors.grey400,
+          <button
+            onClick={() => setLeaveDialogOpen(true)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              width: '100%',
+              padding: '14px 0',
+              borderRadius: 100,
+              border: `2px solid ${colors.grey200}`,
+              backgroundColor: colors.grey0,
+              cursor: 'pointer',
               fontFamily: "'Goldman Sans', sans-serif",
-            }}>
-              Added {getJoinDate(item.id) || '—'}
-            </span>
-          </div>
+              fontSize: 16,
+              fontWeight: 600,
+              color: colors.grey500,
+            }}
+          >
+            <HeartFilledIcon color={colors.brandAccent5} />
+            Joined ✓
+          </button>
         ) : (
           <PrimaryButton
             title={isGroup ? 'Join Group' : 'Interested'}
@@ -724,6 +730,24 @@ export default function DetailScreen() {
           : `You need to mark interest in this event before you can view ${blockedSection}.`
         }
         buttons={[{ title: 'OK', variant: 'primary', onClick: () => setDialogOpen(false) }]}
+      />
+
+      {/* Leave confirmation dialog */}
+      <ThemedDialog
+        open={leaveDialogOpen}
+        onClose={() => setLeaveDialogOpen(false)}
+        title={isGroup ? 'Leave Group?' : 'Remove Interest?'}
+        message={isGroup
+          ? `You'll be removed from "${item.title}" and it will no longer appear in your list.`
+          : `You'll no longer be marked as interested in "${item.title}" and it will be removed from your list.`
+        }
+        buttons={[
+          { title: 'Cancel', variant: 'secondary', onClick: () => setLeaveDialogOpen(false) },
+          { title: isGroup ? 'Leave' : 'Remove', variant: 'destructive', onClick: () => {
+            removeJoinedId(item.id)
+            setLeaveDialogOpen(false)
+          }},
+        ]}
       />
     </div>
   )
