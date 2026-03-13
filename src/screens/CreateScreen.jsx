@@ -30,6 +30,10 @@ export default function CreateScreen({ type }) {
   const [showParticipants, setShowParticipants] = useState(true)
   const [showEvents, setShowEvents] = useState(true)
 
+  // Participant limit
+  const [limitEnabled, setLimitEnabled] = useState(false)
+  const [participantLimit, setParticipantLimit] = useState('')
+
   // Confirmation modal
   const [confirmOpen, setConfirmOpen] = useState(false)
 
@@ -538,7 +542,49 @@ export default function CreateScreen({ type }) {
           )}
         </div>
 
-        {/* 9. Display Creator */}
+        {/* 9. Participant Limit */}
+        <div style={{ padding: '14px 0', borderBottom: `1px solid ${colors.grey100}` }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+            <div>
+              <div style={{
+                fontSize: 15,
+                fontWeight: 600,
+                color: colors.grey1000,
+                fontFamily: "'Goldman Sans', sans-serif",
+              }}>
+                Limit Participants
+              </div>
+              <div style={{
+                fontSize: 13,
+                fontWeight: 400,
+                color: colors.grey400,
+                fontFamily: "'Goldman Sans', sans-serif",
+                marginTop: 2,
+              }}>
+                Set a maximum number of people
+              </div>
+            </div>
+            <ToggleSwitch value={limitEnabled} onChange={setLimitEnabled} colors={colors} />
+          </div>
+          {limitEnabled && (
+            <div style={{ marginTop: 12 }}>
+              <FormInput
+                placeholder="Max participants (e.g. 25)"
+                value={participantLimit}
+                onChange={setParticipantLimit}
+                colors={colors}
+                type="number"
+                inputMode="numeric"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* 10. Display Creator */}
         <ToggleRow
           label="Display Creator"
           description="Show who created this on the detail page"
@@ -671,10 +717,11 @@ function SectionLabel({ colors, text, optional }) {
   )
 }
 
-function FormInput({ placeholder, value, onChange, colors }) {
+function FormInput({ placeholder, value, onChange, colors, type = 'text', inputMode }) {
   return (
     <input
-      type="text"
+      type={type}
+      inputMode={inputMode}
       placeholder={placeholder}
       value={value}
       onChange={e => onChange(e.target.value)}
