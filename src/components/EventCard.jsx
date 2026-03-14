@@ -37,8 +37,8 @@ export function EventCard({
         width: 28,
         height: 28,
         borderRadius: 20,
-        border: `1.5px solid ${type === 'group' ? colors.brandPrimary : colors.brandAccent5}`,
-        backgroundColor: type === 'group' ? `${colors.brandPrimary}14` : `${colors.brandAccent5}14`,
+        border: 'none',
+        backgroundColor: 'transparent',
       }}>
         {type === 'group'
           ? <GroupBadgeIcon color={colors.brandPrimary} size={14} />

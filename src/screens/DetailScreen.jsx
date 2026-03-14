@@ -358,8 +358,8 @@ export default function DetailScreen() {
             width: 32,
             height: 32,
             borderRadius: 20,
-            border: `1.5px solid ${isGroup ? colors.brandPrimary : colors.brandAccent5}`,
-            backgroundColor: isGroup ? `${colors.brandPrimary}14` : `${colors.brandAccent5}14`,
+            border: 'none',
+            backgroundColor: 'transparent',
           }}>
             {isGroup
               ? <GroupTypeIcon color={colors.brandPrimary} />
