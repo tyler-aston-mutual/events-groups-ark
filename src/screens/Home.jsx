@@ -573,10 +573,10 @@ export default function Home() {
         {/* Navigation pills */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 4, paddingBottom: 14 }}>
           {[
-            { id: 'events', label: 'Events', Icon: CalendarToggleIcon, activeColor: colors.brandAccent5 },
-            { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, activeColor: colors.brandPrimary },
-            { id: 'all', label: 'All', Icon: ExploreIcon, activeColor: colors.grey1000 },
-            { id: 'mine', label: 'Mine', Icon: HeartTabIcon, activeColor: colors.grey1000 },
+            { id: 'events', label: 'Events', Icon: CalendarToggleIcon, iconColor: colors.brandAccent5 },
+            { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, iconColor: colors.brandPrimary },
+            { id: 'all', label: 'All', Icon: ExploreIcon, iconColor: colors.grey1000 },
+            { id: 'mine', label: 'Mine', Icon: HeartTabIcon, iconColor: colors.grey1000 },
           ].map(tab => {
             const active = activeNav === tab.id
             return (
@@ -594,17 +594,17 @@ export default function Home() {
                   gap: 5,
                   padding: '6px 12px',
                   borderRadius: 20,
-                  border: `1.5px solid ${active ? tab.activeColor : colors.grey200}`,
-                  backgroundColor: active ? (tab.activeColor === colors.grey1000 ? `${colors.grey1000}0A` : `${tab.activeColor}14`) : 'transparent',
+                  border: `1.5px solid ${active ? colors.grey1000 : colors.grey200}`,
+                  backgroundColor: active ? `${colors.grey1000}0A` : 'transparent',
                   cursor: 'pointer',
                   fontSize: 13,
                   fontWeight: active ? 600 : 400,
-                  color: active ? tab.activeColor : colors.grey400,
+                  color: active ? colors.grey1000 : colors.grey400,
                   fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
                   whiteSpace: 'nowrap',
                 }}
               >
-                <tab.Icon color={active ? tab.activeColor : colors.grey400} />
+                <tab.Icon color={active ? tab.iconColor : colors.grey400} />
                 {tab.label}
               </button>
             )
