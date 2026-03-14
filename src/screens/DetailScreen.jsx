@@ -1084,6 +1084,7 @@ export default function DetailScreen() {
               backgroundColor: '#fff',
               borderRadius: '24px 24px 0 0',
               width: '100%',
+              maxWidth: '24rem',
               maxHeight: '85vh',
               overflowY: 'auto',
               padding: '28px 24px 32px',
@@ -1158,9 +1159,9 @@ export default function DetailScreen() {
             {[
               {
                 icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 ),
                 title: 'Always Tell Someone Where You\'re Going',
@@ -1168,11 +1169,11 @@ export default function DetailScreen() {
               },
               {
                 icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="9" cy="7" r="4" stroke={colors.grey500} strokeWidth="2"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 ),
                 title: 'Bring a Friend',
@@ -1180,9 +1181,9 @@ export default function DetailScreen() {
               },
               {
                 icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                    <circle cx="12" cy="10" r="3"/>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="12" cy="10" r="3" stroke={colors.grey500} strokeWidth="2"/>
                   </svg>
                 ),
                 title: 'Stay in Public Places',
@@ -1190,11 +1191,11 @@ export default function DetailScreen() {
               },
               {
                 icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="1" y="3" width="15" height="13" rx="2" ry="2"/>
-                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-                    <circle cx="5.5" cy="18.5" r="2.5"/>
-                    <circle cx="18.5" cy="18.5" r="2.5"/>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <rect x="1" y="3" width="15" height="13" rx="2" ry="2" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="5.5" cy="18.5" r="2.5" stroke={colors.grey500} strokeWidth="2"/>
+                    <circle cx="18.5" cy="18.5" r="2.5" stroke={colors.grey500} strokeWidth="2"/>
                   </svg>
                 ),
                 title: 'Arrange Your Own Transportation',
@@ -1202,10 +1203,10 @@ export default function DetailScreen() {
               },
               {
                 icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                    <line x1="12" y1="9" x2="12" y2="13"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <line x1="12" y1="9" x2="12" y2="13" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round"/>
                   </svg>
                 ),
                 title: 'Report Anything Suspicious',

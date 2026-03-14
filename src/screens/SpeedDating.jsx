@@ -28,6 +28,7 @@ export default function SpeedDating() {
         overflowY: 'auto',
         display: 'flex',
         flexDirection: 'column',
+        position: 'relative',
       }}>
         {/* Close button */}
         <button
