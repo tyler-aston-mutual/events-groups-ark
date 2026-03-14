@@ -2,26 +2,45 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { StatusBar } from '../components/StatusBar'
 import { useTheme } from '../design-system/context/ThemeProvider'
 
-const TOPICS = [
-  'How to improve Mutual',
-  'Weekend hiking plans',
-  'Best restaurants in Utah',
-  'Favorite travel destinations',
-  'What you do for fun',
-  'Your favorite book or podcast',
-  'Dream date ideas',
-  'Hidden gems in your city',
+const PROFILE_ATTRIBUTES = [
+  [
+    { icon: 'children', label: 'No Child(ren)' },
+    { icon: 'temple', label: 'As often as possible' },
+    { icon: 'photos', label: 'Yes' },
+    { icon: 'location', label: 'Genola' },
+  ],
+  [
+    { icon: 'children', label: '1 Child' },
+    { icon: 'temple', label: 'Weekly' },
+    { icon: 'photos', label: 'Yes' },
+    { icon: 'location', label: 'Provo' },
+  ],
+  [
+    { icon: 'children', label: 'No Child(ren)' },
+    { icon: 'temple', label: 'Monthly' },
+    { icon: 'photos', label: 'No' },
+    { icon: 'location', label: 'Salt Lake City' },
+  ],
+  [
+    { icon: 'children', label: 'No Child(ren)' },
+    { icon: 'temple', label: 'As often as possible' },
+    { icon: 'photos', label: 'Yes' },
+    { icon: 'location', label: 'Lehi' },
+  ],
+  [
+    { icon: 'children', label: '2 Children' },
+    { icon: 'temple', label: 'Weekly' },
+    { icon: 'photos', label: 'Yes' },
+    { icon: 'location', label: 'Orem' },
+  ],
 ]
 
-const RESPONSES = [
-  "I'd love to hear different perspectives on this! I think there's a lot we could talk about.",
-  "This is something I'm really passionate about. Would love to chat!",
-  "I've been thinking about this a lot lately and would love to hear your take.",
-  "Honestly one of my favorite topics. Let's talk!",
-  "I have some strong opinions on this one 😂 what do you think?",
-  "Been exploring this recently and I'm hooked. Would love recommendations!",
-  "This is such a great conversation starter. I'm all ears!",
-  "Always down to talk about this. Hit me up!",
+const PROMPTS = [
+  { question: 'One thing you should know about me is', answer: '-Disc Golf and that it\'s an important part of my life!\n\n- I\'m fairly quiet until I get to know and trust you. So let\'s go out and get to know each other!\n\n- Good health and exercise is a must.\n\n- Poor communication is a deal breaker.' },
+  { question: 'My ideal first date would be', answer: 'Something simple like getting ice cream and going for a walk. I think the best conversations happen when you\'re relaxed and not overthinking things.' },
+  { question: 'A fun fact about me is', answer: 'I once hiked the Narrows in Zion in January. It was freezing but absolutely worth it. I love a good adventure!' },
+  { question: 'I\'m looking for someone who', answer: 'Values honesty and communication above all else. Someone who is confident in who they are and isn\'t afraid to be themselves.' },
+  { question: 'On weekends you\'ll find me', answer: 'Either out on the trails, at a local coffee shop, or trying a new restaurant with friends. I love exploring new spots!' },
 ]
 
 export default function ProfileScreen() {
@@ -32,8 +51,9 @@ export default function ProfileScreen() {
 
   if (!participant) return null
 
-  const topic = TOPICS[participant.id % TOPICS.length]
-  const response = RESPONSES[participant.id % RESPONSES.length]
+  const attrs = PROFILE_ATTRIBUTES[participant.id % PROFILE_ATTRIBUTES.length]
+  const prompt = PROMPTS[participant.id % PROMPTS.length]
+  const extraCount = 6 + (participant.id % 8) // fake "View More" count
 
   return (
     <div style={{
@@ -151,95 +171,96 @@ export default function ProfileScreen() {
           </div>
         </div>
 
-        {/* Note section */}
+        {/* Attributes section */}
         <div style={{
-          padding: '20px 16px 32px',
+          padding: '12px 16px 0',
         }}>
-          {/* Header */}
           <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            marginBottom: 12,
+            backgroundColor: colors.grey0,
+            borderRadius: 14,
+            padding: '16px 16px 12px',
           }}>
-            <HeartSpeechIcon color={colors.brandPrimary} />
-            <span style={{
-              fontSize: 17,
+            {attrs.map((attr, i) => (
+              <div key={i} style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 14,
+                padding: '12px 0',
+              }}>
+                <div style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 20,
+                  backgroundColor: colors.brandPrimary,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <AttributeIcon type={attr.icon} />
+                </div>
+                <span style={{
+                  fontSize: 16,
+                  fontWeight: 400,
+                  color: colors.grey1000,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                }}>
+                  {attr.label}
+                </span>
+              </div>
+            ))}
+
+            {/* Divider */}
+            <div style={{
+              height: 1,
+              backgroundColor: colors.grey100,
+              margin: '4px 0',
+            }} />
+
+            {/* View More */}
+            <div style={{
+              textAlign: 'center',
+              padding: '14px 0 6px',
+            }}>
+              <span style={{
+                fontSize: 15,
+                fontWeight: 500,
+                color: colors.grey400,
+                fontFamily: "'Goldman Sans', sans-serif",
+              }}>
+                View More ({extraCount})
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Prompt section */}
+        <div style={{
+          padding: '12px 16px 32px',
+        }}>
+          <div style={{
+            backgroundColor: colors.grey0,
+            borderRadius: 14,
+            padding: 20,
+          }}>
+            <div style={{
+              fontSize: 14,
+              fontWeight: 400,
+              color: colors.grey400,
+              fontFamily: "'Goldman Sans', sans-serif",
+              marginBottom: 8,
+            }}>
+              {prompt.question}
+            </div>
+            <div style={{
+              fontSize: 22,
               fontWeight: 700,
               color: colors.grey1000,
               fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+              lineHeight: 1.35,
+              whiteSpace: 'pre-line',
             }}>
-              Note from {participant.name}:
-            </span>
-          </div>
-
-          {/* Prompt card */}
-          <div style={{
-            backgroundColor: colors.grey50,
-            borderRadius: 14,
-            padding: 14,
-            marginBottom: 10,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-          }}>
-            <div style={{
-              width: 40,
-              height: 40,
-              borderRadius: 20,
-              backgroundColor: colors.grey200,
-              flexShrink: 0,
-            }} />
-            <div>
-              <div style={{
-                fontSize: 15,
-                fontWeight: 700,
-                color: colors.grey1000,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                lineHeight: '20px',
-              }}>
-                Let's talk about
-              </div>
-              <div style={{
-                fontSize: 14,
-                color: colors.grey600,
-                fontFamily: "'Goldman Sans', sans-serif",
-                lineHeight: '18px',
-                marginTop: 2,
-              }}>
-                {topic}
-              </div>
-            </div>
-          </div>
-
-          {/* Response card */}
-          <div style={{
-            backgroundColor: colors.grey50,
-            borderRadius: 14,
-            padding: 14,
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: 12,
-            borderLeft: `3px solid ${colors.brandPrimary}`,
-          }}>
-            <img
-              src={participant.image}
-              alt=""
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 20,
-                objectFit: 'cover',
-                flexShrink: 0,
-              }}
-            />
-            <div style={{
-              fontSize: 14,
-              color: colors.grey900,
-              fontFamily: "'Goldman Sans', sans-serif",
-              lineHeight: '20px',
-            }}>
-              {response}
+              {prompt.answer}
             </div>
           </div>
         </div>
@@ -269,19 +290,45 @@ function MoreDots() {
   )
 }
 
-function HeartSpeechIcon({ color }) {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      {/* Speech bubble */}
-      <path
-        d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-4l-4 3.5L8 17H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"
-        fill={color}
-      />
-      {/* Heart inside */}
-      <path
-        d="M12 14.5l-3.5-3.5a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.67.67.67-.67a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83L12 14.5Z"
-        fill="white"
-      />
-    </svg>
-  )
+function AttributeIcon({ type }) {
+  const iconProps = { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: 'white', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }
+  switch (type) {
+    case 'children':
+      // Smiley face
+      return (
+        <svg {...iconProps}>
+          <circle cx="12" cy="12" r="10" />
+          <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+          <line x1="9" y1="9" x2="9.01" y2="9" strokeWidth="3" />
+          <line x1="15" y1="9" x2="15.01" y2="9" strokeWidth="3" />
+        </svg>
+      )
+    case 'temple':
+      // Temple / church
+      return (
+        <svg {...iconProps}>
+          <path d="M12 2L2 9h3v11h14V9h3L12 2Z" />
+          <path d="M9 22V12h6v10" />
+        </svg>
+      )
+    case 'photos':
+      // Image / photos
+      return (
+        <svg {...iconProps}>
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <circle cx="8.5" cy="8.5" r="1.5" />
+          <path d="M21 15l-5-5L5 21" />
+        </svg>
+      )
+    case 'location':
+      // Home / location
+      return (
+        <svg {...iconProps}>
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      )
+    default:
+      return null
+  }
 }
