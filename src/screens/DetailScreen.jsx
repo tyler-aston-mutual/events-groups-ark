@@ -1016,17 +1016,18 @@ export default function DetailScreen() {
       <ThemedDialog
         open={leaveDialogOpen}
         onClose={() => setLeaveDialogOpen(false)}
+        showCloseButton={false}
         title={isGroup ? 'Leave Group?' : 'Remove Interest?'}
         message={isGroup
           ? `You'll be removed from "${item.title}" and it will no longer appear in your list.`
           : `You'll no longer be marked as interested in "${item.title}" and it will be removed from your list.`
         }
         buttons={[
-          { title: 'Cancel', variant: 'secondary', onClick: () => setLeaveDialogOpen(false) },
           { title: isGroup ? 'Leave' : 'Remove', variant: 'destructive', onClick: () => {
             removeJoinedId(item.id)
             setLeaveDialogOpen(false)
           }},
+          { title: 'Cancel', variant: 'secondary', onClick: () => setLeaveDialogOpen(false) },
         ]}
       />
 
