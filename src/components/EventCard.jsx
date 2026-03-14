@@ -284,7 +284,7 @@ function VerifiedIcon() {
 function ChevronRight({ color }) {
   return (
     <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
       <path d="M1 1l6 6-6 6" />
     </svg>
   )

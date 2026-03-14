@@ -928,7 +928,7 @@ export default function Home() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: colors.grey400,
+                      color: 'rgb(0, 0, 0)',
                       fontSize: 25,
                       fontWeight: 200,
                       lineHeight: 1,
