@@ -594,7 +594,7 @@ export default function Home() {
                   gap: 5,
                   padding: '6px 12px',
                   borderRadius: 20,
-                  border: `${active ? '1.5px' : '0.5px'} solid ${active ? tab.iconColor : colors.grey200}`,
+                  border: `0.5px solid ${active ? tab.iconColor : colors.grey200}`,
                   backgroundColor: active ? `${tab.iconColor}14` : 'transparent',
                   cursor: 'pointer',
                   fontSize: 13,
@@ -859,8 +859,8 @@ export default function Home() {
                               width: 22,
                               height: 22,
                               borderRadius: 14,
-                              border: `1.5px solid ${colors.brandAccent5}`,
-                              backgroundColor: `${colors.brandAccent5}14`,
+                              border: 'none',
+                              backgroundColor: 'transparent',
                             }}>
                               <ChildEventIcon color={colors.brandAccent5} size={12} />
                             </div>
