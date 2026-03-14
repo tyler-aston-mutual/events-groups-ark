@@ -599,7 +599,7 @@ export default function Home() {
                   cursor: 'pointer',
                   fontSize: 13,
                   fontWeight: active ? 600 : 400,
-                  color: active ? colors.grey1000 : colors.grey400,
+                  color: active ? tab.iconColor : colors.grey400,
                   fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
                   whiteSpace: 'nowrap',
                 }}
