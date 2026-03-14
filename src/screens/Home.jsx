@@ -23,6 +23,7 @@ import ethanImg from '../assets/people/male/male-05.jpg'
 const FILTERS = ['For You', 'Yours']
 
 const SORT_OPTIONS_ALL = [
+  { id: 'recommended', label: 'Recommended For You' },
   { id: 'newest', label: 'Newest' },
   { id: 'soonest', label: 'Soonest' },
   { id: 'popular', label: 'Most Popular' },
@@ -30,6 +31,7 @@ const SORT_OPTIONS_ALL = [
 ]
 
 const SORT_OPTIONS_EVENTS = [
+  { id: 'recommended', label: 'Recommended For You' },
   { id: 'soonest', label: 'Soonest' },
   { id: 'newest', label: 'Newest' },
   { id: 'popular', label: 'Most Popular' },
@@ -37,6 +39,7 @@ const SORT_OPTIONS_EVENTS = [
 ]
 
 const SORT_OPTIONS_GROUPS = [
+  { id: 'recommended', label: 'Recommended For You' },
   { id: 'nearest', label: 'Nearest' },
   { id: 'newest', label: 'Newest' },
   { id: 'popular', label: 'Most Popular' },
@@ -387,6 +390,13 @@ export const ALL_ITEMS = [
 function sortItems(items, sortId) {
   const sorted = [...items]
   switch (sortId) {
+    case 'recommended':
+      // Deterministic "personalized" order — mix of popular + newer items
+      return sorted.sort((a, b) => {
+        const scoreA = a.going * 0.6 + (a.featured ? 100 : 0) + ((a.id * 17) % 50)
+        const scoreB = b.going * 0.6 + (b.featured ? 100 : 0) + ((b.id * 17) % 50)
+        return scoreB - scoreA
+      })
     case 'featured':
       return sorted.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
     case 'soonest': {
