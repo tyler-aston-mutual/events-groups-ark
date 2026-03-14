@@ -425,6 +425,50 @@ export default function DetailScreen() {
               </div>
             </div>
 
+            {/* Details section */}
+            {item.details && item.details.length > 0 && (
+              <div style={{
+                backgroundColor: colors.grey50,
+                borderRadius: 14,
+                padding: 16,
+                marginBottom: 24,
+              }}>
+                <div style={{
+                  fontSize: 16,
+                  fontWeight: 700,
+                  color: colors.grey1000,
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  marginBottom: 12,
+                }}>
+                  Details
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {item.details.map((detail, idx) => (
+                    <div key={idx}>
+                      <div style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: colors.grey1000,
+                        fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                        marginBottom: 2,
+                      }}>
+                        {detail.label}
+                      </div>
+                      <div style={{
+                        fontSize: 14,
+                        fontWeight: 400,
+                        color: colors.grey600,
+                        lineHeight: '20px',
+                        fontFamily: "'Goldman Sans', sans-serif",
+                      }}>
+                        {detail.value}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Info rows */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
               {item.date && (
