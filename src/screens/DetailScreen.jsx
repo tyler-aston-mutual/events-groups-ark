@@ -465,12 +465,20 @@ export default function DetailScreen() {
 
             {/* Created by */}
             {item.creator && (
-              <div style={{
-                backgroundColor: colors.grey50,
-                borderRadius: 14,
-                padding: 16,
-                marginBottom: 24,
-              }}>
+              <div
+                onClick={() => {
+                  // Generate a stable id from the creator name for the profile route
+                  const creatorId = item.creator.name.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0)
+                  navigate(`/profile/${creatorId}`, { state: { participant: { id: creatorId, name: item.creator.name, image: item.creator.image } } })
+                }}
+                style={{
+                  backgroundColor: colors.grey50,
+                  borderRadius: 14,
+                  padding: 16,
+                  marginBottom: 24,
+                  cursor: 'pointer',
+                }}
+              >
                 <div style={{
                   fontSize: 13,
                   fontWeight: 400,
