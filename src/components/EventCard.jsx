@@ -164,7 +164,7 @@ export function EventCard({
           flexShrink: 0,
           paddingLeft: 4,
         }}>
-          <ChevronRight color={colors.grey200} />
+          <ChevronRight color="rgb(0, 0, 0)" />
         </div>
       </div>
     </div>
