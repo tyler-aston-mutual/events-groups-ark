@@ -1023,7 +1023,7 @@ export default function DetailScreen() {
           : `You'll no longer be marked as interested in "${item.title}" and it will be removed from your list.`
         }
         buttons={[
-          { title: isGroup ? 'Leave' : 'Remove', variant: 'destructive', onClick: () => {
+          { title: isGroup ? 'Leave' : 'Remove', variant: 'primary', onClick: () => {
             removeJoinedId(item.id)
             setLeaveDialogOpen(false)
           }},
