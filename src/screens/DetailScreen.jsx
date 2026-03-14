@@ -1086,245 +1086,169 @@ export default function DetailScreen() {
               width: '100%',
               maxWidth: '24rem',
               maxHeight: '85vh',
-              overflowY: 'auto',
-              padding: '28px 24px 32px',
+              display: 'flex',
+              flexDirection: 'column',
               position: 'relative',
             }}
           >
-            {/* Close button */}
-            <button
-              onClick={() => {
-                setSafetyTipsOpen(false)
-                setExpandedTip(null)
-                setTimeout(() => navigate('/', { state: { switchToYours: true } }), 300)
-              }}
-              style={{
-                position: 'absolute',
-                top: 16,
-                right: 16,
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: 25,
-                fontWeight: 200,
-                color: 'rgb(0,0,0)',
-                lineHeight: 1,
-                padding: 0,
-              }}
-            >
-              ×
-            </button>
-
-            {/* Shield icon */}
+            {/* Scrollable content */}
             <div style={{
-              width: 56,
-              height: 56,
-              borderRadius: 16,
-              backgroundColor: '#E8F0FE',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: 20,
+              flex: 1,
+              overflowY: 'auto',
+              padding: '28px 24px 0',
             }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L4 6v5c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4z" fill="#4285F4"/>
-                <path d="M10.5 14.5l-2-2 1.41-1.41L10.5 11.67l3.59-3.59L15.5 9.5l-5 5z" fill="#fff"/>
-              </svg>
-            </div>
+              {/* Close button */}
+              <button
+                onClick={() => {
+                  setSafetyTipsOpen(false)
+                  setExpandedTip(null)
+                  setTimeout(() => navigate('/', { state: { switchToYours: true } }), 300)
+                }}
+                style={{
+                  position: 'absolute',
+                  top: 16,
+                  right: 16,
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: 25,
+                  fontWeight: 200,
+                  color: 'rgb(0,0,0)',
+                  lineHeight: 1,
+                  padding: 0,
+                }}
+              >
+                ×
+              </button>
 
-            {/* Title */}
-            <h2 style={{
-              fontSize: 24,
-              fontWeight: 700,
-              color: colors.grey1000,
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-              margin: '0 0 8px',
-            }}>
-              Safety Tips
-            </h2>
+              {/* Shield icon */}
+              <div style={{
+                width: 56,
+                height: 56,
+                borderRadius: 16,
+                backgroundColor: '#E8F0FE',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: 20,
+              }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L4 6v5c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4z" fill="#4285F4"/>
+                  <path d="M10.5 14.5l-2-2 1.41-1.41L10.5 11.67l3.59-3.59L15.5 9.5l-5 5z" fill="#fff"/>
+                </svg>
+              </div>
 
-            {/* Intro */}
-            <p style={{
-              fontSize: 15,
-              fontWeight: 400,
-              color: colors.grey400,
-              fontFamily: "'Goldman Sans', sans-serif",
-              margin: '0 0 24px',
-              lineHeight: 1.5,
-            }}>
-              Meeting new people should be fun and safe. Here are some tips to help you stay safe when attending events.
-            </p>
+              {/* Title */}
+              <h2 style={{
+                fontSize: 24,
+                fontWeight: 700,
+                color: colors.grey1000,
+                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                margin: '0 0 8px',
+              }}>
+                Safety Tips
+              </h2>
 
-            {/* Accordion items */}
-            {[
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                ),
-                title: 'Always Tell Someone Where You\'re Going',
-                body: 'Let a friend or family member know the event details, including the location, time, and who you\'re meeting. Share your expected return time so someone knows to check in.',
-              },
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="9" cy="7" r="4" stroke={colors.grey500} strokeWidth="2"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                ),
-                title: 'Bring a Friend',
-                body: 'There\'s safety in numbers. Consider attending with someone you trust, especially if it\'s your first time meeting this group. You\'ll have more fun too!',
-              },
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="12" cy="10" r="3" stroke={colors.grey500} strokeWidth="2"/>
-                  </svg>
-                ),
-                title: 'Stay in Public Places',
-                body: 'Meet in well-lit, populated areas. Avoid going to private locations with people you\'ve just met. Coffee shops, parks, and restaurants are great first meeting spots.',
-              },
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <rect x="1" y="3" width="15" height="13" rx="2" ry="2" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="5.5" cy="18.5" r="2.5" stroke={colors.grey500} strokeWidth="2"/>
-                    <circle cx="18.5" cy="18.5" r="2.5" stroke={colors.grey500} strokeWidth="2"/>
-                  </svg>
-                ),
-                title: 'Arrange Your Own Transportation',
-                body: 'Drive yourself or use your own rideshare. Don\'t depend on someone you just met for a ride. Having your own transportation means you can leave whenever you want.',
-              },
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <line x1="12" y1="9" x2="12" y2="13" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17" stroke={colors.grey500} strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                ),
-                title: 'Report Anything Suspicious',
-                body: 'If something doesn\'t feel right, trust your instincts. You can report concerns to Mutual at support@mutual.app. We take every report seriously.',
-              },
-            ].map((tip, i) => (
-              <div key={i} style={{ borderTop: `1px solid ${colors.grey100}` }}>
-                <button
-                  onClick={() => setExpandedTip(expandedTip === i ? null : i)}
-                  style={{
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 12,
-                    padding: '16px 0',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                  }}
-                >
-                  <div style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: 16,
-                    backgroundColor: colors.grey50,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                  }}>
-                    {tip.icon}
-                  </div>
-                  <span style={{
-                    flex: 1,
-                    fontSize: 15,
-                    fontWeight: 500,
-                    color: colors.grey1000,
-                    fontFamily: "'Goldman Sans', sans-serif",
-                  }}>
-                    {tip.title}
-                  </span>
-                  <svg
-                    width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke={colors.grey400} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              {/* Intro */}
+              <p style={{
+                fontSize: 15,
+                fontWeight: 400,
+                color: colors.grey400,
+                fontFamily: "'Goldman Sans', sans-serif",
+                margin: '0 0 24px',
+                lineHeight: 1.5,
+              }}>
+                Meeting new people should be fun and safe. Here are some tips to help you stay safe when attending events.
+              </p>
+
+              {/* Accordion items */}
+              {[
+                { emoji: '🔔', title: 'Always Tell Someone Where You\'re Going', body: 'Let a friend or family member know the event details, including the location, time, and who you\'re meeting. Share your expected return time so someone knows to check in.' },
+                { emoji: '👥', title: 'Bring a Friend', body: 'There\'s safety in numbers. Consider attending with someone you trust, especially if it\'s your first time meeting this group. You\'ll have more fun too!' },
+                { emoji: '📍', title: 'Stay in Public Places', body: 'Meet in well-lit, populated areas. Avoid going to private locations with people you\'ve just met. Coffee shops, parks, and restaurants are great first meeting spots.' },
+                { emoji: '🚗', title: 'Arrange Your Own Transportation', body: 'Drive yourself or use your own rideshare. Don\'t depend on someone you just met for a ride. Having your own transportation means you can leave whenever you want.' },
+                { emoji: '🚨', title: 'Report Anything Suspicious', body: 'If something doesn\'t feel right, trust your instincts. You can report concerns to Mutual at support@mutual.app. We take every report seriously.' },
+              ].map((tip, i) => (
+                <div key={i} style={{ borderTop: `1px solid ${colors.grey100}` }}>
+                  <button
+                    onClick={() => setExpandedTip(expandedTip === i ? null : i)}
                     style={{
-                      flexShrink: 0,
-                      transform: expandedTip === i ? 'rotate(180deg)' : 'rotate(0deg)',
-                      transition: 'transform 0.2s ease',
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 12,
+                      padding: '16px 0',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      textAlign: 'left',
                     }}
                   >
-                    <polyline points="6 9 12 15 18 9"/>
-                  </svg>
-                </button>
-                {expandedTip === i && (
-                  <p style={{
-                    fontSize: 14,
-                    fontWeight: 400,
-                    color: colors.grey400,
-                    fontFamily: "'Goldman Sans', sans-serif",
-                    margin: '0 0 16px',
-                    paddingLeft: 44,
-                    lineHeight: 1.5,
-                  }}>
-                    {tip.body}
-                  </p>
-                )}
-              </div>
-            ))}
+                    <div style={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: 16,
+                      backgroundColor: colors.grey50,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      fontSize: 16,
+                    }}>
+                      {tip.emoji}
+                    </div>
+                    <span style={{
+                      flex: 1,
+                      fontSize: 15,
+                      fontWeight: 500,
+                      color: colors.grey1000,
+                      fontFamily: "'Goldman Sans', sans-serif",
+                    }}>
+                      {tip.title}
+                    </span>
+                    <svg
+                      width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      style={{
+                        flexShrink: 0,
+                        transform: expandedTip === i ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.2s ease',
+                      }}
+                    >
+                      <polyline points="6 9 12 15 18 9" stroke={colors.grey400} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  {expandedTip === i && (
+                    <p style={{
+                      fontSize: 14,
+                      fontWeight: 400,
+                      color: colors.grey400,
+                      fontFamily: "'Goldman Sans', sans-serif",
+                      margin: '0 0 16px',
+                      paddingLeft: 44,
+                      lineHeight: 1.5,
+                    }}>
+                      {tip.body}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
 
-            {/* Footer */}
+            {/* Fixed bottom button */}
             <div style={{
-              marginTop: 32,
-              paddingTop: 24,
-              borderTop: 'none',
+              padding: '16px 24px 28px',
+              borderTop: `1px solid ${colors.grey100}`,
             }}>
-              <p style={{
-                fontSize: 13,
-                fontWeight: 400,
-                color: colors.grey300,
-                fontFamily: "'Goldman Sans', sans-serif",
-                lineHeight: 1.5,
-                margin: 0,
-              }}>
-                Your safety is our priority at Mutual. Our team reviews all reported concerns and takes appropriate action.
-              </p>
-              <p style={{
-                fontSize: 13,
-                fontWeight: 400,
-                color: colors.grey300,
-                fontFamily: "'Goldman Sans', sans-serif",
-                lineHeight: 1.5,
-                margin: '8px 0 0',
-              }}>
-                Need help? Email us at <span style={{ color: colors.grey500, textDecoration: 'underline' }}>support@mutual.app</span>.
-              </p>
-              <p style={{
-                fontSize: 13,
-                fontWeight: 400,
-                color: colors.grey300,
-                fontFamily: "'Goldman Sans', sans-serif",
-                lineHeight: 1.5,
-                margin: '4px 0 0',
-                fontStyle: 'italic',
-              }}>
-                Stay safe out there! You got this!
-              </p>
-              <p style={{
-                fontSize: 13,
-                fontWeight: 400,
-                color: colors.grey300,
-                fontFamily: "'Goldman Sans', sans-serif",
-                lineHeight: 1.5,
-                margin: '4px 0 0',
-                fontStyle: 'italic',
-              }}>
-                -Mutual Support Team
-              </p>
+              <PrimaryButton
+                title="Got it!"
+                size="medium"
+                isFullWidth
+                onClick={() => {
+                  setSafetyTipsOpen(false)
+                  setExpandedTip(null)
+                  setTimeout(() => navigate('/', { state: { switchToYours: true } }), 300)
+                }}
+              />
             </div>
           </div>
         </div>
