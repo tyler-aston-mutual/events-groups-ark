@@ -573,10 +573,10 @@ export default function Home() {
         {/* Navigation pills */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 4, paddingBottom: 14 }}>
           {[
-            { id: 'all', label: 'All', Icon: ExploreIcon, iconColor: colors.grey1000 },
-            { id: 'events', label: 'Events', Icon: CalendarToggleIcon, iconColor: colors.brandAccent5 },
-            { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, iconColor: colors.brandPrimary },
-            { id: 'mine', label: 'Mine', Icon: HeartTabIcon, iconColor: colors.grey1000 },
+            { id: 'all', label: 'All', Icon: ExploreIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
+            { id: 'events', label: 'Events', Icon: CalendarToggleIcon, iconColor: colors.brandAccent5, inactiveIconColor: `${colors.brandAccent5}40` },
+            { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, iconColor: colors.brandPrimary, inactiveIconColor: `${colors.brandPrimary}40` },
+            { id: 'mine', label: 'Mine', Icon: HeartTabIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
           ].map(tab => {
             const active = activeNav === tab.id
             return (
@@ -604,7 +604,7 @@ export default function Home() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                <tab.Icon color={active ? tab.iconColor : colors.grey400} />
+                <tab.Icon color={active ? tab.iconColor : tab.inactiveIconColor} />
                 {tab.label}
               </button>
             )
