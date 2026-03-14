@@ -132,18 +132,73 @@ export default function CreateScreen({ type }) {
           }}
         />
         {photoPreview ? (
-          <div style={{ position: 'relative' }}>
-            <img
-              src={photoPreview}
-              alt="Preview"
-              style={{
-                width: '100%',
-                height: 200,
-                objectFit: 'cover',
-                borderRadius: 14,
-                display: 'block',
-              }}
-            />
+          <div>
+            {/* Card preview mockup */}
+            <div style={{
+              backgroundColor: colors.grey0,
+              borderRadius: 16,
+              overflow: 'hidden',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+              border: 'none',
+            }}>
+              <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'center' }}>
+                <div style={{
+                  width: 80,
+                  height: 80,
+                  borderRadius: 12,
+                  overflow: 'hidden',
+                  flexShrink: 0,
+                  backgroundColor: colors.grey100,
+                }}>
+                  <img
+                    src={photoPreview}
+                    alt="Preview"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{
+                    fontSize: 17,
+                    fontWeight: 700,
+                    color: colors.grey1000,
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    lineHeight: '22px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}>
+                    {name.trim() || (isEvent ? 'Event Name' : 'Group Name')}
+                  </div>
+                  {isEvent && (
+                    <div style={{
+                      fontSize: 13,
+                      fontWeight: 400,
+                      color: colors.grey400,
+                      fontFamily: "'Goldman Sans', sans-serif",
+                      marginTop: 4,
+                    }}>
+                      {eventDate || 'March 25, 2026'} {eventTime ? `- ${eventTime}` : '- 19:00'}
+                    </div>
+                  )}
+                  <div style={{
+                    fontSize: 13,
+                    fontWeight: 400,
+                    color: colors.grey400,
+                    fontFamily: "'Goldman Sans', sans-serif",
+                    marginTop: 2,
+                  }}>
+                    {locationType === 'ask' ? 'Ask the Creator' : locationType === 'anywhere' ? 'Global' : locationDetail || 'Location'}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action buttons */}
             <div style={{
               display: 'flex',
               gap: 8,
