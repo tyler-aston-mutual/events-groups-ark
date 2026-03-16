@@ -735,28 +735,36 @@ export default function DetailScreen() {
                 ))}
               </div>
 
-              {/* "Pending Mutual Review"-style overlay when not enough participants */}
+              {/* Overlay when not enough participants */}
               {shouldBlur && (
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  borderRadius: 14,
-                  backgroundColor: 'rgba(255, 255, 255, 0.55)',
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  justifyContent: 'center',
-                  paddingBottom: 2,
-                  pointerEvents: 'none',
-                }}>
-                  <span style={{
-                    fontSize: 12,
-                    fontWeight: 600,
-                    color: 'rgb(149, 150, 153)',
-                    fontFamily: "'Goldman Sans', sans-serif",
+                <>
+                  {/* High-opacity cover over the grid */}
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: 14,
+                    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                    pointerEvents: 'none',
+                  }} />
+                  {/* Sticky centered label that stays in view while scrolling */}
+                  <div style={{
+                    position: 'sticky',
+                    bottom: '50%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    pointerEvents: 'none',
+                    marginTop: -20,
                   }}>
-                    Profiles visible once more people join
-                  </span>
-                </div>
+                    <span style={{
+                      fontSize: 12,
+                      fontWeight: 600,
+                      color: 'rgb(149, 150, 153)',
+                      fontFamily: "'Goldman Sans', sans-serif",
+                    }}>
+                      Profiles visible once more people join
+                    </span>
+                  </div>
+                </>
               )}
             </div>
 
