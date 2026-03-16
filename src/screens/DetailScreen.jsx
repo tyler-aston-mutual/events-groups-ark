@@ -689,15 +689,6 @@ export default function DetailScreen() {
             <div style={{ padding: '20px 20px 0' }}>
               {groupEvents.length === 0 ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  <div style={{
-                    textAlign: 'center',
-                    padding: '40px 0 20px',
-                    fontSize: 15,
-                    color: colors.grey400,
-                    fontFamily: "'Goldman Sans', sans-serif",
-                  }}>
-                    No events yet.
-                  </div>
                   {/* Create Event banner */}
                   <div
                     onClick={() => navigate('/create/event')}
