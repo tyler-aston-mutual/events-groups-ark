@@ -187,13 +187,13 @@ export const ALL_ITEMS = [
     title: 'Splash Summit',
     image: BASE + 'splash_summit_logo.png',
     imageBg: '#FFFFFF',
-    date: 'June 14, 2026 - 11:00',
+    date: 'August 16, 2025 - 11:00',
     location: 'Splash Summit Waterpark, Provo',
     going: 64,
     featured: true,
     official: true,
     description: 'A full-day YSA waterpark event at Splash Summit! Enjoy water slides, wave pools, and lazy rivers with other single adults from across the valley. Group rates and lunch included.',
-    createdDate: 'January 22, 2026  9:00AM',
+    createdDate: 'June 1, 2025  9:00AM',
     creator: { name: 'Tanner', age: 24, image: tannerImg },
   },
   {
@@ -539,6 +539,21 @@ export default function Home() {
   })
   const topLevelItems = items.filter(i => !childEventIds.has(i.id))
 
+  // Split into current vs past items for the My Stuff tab
+  const parseItemDate = (item) => {
+    if (!item.date) return null
+    // Format: "August 16, 2025 - 11:00"
+    const [datePart] = item.date.split(' - ')
+    return new Date(datePart)
+  }
+  const now = new Date()
+  const currentItems = isYoursTab
+    ? topLevelItems.filter(i => { const d = parseItemDate(i); return !d || d >= now })
+    : topLevelItems
+  const pastItems = isYoursTab
+    ? topLevelItems.filter(i => { const d = parseItemDate(i); return d && d < now })
+    : []
+
   return (
     <div style={{
       height: '100%',
@@ -815,7 +830,7 @@ export default function Home() {
             </>
           )}
 
-          {topLevelItems.map((item, index) => {
+          {currentItems.map((item, index) => {
             const childEvents = groupChildrenMap[item.id]
             const isExpanded = expandedGroups.has(item.id)
             return (
@@ -997,6 +1012,33 @@ export default function Home() {
               </Fragment>
             )
           })}
+
+          {/* Past Activity section — My Stuff tab only */}
+          {isYoursTab && pastItems.length > 0 && (
+            <>
+              <div style={{
+                fontSize: 14,
+                fontWeight: 700,
+                color: colors.grey600,
+                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                backgroundColor: colors.grey100,
+                borderRadius: 10,
+                padding: '10px 14px',
+                marginTop: 8,
+              }}>
+                Past Activity
+              </div>
+              {pastItems.map(item => (
+                <div
+                  key={item.id}
+                  onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
+                  style={{ cursor: 'pointer', opacity: 0.55 }}
+                >
+                  <EventCard {...item} onGroupClick={handleGroupClick} />
+                </div>
+              ))}
+            </>
+          )}
 
         </div>
       </div>
