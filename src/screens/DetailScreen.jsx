@@ -914,6 +914,7 @@ export default function DetailScreen() {
               flexDirection: 'column',
               padding: '16px 16px 0',
               minHeight: '100%',
+              position: 'relative',
             }}>
               {/* Messages */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
@@ -1040,6 +1041,37 @@ export default function DetailScreen() {
                   </svg>
                 </button>
               </div>
+
+              {/* Overlay when user hasn't joined */}
+              {!joined && (
+                <>
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                    pointerEvents: 'none',
+                  }} />
+                  <div style={{
+                    position: 'sticky',
+                    bottom: '50%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    pointerEvents: 'none',
+                    marginTop: -20,
+                  }}>
+                    <span style={{
+                      fontSize: 12,
+                      fontWeight: 600,
+                      color: 'rgb(149, 150, 153)',
+                      fontFamily: "'Goldman Sans', sans-serif",
+                      textAlign: 'center',
+                      padding: '0 20px',
+                    }}>
+                      Visible after you join this {isGroup ? 'group' : 'event'}
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           )
         })()}
