@@ -774,7 +774,7 @@ export default function Home() {
                   display: 'flex',
                   alignItems: 'flex-end',
                   justifyContent: 'center',
-                  paddingBottom: 12,
+                  paddingBottom: 2,
                   pointerEvents: 'none',
                 }}>
                   <span style={{
