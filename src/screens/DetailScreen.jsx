@@ -658,85 +658,106 @@ export default function DetailScreen() {
             </div>
 
             {/* 2-column photo grid */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: 12,
-              marginBottom: 20,
-            }}>
-              {getParticipantsForItem(item.id)
-                .filter(p => participantFilter === 'all' ? true : participantFilter === 'sisters' ? p.gender === 'f' : p.gender === 'm')
-                .map(p => (
-                <div
-                  key={p.id}
-                  onClick={() => {
-                    if (shouldBlur) {
-                      setRevealDialogOpen(true)
-                    } else {
-                      navigate(`/profile/${p.id}`, { state: { participant: p } })
-                    }
-                  }}
-                  style={{
-                    position: 'relative',
-                    borderRadius: 14,
-                    overflow: 'hidden',
-                    aspectRatio: '3 / 4',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <img
-                    src={p.image}
-                    alt={shouldBlur ? '' : p.name}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block',
-                      filter: shouldBlur ? 'blur(12px)' : 'none',
-                      transform: shouldBlur ? 'scale(1.05)' : 'none',
+            <div style={{ position: 'relative', marginBottom: 20 }}>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: 12,
+              }}>
+                {getParticipantsForItem(item.id)
+                  .filter(p => participantFilter === 'all' ? true : participantFilter === 'sisters' ? p.gender === 'f' : p.gender === 'm')
+                  .map(p => (
+                  <div
+                    key={p.id}
+                    onClick={() => {
+                      if (!shouldBlur) {
+                        navigate(`/profile/${p.id}`, { state: { participant: p } })
+                      }
                     }}
-                  />
-                  {/* Dark gradient overlay */}
-                  {!shouldBlur && (
-                    <div style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      height: '50%',
-                      background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)',
-                    }} />
-                  )}
-                  {/* Name + info (hidden when blurred) */}
-                  {!shouldBlur && (
-                    <div style={{
-                      position: 'absolute',
-                      bottom: 12,
-                      left: 12,
-                      right: 12,
-                    }}>
+                    style={{
+                      position: 'relative',
+                      borderRadius: 14,
+                      overflow: 'hidden',
+                      aspectRatio: '3 / 4',
+                      cursor: shouldBlur ? 'default' : 'pointer',
+                    }}
+                  >
+                    <img
+                      src={p.image}
+                      alt={shouldBlur ? '' : p.name}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                      }}
+                    />
+                    {/* Dark gradient overlay */}
+                    {!shouldBlur && (
                       <div style={{
-                        fontSize: 16,
-                        fontWeight: 700,
-                        color: '#FFFFFF',
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                        lineHeight: '20px',
-                      }}>
-                        {p.name}, {p.age}
-                      </div>
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: '50%',
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)',
+                      }} />
+                    )}
+                    {/* Name + info (hidden when locked) */}
+                    {!shouldBlur && (
                       <div style={{
-                        fontSize: 13,
-                        fontWeight: 400,
-                        color: 'rgba(255,255,255,0.75)',
-                        fontFamily: "'Goldman Sans', sans-serif",
-                        marginTop: 2,
+                        position: 'absolute',
+                        bottom: 12,
+                        left: 12,
+                        right: 12,
                       }}>
-                        {p.location}
+                        <div style={{
+                          fontSize: 16,
+                          fontWeight: 700,
+                          color: '#FFFFFF',
+                          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                          lineHeight: '20px',
+                        }}>
+                          {p.name}, {p.age}
+                        </div>
+                        <div style={{
+                          fontSize: 13,
+                          fontWeight: 400,
+                          color: 'rgba(255,255,255,0.75)',
+                          fontFamily: "'Goldman Sans', sans-serif",
+                          marginTop: 2,
+                        }}>
+                          {p.location}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* "Pending Mutual Review"-style overlay when not enough participants */}
+              {shouldBlur && (
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: 14,
+                  backgroundColor: 'rgba(255, 255, 255, 0.55)',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
+                  paddingBottom: 2,
+                  pointerEvents: 'none',
+                }}>
+                  <span style={{
+                    fontSize: 12,
+                    fontWeight: 600,
+                    color: 'rgb(149, 150, 153)',
+                    fontFamily: "'Goldman Sans', sans-serif",
+                  }}>
+                    Profiles visible once more people join
+                  </span>
                 </div>
-              ))}
+              )}
             </div>
 
           </div>
