@@ -445,7 +445,11 @@ function hasActiveFilters(filters) {
 }
 
 export default function Home() {
-  const [activeNav, setActiveNavRaw] = useState(() => sessionStorage.getItem('circlesActiveTab') || 'all')
+  const [activeNav, setActiveNavRaw] = useState(() => {
+    const saved = sessionStorage.getItem('circlesActiveTab')
+    // If saved tab was 'all' (now removed), default to 'events'
+    return saved && saved !== 'all' ? saved : 'events'
+  })
   const setActiveNav = useCallback((tab) => {
     setActiveNavRaw(tab)
     sessionStorage.setItem('circlesActiveTab', tab)
@@ -583,10 +587,10 @@ export default function Home() {
         {/* Navigation pills */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 4, paddingBottom: 14 }}>
           {[
-            { id: 'all', label: 'All', Icon: ExploreIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
+            // { id: 'all', label: 'All', Icon: ExploreIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
             { id: 'events', label: 'Events', Icon: CalendarToggleIcon, iconColor: colors.brandAccent5, inactiveIconColor: `${colors.brandAccent5}BF` },
             { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, iconColor: colors.brandPrimary, inactiveIconColor: `${colors.brandPrimary}BF` },
-            { id: 'mine', label: 'Mine', Icon: HeartTabIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
+            { id: 'mine', label: 'My Stuff', Icon: HeartTabIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
           ].map(tab => {
             const active = activeNav === tab.id
             return (
