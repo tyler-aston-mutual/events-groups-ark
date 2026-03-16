@@ -761,7 +761,7 @@ export default function DetailScreen() {
                       color: 'rgb(149, 150, 153)',
                       fontFamily: "'Goldman Sans', sans-serif",
                     }}>
-                      Profiles visible once more people join
+                      Visible after 10 guys and girls have joined or after you are in this event or group
                     </span>
                   </div>
                 </>
