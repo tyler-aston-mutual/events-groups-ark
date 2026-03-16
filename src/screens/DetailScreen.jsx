@@ -74,6 +74,7 @@ const PARTICIPANT_POOL = (() => {
         age: 20 + ((i * 3 + 2) % 13),
         location: locs[(i * 2) % locs.length],
         image: fPhotos[i % fPhotos.length],
+        gender: 'f',
       })
     }
     if (i < mNames.length) {
@@ -82,6 +83,7 @@ const PARTICIPANT_POOL = (() => {
         age: 21 + ((i * 3 + 5) % 12),
         location: locs[(i * 2 + 1) % locs.length],
         image: mPhotos[i % mPhotos.length],
+        gender: 'm',
       })
     }
   }
@@ -138,6 +140,7 @@ export default function DetailScreen() {
   const [revealDialogOpen, setRevealDialogOpen] = useState(false)
   const [safetyTipsOpen, setSafetyTipsOpen] = useState(false)
   const [expandedTip, setExpandedTip] = useState(null)
+  const [participantFilter, setParticipantFilter] = useState('all') // 'all' | 'sisters' | 'brothers'
 
   // Reset to About tab when navigating between detail pages
   useEffect(() => {
@@ -623,6 +626,37 @@ export default function DetailScreen() {
               />
             </div>
 
+            {/* Gender filter pills */}
+            <div style={{
+              display: 'flex',
+              gap: 8,
+              marginBottom: 16,
+            }}>
+              {[
+                { key: 'all', label: 'All' },
+                { key: 'sisters', label: 'Sisters' },
+                { key: 'brothers', label: 'Brothers' },
+              ].map(opt => (
+                <div
+                  key={opt.key}
+                  onClick={() => setParticipantFilter(opt.key)}
+                  style={{
+                    padding: '6px 14px',
+                    borderRadius: 8,
+                    backgroundColor: participantFilter === opt.key ? colors.grey1000 : colors.grey50,
+                    color: participantFilter === opt.key ? colors.grey0 : colors.grey600,
+                    fontSize: 13,
+                    fontWeight: 600,
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease, color 0.2s ease',
+                  }}
+                >
+                  {opt.label}
+                </div>
+              ))}
+            </div>
+
             {/* 2-column photo grid */}
             <div style={{
               display: 'grid',
@@ -630,7 +664,9 @@ export default function DetailScreen() {
               gap: 12,
               marginBottom: 20,
             }}>
-              {getParticipantsForItem(item.id).map(p => (
+              {getParticipantsForItem(item.id)
+                .filter(p => participantFilter === 'all' ? true : participantFilter === 'sisters' ? p.gender === 'f' : p.gender === 'm')
+                .map(p => (
                 <div
                   key={p.id}
                   onClick={() => {
