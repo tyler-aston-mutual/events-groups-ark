@@ -4,7 +4,7 @@ import { StatusBar } from '../components/StatusBar'
 import { TabBar } from '../components/TabBar'
 import { EventCard } from '../components/EventCard'
 import { SpeedDatingBanner } from '../components/SpeedDatingBanner'
-import { Heading3, Chip } from '../design-system'
+import { Heading3, Chip, ThemedDialog } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 import { useJoined } from '../context/JoinedContext'
 
@@ -460,6 +460,7 @@ export default function Home() {
   const [createBannerDismissed, setCreateBannerDismissed] = useState(false)
   const [createOpen, setCreateOpen] = useState(false)
   const [createVisible, setCreateVisible] = useState(false)
+  const [helpOpen, setHelpOpen] = useState(false)
   const [expandedGroups, setExpandedGroups] = useState(() => {
     // Default all groups with child events to expanded
     const ids = new Set()
@@ -1013,6 +1014,61 @@ export default function Home() {
             )
           })}
 
+          {/* Help / Contact card — My Stuff tab only */}
+          {isYoursTab && (
+            <div
+              onClick={() => setHelpOpen(true)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 14,
+                padding: '14px 16px',
+                marginTop: 8,
+                borderRadius: 14,
+                backgroundColor: colors.grey50,
+                cursor: 'pointer',
+                border: `1px solid ${colors.grey100}`,
+              }}
+            >
+              <div style={{
+                width: 40,
+                height: 40,
+                borderRadius: 10,
+                backgroundColor: colors.grey100,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <HelpIcon color={colors.grey600} />
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{
+                  fontSize: 15,
+                  fontWeight: 700,
+                  color: colors.grey1000,
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  lineHeight: '20px',
+                }}>
+                  Questions or Feedback?
+                </div>
+                <div style={{
+                  fontSize: 13,
+                  fontWeight: 400,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                  marginTop: 2,
+                }}>
+                  Reach out to the Mutual team
+                </div>
+              </div>
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                stroke={colors.grey300} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M1 1l6 6-6 6" />
+              </svg>
+            </div>
+          )}
+
           {/* Past Activity section — My Stuff tab only */}
           {isYoursTab && pastItems.length > 0 && (
             <>
@@ -1128,6 +1184,21 @@ export default function Home() {
           </div>
         </>
       )}
+
+      {/* Help / Contact dialog */}
+      <ThemedDialog
+        open={helpOpen}
+        onClose={() => setHelpOpen(false)}
+        showCloseButton={false}
+        title="Questions or Feedback?"
+        message="We'd love to hear from you! Whether you have a question, feedback, or just want to say hi — reach out and we'll get back to you soon."
+        buttons={[
+          { title: 'Email Us', variant: 'primary', onClick: () => {
+            window.location.href = 'mailto:support@mutual.app?subject=Circles%20Feedback'
+          }},
+          { title: 'Close', variant: 'secondary', onClick: () => setHelpOpen(false) },
+        ]}
+      />
     </div>
   )
 }
@@ -1168,6 +1239,19 @@ function IconButton({ colors, icon, onClick, badge, variant }) {
 }
 
 // ─── Primary tab icons ───────────────────────────────────────────
+
+function HelpIcon({ color }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      {/* Back bubble */}
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      {/* Question mark */}
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+      <circle cx="12" cy="17" r="0.5" fill={color} stroke="none" />
+    </svg>
+  )
+}
 
 function ExploreIcon({ color }) {
   return (
