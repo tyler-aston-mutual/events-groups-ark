@@ -1178,7 +1178,12 @@ export default function Home() {
       {helpOpen && (
         <div style={{
           position: 'fixed',
-          inset: 0,
+          top: 0,
+          bottom: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '100%',
+          maxWidth: 384,
           zIndex: 200,
           display: 'flex',
           flexDirection: 'column',
