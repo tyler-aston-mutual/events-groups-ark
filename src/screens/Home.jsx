@@ -461,6 +461,9 @@ export default function Home() {
   const [createOpen, setCreateOpen] = useState(false)
   const [createVisible, setCreateVisible] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
+  const [createdByYouOpen, setCreatedByYouOpen] = useState(true)
+  const [createdByOthersOpen, setCreatedByOthersOpen] = useState(true)
+  const [pastActivityOpen, setPastActivityOpen] = useState(false)
   const [expandedGroups, setExpandedGroups] = useState(() => {
     // Default all groups with child events to expanded
     const ids = new Set()
@@ -760,78 +763,72 @@ export default function Home() {
           {/* "You Created" section — Yours tab only */}
           {isYoursTab && (
             <>
-              <div style={{
-                fontSize: 14,
-                fontWeight: 700,
-                color: colors.grey600,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                backgroundColor: colors.grey100,
-                borderRadius: 10,
-                padding: '10px 14px',
-              }}>
-                Created by you
-              </div>
-              {/* Pending event — submitted but awaiting review */}
-              <div style={{ position: 'relative' }}>
-                <div style={{ pointerEvents: 'none', paddingBottom: 24 }}>
-                  <EventCard
-                    title="Provo Temple Walk & Talk"
-                    image={BASE + 'provo-utah-rock-canyon-temple-45659.png'}
-                    date="April 5, 2026 - 6:30 PM"
-                    location="Provo City Center Temple"
-                    going={0}
-                  />
-                </div>
-                {/* Full-card overlay with status text at bottom */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  borderRadius: 16,
-                  backgroundColor: 'rgba(255,255,255,0.55)',
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  justifyContent: 'center',
-                  paddingBottom: 2,
-                  pointerEvents: 'none',
-                }}>
-                  <span style={{
-                    fontSize: 12,
-                    fontWeight: 600,
-                    color: colors.grey400,
-                    fontFamily: "'Goldman Sans', sans-serif",
-                  }}>
-                    Pending Mutual Review
-                  </span>
-                </div>
-              </div>
-              {/* Create Your Own banner */}
-              <CreateBanner
+              <CollapsibleHeader
+                label="Created by you"
+                open={createdByYouOpen}
+                onToggle={() => setCreatedByYouOpen(v => !v)}
                 colors={colors}
-                activeNav={activeNav}
-                onTap={openCreate}
-                navigate={navigate}
               />
+              {createdByYouOpen && (
+                <>
+                  {/* Pending event — submitted but awaiting review */}
+                  <div style={{ position: 'relative' }}>
+                    <div style={{ pointerEvents: 'none', paddingBottom: 24 }}>
+                      <EventCard
+                        title="Provo Temple Walk & Talk"
+                        image={BASE + 'provo-utah-rock-canyon-temple-45659.png'}
+                        date="April 5, 2026 - 6:30 PM"
+                        location="Provo City Center Temple"
+                        going={0}
+                      />
+                    </div>
+                    {/* Full-card overlay with status text at bottom */}
+                    <div style={{
+                      position: 'absolute',
+                      top: 0,
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      borderRadius: 16,
+                      backgroundColor: 'rgba(255,255,255,0.55)',
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      justifyContent: 'center',
+                      paddingBottom: 2,
+                      pointerEvents: 'none',
+                    }}>
+                      <span style={{
+                        fontSize: 12,
+                        fontWeight: 600,
+                        color: colors.grey400,
+                        fontFamily: "'Goldman Sans', sans-serif",
+                      }}>
+                        Pending Mutual Review
+                      </span>
+                    </div>
+                  </div>
+                  {/* Create Your Own banner */}
+                  <CreateBanner
+                    colors={colors}
+                    activeNav={activeNav}
+                    onTap={openCreate}
+                    navigate={navigate}
+                  />
+                </>
+              )}
 
               {/* "Created by Others" section header */}
-              <div style={{
-                fontSize: 14,
-                fontWeight: 700,
-                color: colors.grey600,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                backgroundColor: colors.grey100,
-                borderRadius: 10,
-                padding: '10px 14px',
-                marginTop: 8,
-              }}>
-                Created by Others
-              </div>
+              <CollapsibleHeader
+                label="Created by Others"
+                open={createdByOthersOpen}
+                onToggle={() => setCreatedByOthersOpen(v => !v)}
+                colors={colors}
+                style={{ marginTop: 8 }}
+              />
             </>
           )}
 
-          {currentItems.map((item, index) => {
+          {(!isYoursTab || createdByOthersOpen) && currentItems.map((item, index) => {
             const childEvents = groupChildrenMap[item.id]
             const isExpanded = expandedGroups.has(item.id)
             return (
@@ -1072,19 +1069,14 @@ export default function Home() {
           {/* Past Activity section — My Stuff tab only */}
           {isYoursTab && pastItems.length > 0 && (
             <>
-              <div style={{
-                fontSize: 14,
-                fontWeight: 700,
-                color: colors.grey600,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                backgroundColor: colors.grey100,
-                borderRadius: 10,
-                padding: '10px 14px',
-                marginTop: 8,
-              }}>
-                Past Activity
-              </div>
-              {pastItems.map(item => (
+              <CollapsibleHeader
+                label="Past Activity"
+                open={pastActivityOpen}
+                onToggle={() => setPastActivityOpen(v => !v)}
+                colors={colors}
+                style={{ marginTop: 8 }}
+              />
+              {pastActivityOpen && pastItems.map(item => (
                 <div
                   key={item.id}
                   onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
@@ -1235,6 +1227,40 @@ function IconButton({ colors, icon, onClick, badge, variant }) {
         }} />
       )}
     </button>
+  )
+}
+
+function CollapsibleHeader({ label, open, onToggle, colors, style = {} }) {
+  return (
+    <div
+      onClick={onToggle}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        fontSize: 14,
+        fontWeight: 700,
+        color: colors.grey600,
+        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+        backgroundColor: colors.grey100,
+        borderRadius: 10,
+        padding: '10px 14px',
+        cursor: 'pointer',
+        ...style,
+      }}
+    >
+      {label}
+      <svg
+        width="12" height="12" viewBox="0 0 12 12" fill="none"
+        stroke={colors.grey400} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+        style={{
+          transition: 'transform 0.2s ease',
+          transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+        }}
+      >
+        <path d="M2 4l4 4 4-4" />
+      </svg>
+    </div>
   )
 }
 
