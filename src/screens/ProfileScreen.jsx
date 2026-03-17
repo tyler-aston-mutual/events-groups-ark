@@ -13,25 +13,25 @@ const PROFILE_ATTRIBUTES = [
     { icon: 'children', label: '1 Child' },
     { icon: 'temple', label: 'Weekly' },
     { icon: 'photos', label: 'Yes' },
-    { icon: 'location', label: 'Provo' },
+    { icon: 'location', label: 'Austin' },
   ],
   [
     { icon: 'children', label: 'No Child(ren)' },
     { icon: 'temple', label: 'Monthly' },
     { icon: 'photos', label: 'No' },
-    { icon: 'location', label: 'Salt Lake City' },
+    { icon: 'location', label: 'Dallas' },
   ],
   [
     { icon: 'children', label: 'No Child(ren)' },
     { icon: 'temple', label: 'As often as possible' },
     { icon: 'photos', label: 'Yes' },
-    { icon: 'location', label: 'Lehi' },
+    { icon: 'location', label: 'Plano' },
   ],
   [
     { icon: 'children', label: '2 Children' },
     { icon: 'temple', label: 'Weekly' },
     { icon: 'photos', label: 'Yes' },
-    { icon: 'location', label: 'Orem' },
+    { icon: 'location', label: 'Round Rock' },
   ],
 ]
 

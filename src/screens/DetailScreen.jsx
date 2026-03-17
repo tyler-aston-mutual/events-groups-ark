@@ -62,8 +62,8 @@ const PARTICIPANT_POOL = (() => {
     'Irving','Calder','Boyd','Mercer','Stetson','Harlan',
   ]
   const locs = [
-    'Salt Lake City, UT','Provo, UT','Lehi, UT','Draper, UT',
-    'Orem, UT','Sandy, UT','American Fork, UT','Eagle Mountain, UT',
+    'Austin, TX','Dallas, TX','Houston, TX','San Antonio, TX',
+    'Fort Worth, TX','Plano, TX','Round Rock, TX','Frisco, TX',
   ]
   const pool = []
   const max = Math.max(fNames.length, mNames.length)
@@ -106,10 +106,10 @@ const CHAT_TEMPLATES = [
   { pIdx: 0, text: "Good to know! How early should we get there?", time: '45m ago' },
   { pIdx: 3, text: "I'd say 15 min early to find each other", time: '40m ago' },
   { isMe: true, text: "Can't wait! See you all there", time: '32m ago' },
-  { pIdx: 1, text: "Does anyone want to carpool from Provo?", time: '25m ago' },
-  { pIdx: 4, text: "I'm driving from Provo! Happy to pick people up", time: '20m ago' },
+  { pIdx: 1, text: "Does anyone want to carpool from Austin?", time: '25m ago' },
+  { pIdx: 4, text: "I'm driving from Austin! Happy to pick people up", time: '20m ago' },
   { pIdx: 1, text: "Perfect, I'll DM you 🚗", time: '18m ago' },
-  { isMe: true, text: "I'm coming from SLC, anyone else?", time: '10m ago' },
+  { isMe: true, text: "I'm coming from Round Rock, anyone else?", time: '10m ago' },
   { pIdx: 2, text: "Me! Let's coordinate", time: '5m ago' },
   { pIdx: 5, text: "Just joined — is this still happening?", time: '2m ago' },
   { pIdx: 3, text: "Yes! See you all soon 😊", time: '1m ago' },
