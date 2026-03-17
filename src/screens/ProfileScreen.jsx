@@ -144,7 +144,6 @@ export default function ProfileScreen() {
                 fontSize: 16,
                 fontWeight: 700,
                 color: colors.grey1000,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
               }}>
                 {participant.name}
               </span>
@@ -203,7 +202,6 @@ export default function ProfileScreen() {
                   fontSize: 16,
                   fontWeight: 400,
                   color: colors.grey1000,
-                  fontFamily: "'Goldman Sans', sans-serif",
                 }}>
                   {attr.label}
                 </span>
@@ -226,7 +224,6 @@ export default function ProfileScreen() {
                 fontSize: 15,
                 fontWeight: 500,
                 color: colors.grey400,
-                fontFamily: "'Goldman Sans', sans-serif",
               }}>
                 View More ({extraCount})
               </span>
@@ -247,7 +244,6 @@ export default function ProfileScreen() {
               fontSize: 14,
               fontWeight: 400,
               color: colors.grey400,
-              fontFamily: "'Goldman Sans', sans-serif",
               marginBottom: 8,
             }}>
               {prompt.question}
@@ -256,7 +252,6 @@ export default function ProfileScreen() {
               fontSize: 22,
               fontWeight: 700,
               color: colors.grey1000,
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
               lineHeight: 1.35,
               whiteSpace: 'pre-line',
             }}>

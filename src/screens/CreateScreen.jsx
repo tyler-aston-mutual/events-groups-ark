@@ -89,7 +89,6 @@ export default function CreateScreen({ type }) {
           fontSize: 18,
           fontWeight: 700,
           color: colors.grey1000,
-          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
         }}>
           Create {isEvent ? 'Event' : 'Group'}
         </div>
@@ -103,7 +102,6 @@ export default function CreateScreen({ type }) {
             fontSize: 16,
             fontWeight: 700,
             color: colors.brandPrimary,
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             transition: 'color 0.2s ease',
           }}
         >
@@ -149,7 +147,6 @@ export default function CreateScreen({ type }) {
                     fontSize: 15,
                     fontWeight: 400,
                     color: eventDate ? colors.grey1000 : colors.grey400,
-                    fontFamily: "'Goldman Sans', sans-serif",
                     outline: 'none',
                     boxSizing: 'border-box',
                   }}
@@ -173,7 +170,6 @@ export default function CreateScreen({ type }) {
                     fontSize: 15,
                     fontWeight: 400,
                     color: eventTime ? colors.grey1000 : colors.grey400,
-                    fontFamily: "'Goldman Sans', sans-serif",
                     outline: 'none',
                     boxSizing: 'border-box',
                   }}
@@ -195,7 +191,6 @@ export default function CreateScreen({ type }) {
                     color: tz === 'MST' ? colors.grey0 : colors.grey600,
                     fontSize: 13,
                     fontWeight: 600,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                     cursor: 'pointer',
                   }}
                 >
@@ -225,7 +220,6 @@ export default function CreateScreen({ type }) {
                 color: locationType === opt.key ? colors.grey0 : colors.grey600,
                 fontSize: 13,
                 fontWeight: 600,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                 cursor: 'pointer',
               }}
             >
@@ -282,7 +276,6 @@ export default function CreateScreen({ type }) {
                   fontSize: 12,
                   fontWeight: 500,
                   color: colors.grey500,
-                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
                 }}>
                   Tap to set pin on map
                 </span>
@@ -304,7 +297,6 @@ export default function CreateScreen({ type }) {
               fontSize: 14,
               fontWeight: 700,
               color: colors.grey1000,
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
               marginBottom: 2,
             }}>
               Visible To
@@ -312,7 +304,6 @@ export default function CreateScreen({ type }) {
             <div style={{
               fontSize: 13,
               color: colors.grey400,
-              fontFamily: "'Goldman Sans', sans-serif",
               marginBottom: 10,
               lineHeight: '17px',
             }}>
@@ -330,7 +321,6 @@ export default function CreateScreen({ type }) {
                     color: visibilityRadius === option ? colors.grey0 : colors.grey600,
                     fontSize: 13,
                     fontWeight: 600,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                     cursor: 'pointer',
                   }}
                 >
@@ -392,7 +382,6 @@ export default function CreateScreen({ type }) {
                     fontSize: 17,
                     fontWeight: 700,
                     color: colors.grey1000,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                     lineHeight: '22px',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
@@ -405,7 +394,6 @@ export default function CreateScreen({ type }) {
                       fontSize: 13,
                       fontWeight: 400,
                       color: colors.grey400,
-                      fontFamily: "'Goldman Sans', sans-serif",
                       marginTop: 4,
                     }}>
                       {eventDate || 'March 25, 2026'} {eventTime ? `- ${eventTime}` : '- 19:00'}
@@ -415,7 +403,6 @@ export default function CreateScreen({ type }) {
                     fontSize: 13,
                     fontWeight: 400,
                     color: colors.grey400,
-                    fontFamily: "'Goldman Sans', sans-serif",
                     marginTop: 2,
                   }}>
                     {locationType === 'ask' ? 'Ask the Creator' : locationType === 'anywhere' ? 'Global' : locationDetail || 'Location'}
@@ -442,7 +429,6 @@ export default function CreateScreen({ type }) {
                   fontSize: 14,
                   fontWeight: 500,
                   color: colors.grey1000,
-                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
                 }}
               >
                 Change Photo
@@ -462,7 +448,6 @@ export default function CreateScreen({ type }) {
                   fontSize: 14,
                   fontWeight: 500,
                   color: colors.grey400,
-                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
                 }}
               >
                 Remove
@@ -490,7 +475,6 @@ export default function CreateScreen({ type }) {
               fontSize: 14,
               fontWeight: 500,
               color: colors.grey400,
-              fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
             }}>
               Add Photo
             </div>
@@ -537,13 +521,11 @@ export default function CreateScreen({ type }) {
                   fontSize: 15,
                   fontWeight: 700,
                   color: colors.grey1000,
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                 }}>
                   Add Details
                   <span style={{
                     fontWeight: 400,
                     color: colors.grey400,
-                    fontFamily: "'Goldman Sans', sans-serif",
                     fontSize: 13,
                   }}>
                     {' '}(optional)
@@ -552,7 +534,6 @@ export default function CreateScreen({ type }) {
                 <div style={{
                   fontSize: 13,
                   color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
                   marginTop: 2,
                 }}>
                   Cost, attire, parking, and more
@@ -595,7 +576,6 @@ export default function CreateScreen({ type }) {
                           color: detailSetting === opt.key ? colors.grey0 : colors.grey600,
                           fontSize: 13,
                           fontWeight: 600,
-                          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                           cursor: 'pointer',
                           border: detailSetting === opt.key ? 'none' : `1px solid ${colors.grey200}`,
                         }}
@@ -621,7 +601,6 @@ export default function CreateScreen({ type }) {
                         color: detailCostFree ? colors.grey0 : colors.grey600,
                         fontSize: 13,
                         fontWeight: 600,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                         cursor: 'pointer',
                         border: detailCostFree ? 'none' : `1px solid ${colors.grey200}`,
                         flexShrink: 0,
@@ -645,7 +624,6 @@ export default function CreateScreen({ type }) {
                           fontSize: 14,
                           fontWeight: 400,
                           color: colors.grey1000,
-                          fontFamily: "'Goldman Sans', sans-serif",
                           outline: 'none',
                           boxSizing: 'border-box',
                           minWidth: 0,
@@ -748,7 +726,6 @@ export default function CreateScreen({ type }) {
                 fontSize: 15,
                 fontWeight: 400,
                 color: colors.grey400,
-                fontFamily: "'Goldman Sans', sans-serif",
                 marginLeft: 12,
               }}>
                 Choose a Group
@@ -758,7 +735,6 @@ export default function CreateScreen({ type }) {
             <div style={{
               fontSize: 13,
               color: colors.grey400,
-              fontFamily: "'Goldman Sans', sans-serif",
               marginTop: 6,
             }}>
               Link this event to a group you manage. Not required.
@@ -780,7 +756,6 @@ export default function CreateScreen({ type }) {
               fontSize: 15,
               fontWeight: 700,
               color: colors.grey1000,
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             }}>
               Age Range
             </div>
@@ -789,7 +764,6 @@ export default function CreateScreen({ type }) {
           <div style={{
             fontSize: 13,
             color: colors.grey400,
-            fontFamily: "'Goldman Sans', sans-serif",
             marginTop: 2,
             lineHeight: '17px',
           }}>
@@ -815,7 +789,6 @@ export default function CreateScreen({ type }) {
                     fontSize: 14,
                     fontWeight: 500,
                     color: colors.grey1000,
-                    fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
                   }}>
                     Minimum Age
                   </span>
@@ -823,7 +796,6 @@ export default function CreateScreen({ type }) {
                     fontSize: 16,
                     fontWeight: 700,
                     color: colors.grey1000,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                   }}>
                     {minAge}
                   </span>
@@ -852,7 +824,6 @@ export default function CreateScreen({ type }) {
                     fontSize: 14,
                     fontWeight: 500,
                     color: colors.grey1000,
-                    fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
                   }}>
                     Maximum Age
                   </span>
@@ -860,7 +831,6 @@ export default function CreateScreen({ type }) {
                     fontSize: 16,
                     fontWeight: 700,
                     color: colors.grey1000,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                   }}>
                     {maxAge === 85 ? '85+' : maxAge}
                   </span>
@@ -889,7 +859,6 @@ export default function CreateScreen({ type }) {
                   fontSize: 12,
                   fontWeight: 400,
                   color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
                   lineHeight: '16px',
                   flex: 1,
                 }}>
@@ -912,7 +881,6 @@ export default function CreateScreen({ type }) {
                 fontSize: 15,
                 fontWeight: 600,
                 color: colors.grey1000,
-                fontFamily: "'Goldman Sans', sans-serif",
               }}>
                 Limit Participants
               </div>
@@ -920,7 +888,6 @@ export default function CreateScreen({ type }) {
                 fontSize: 13,
                 fontWeight: 400,
                 color: colors.grey400,
-                fontFamily: "'Goldman Sans', sans-serif",
                 marginTop: 2,
               }}>
                 Set a maximum number of people
@@ -954,14 +921,12 @@ export default function CreateScreen({ type }) {
                 fontSize: 15,
                 fontWeight: 500,
                 color: colors.grey1000,
-                fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
               }}>
                 Expiration Date
               </div>
               <div style={{
                 fontSize: 13,
                 color: colors.grey400,
-                fontFamily: "'Goldman Sans', sans-serif",
                 marginTop: 2,
               }}>
                 When this listing should expire
@@ -983,7 +948,6 @@ export default function CreateScreen({ type }) {
                 fontSize: 15,
                 fontWeight: 400,
                 color: expirationDate ? colors.grey1000 : colors.grey400,
-                fontFamily: "'Goldman Sans', sans-serif",
                 outline: 'none',
                 boxSizing: 'border-box',
               }}
@@ -997,7 +961,6 @@ export default function CreateScreen({ type }) {
             fontSize: 13,
             fontWeight: 500,
             color: colors.grey400,
-            fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
             padding: '14px 0 4px',
           }}>
             Visible Tabs on Detail Page
@@ -1026,7 +989,7 @@ export default function CreateScreen({ type }) {
         onClose={() => setConfirmOpen(false)}
         showCloseButton={false}
         title={`Submit ${isEvent ? 'Event' : 'Group'}`}
-        message="Confirm submission for Mutual to review. Future visibility and appropriate content is up to Mutual."
+        message="Confirm submission for Ark to review. Future visibility and appropriate content is up to Ark."
         buttons={[
           { title: 'Submit', variant: 'primary', onClick: () => {
             setConfirmOpen(false)
@@ -1047,7 +1010,6 @@ function SectionLabel({ colors, text, optional }) {
       fontSize: 14,
       fontWeight: 700,
       color: colors.grey1000,
-      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
       marginBottom: 8,
       marginTop: 20,
     }}>
@@ -1056,7 +1018,6 @@ function SectionLabel({ colors, text, optional }) {
         <span style={{
           fontWeight: 400,
           color: colors.grey400,
-          fontFamily: "'Goldman Sans', sans-serif",
           fontSize: 13,
         }}>
           {' '}(optional)
@@ -1084,7 +1045,6 @@ function FormInput({ placeholder, value, onChange, colors, type = 'text', inputM
         fontSize: 15,
         fontWeight: 400,
         color: colors.grey1000,
-        fontFamily: "'Goldman Sans', sans-serif",
         outline: 'none',
         boxSizing: 'border-box',
       }}
@@ -1108,7 +1068,6 @@ function FormTextarea({ placeholder, value, onChange, colors }) {
         fontSize: 15,
         fontWeight: 400,
         color: colors.grey1000,
-        fontFamily: "'Goldman Sans', sans-serif",
         outline: 'none',
         resize: 'none',
         boxSizing: 'border-box',
@@ -1144,7 +1103,6 @@ function DetailField({ emoji, label, colors, children }) {
           fontSize: 14,
           fontWeight: 600,
           color: colors.grey1000,
-          fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
         }}>
           {label}
         </span>
@@ -1171,7 +1129,6 @@ function DetailInput({ placeholder, value, onChange, colors }) {
         fontSize: 14,
         fontWeight: 400,
         color: colors.grey1000,
-        fontFamily: "'Goldman Sans', sans-serif",
         outline: 'none',
         boxSizing: 'border-box',
       }}
@@ -1225,7 +1182,6 @@ function ToggleRow({ label, description, value, onChange, colors }) {
           fontSize: 15,
           fontWeight: 500,
           color: colors.grey1000,
-          fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
         }}>
           {label}
         </div>
@@ -1233,7 +1189,6 @@ function ToggleRow({ label, description, value, onChange, colors }) {
           <div style={{
             fontSize: 13,
             color: colors.grey400,
-            fontFamily: "'Goldman Sans', sans-serif",
             marginTop: 2,
             lineHeight: '17px',
           }}>

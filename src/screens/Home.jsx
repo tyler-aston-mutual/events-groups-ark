@@ -584,12 +584,11 @@ export default function Home() {
           marginBottom: 14,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Heading3>Circles</Heading3>
+            <Heading3>Events & Groups</Heading3>
             <span style={{
               fontSize: 13,
               fontWeight: 700,
               color: 'rgb(149, 150, 153)',
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             }}>Beta</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -631,7 +630,6 @@ export default function Home() {
                   fontSize: 13,
                   fontWeight: active ? 600 : 400,
                   color: active ? tab.iconColor : (tab.inactiveIconColor || colors.grey400),
-                  fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
                   whiteSpace: 'nowrap',
                 }}
               >
@@ -674,7 +672,6 @@ export default function Home() {
                 <span style={{
                   fontSize: 14,
                   color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
                 }}>
                   Search
                 </span>
@@ -693,7 +690,6 @@ export default function Home() {
                 fontSize: 13,
                 fontWeight: 500,
                 color: colors.grey600,
-                fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
               }}
             >
               {activeSortLabel}
@@ -730,7 +726,6 @@ export default function Home() {
                       fontSize: 14,
                       fontWeight: option.id === activeSort ? 600 : 400,
                       color: option.id === activeSort ? colors.grey1000 : colors.grey600,
-                      fontFamily: "'Goldman Sans', sans-serif",
                       textAlign: 'left',
                       whiteSpace: 'nowrap',
                     }}
@@ -801,9 +796,8 @@ export default function Home() {
                         fontSize: 12,
                         fontWeight: 600,
                         color: colors.grey400,
-                        fontFamily: "'Goldman Sans', sans-serif",
                       }}>
-                        Pending Mutual Review
+                        Pending Review
                       </span>
                     </div>
                   </div>
@@ -941,7 +935,6 @@ export default function Home() {
                                 fontSize: 14,
                                 fontWeight: 700,
                                 color: colors.grey1000,
-                                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                                 lineHeight: '18px',
                                 marginBottom: 3,
                               }}>
@@ -951,7 +944,6 @@ export default function Home() {
                                 <div style={{
                                   fontSize: 12,
                                   color: colors.grey600,
-                                  fontFamily: "'Goldman Sans', sans-serif",
                                 }}>
                                   {child.date}
                                 </div>
@@ -959,7 +951,6 @@ export default function Home() {
                               <div style={{
                                 fontSize: 12,
                                 color: colors.grey400,
-                                fontFamily: "'Goldman Sans', sans-serif",
                               }}>
                                 {child.going} interested
                               </div>
@@ -1066,7 +1057,6 @@ export default function Home() {
                   fontSize: 15,
                   fontWeight: 700,
                   color: colors.grey900,
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                   lineHeight: '20px',
                   marginBottom: 4,
                 }}>
@@ -1076,10 +1066,9 @@ export default function Home() {
                   fontSize: 13,
                   fontWeight: 400,
                   color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
                   lineHeight: '17px',
                 }}>
-                  Reach out to the Mutual team
+                  Reach out to the Ark team
                 </div>
               </div>
             </div>
@@ -1138,7 +1127,6 @@ export default function Home() {
               fontWeight: 700,
               color: colors.grey1000,
               textAlign: 'center',
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
               marginBottom: 4,
             }}>
               Create
@@ -1148,7 +1136,6 @@ export default function Home() {
               fontWeight: 400,
               color: colors.grey400,
               textAlign: 'center',
-              fontFamily: "'Goldman Sans', sans-serif",
               marginBottom: 24,
             }}>
               What would you like to create?
@@ -1219,7 +1206,6 @@ export default function Home() {
                   fontSize: 14,
                   fontWeight: 600,
                   color: 'rgba(255,255,255,0.7)',
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                   display: 'flex',
                   alignItems: 'center',
                   gap: 6,
@@ -1237,7 +1223,6 @@ export default function Home() {
                   fontSize: 14,
                   fontWeight: 600,
                   color: '#FFFFFF',
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                   display: 'flex',
                   alignItems: 'center',
                   gap: 6,
@@ -1272,7 +1257,6 @@ export default function Home() {
               fontSize: 22,
               fontWeight: 700,
               color: '#FFFFFF',
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
               marginBottom: 6,
             }}>
               How can we help?
@@ -1281,7 +1265,6 @@ export default function Home() {
               fontSize: 14,
               fontWeight: 400,
               color: 'rgba(255,255,255,0.65)',
-              fontFamily: "'Goldman Sans', sans-serif",
             }}>
               We usually respond in a few hours
             </div>
@@ -1295,7 +1278,7 @@ export default function Home() {
             {/* Email Support card */}
             <div
               onClick={() => {
-                window.location.href = 'mailto:support@mutual.app?subject=Circles%20Feedback'
+                window.location.href = 'mailto:support@ark.app?subject=Events%20%26%20Groups%20Feedback'
               }}
               style={{
                 display: 'flex',
@@ -1327,7 +1310,6 @@ export default function Home() {
                   fontSize: 17,
                   fontWeight: 700,
                   color: '#1A1A1A',
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                   lineHeight: '22px',
                 }}>
                   Email Support
@@ -1336,7 +1318,6 @@ export default function Home() {
                   fontSize: 14,
                   fontWeight: 400,
                   color: '#8E8E93',
-                  fontFamily: "'Goldman Sans', sans-serif",
                   marginTop: 4,
                   lineHeight: '19px',
                 }}>
@@ -1397,7 +1378,6 @@ function CollapsibleHeader({ label, open, onToggle, colors, style = {} }) {
         fontSize: 14,
         fontWeight: 700,
         color: colors.grey600,
-        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
         backgroundColor: colors.grey100,
         borderRadius: 10,
         padding: '10px 14px',
@@ -1563,7 +1543,6 @@ function CreateOption({ colors, icon, title, description, onClick }) {
           fontSize: 16,
           fontWeight: 700,
           color: colors.grey1000,
-          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
           marginBottom: 2,
         }}>
           {title}
@@ -1572,7 +1551,6 @@ function CreateOption({ colors, icon, title, description, onClick }) {
           fontSize: 13,
           fontWeight: 400,
           color: colors.grey400,
-          fontFamily: "'Goldman Sans', sans-serif",
           lineHeight: '17px',
         }}>
           {description}
@@ -1679,7 +1657,6 @@ function CreateBanner({ colors, activeNav, onTap, navigate }) {
           fontSize: 15,
           fontWeight: 700,
           color: colors.grey900,
-          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
           lineHeight: '20px',
           marginBottom: subtitle ? 4 : 10,
         }}>
@@ -1690,7 +1667,6 @@ function CreateBanner({ colors, activeNav, onTap, navigate }) {
             fontSize: 13,
             fontWeight: 400,
             color: colors.grey600,
-            fontFamily: "'Goldman Sans', sans-serif",
             lineHeight: '17px',
             marginBottom: 10,
           }}>
@@ -1707,7 +1683,6 @@ function CreateBanner({ colors, activeNav, onTap, navigate }) {
           padding: '8px 16px',
           fontSize: 13,
           fontWeight: 700,
-          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
         }}>
           {label}
         </div>

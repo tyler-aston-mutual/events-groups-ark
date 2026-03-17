@@ -95,9 +95,8 @@ export default function FilterScreen() {
             fontSize: 18,
             fontWeight: 700,
             color: colors.grey1000,
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
           }}>
-            Filter Circles
+            Filters
           </span>
         </div>
         {/* Spacer to balance back arrow */}
@@ -136,7 +135,6 @@ export default function FilterScreen() {
               justifyContent: 'space-between',
               fontSize: 12,
               color: colors.grey400,
-              fontFamily: "'Goldman Sans', sans-serif",
               marginTop: 4,
             }}>
               <span>1 mi</span>
@@ -174,7 +172,6 @@ export default function FilterScreen() {
             <span style={{
               fontSize: 14,
               color: colors.grey400,
-              fontFamily: "'Goldman Sans', sans-serif",
             }}>to</span>
             <NumberInput
               placeholder="No Max"
@@ -215,7 +212,6 @@ export default function FilterScreen() {
             <span style={{
               fontSize: 14,
               color: colors.grey400,
-              fontFamily: "'Goldman Sans', sans-serif",
             }}>to</span>
             <NumberInput
               placeholder="85+"
@@ -275,7 +271,6 @@ function FilterSection({ icon, label, subtitle, value, isActive, colors, childre
             fontSize: 15,
             fontWeight: 500,
             color: colors.grey1000,
-            fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
           }}>
             {label}
           </div>
@@ -283,7 +278,6 @@ function FilterSection({ icon, label, subtitle, value, isActive, colors, childre
             fontSize: 14,
             fontWeight: 400,
             color: isActive ? colors.indicatorError : colors.grey400,
-            fontFamily: "'Goldman Sans', sans-serif",
             marginTop: 2,
           }}>
             {value}
@@ -295,7 +289,6 @@ function FilterSection({ icon, label, subtitle, value, isActive, colors, childre
           fontSize: 13,
           fontWeight: 400,
           color: colors.grey400,
-          fontFamily: "'Goldman Sans', sans-serif",
           marginTop: 8,
           lineHeight: '18px',
         }}>
@@ -325,7 +318,6 @@ function NumberInput({ placeholder, value, onChange, colors }) {
         fontSize: 15,
         fontWeight: 400,
         color: colors.grey1000,
-        fontFamily: "'Goldman Sans', sans-serif",
         outline: 'none',
         textAlign: 'center',
         minWidth: 0,

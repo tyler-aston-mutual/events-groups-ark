@@ -98,7 +98,7 @@ export function EventCard({
             color: colors.grey1000,
             lineHeight: '21px',
             marginBottom: 8,
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+
           }}>
             {title}
           </div>
@@ -139,7 +139,7 @@ export function EventCard({
                 fontSize: 13,
                 fontWeight: 700,
                 color: colors.brandPrimary,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+    
               }}>
                 {group.name}
               </span>
@@ -148,7 +148,7 @@ export function EventCard({
                   fontSize: 13,
                   fontWeight: 400,
                   color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
+  
                 }}>
                   · Members Only
                 </span>
@@ -188,7 +188,6 @@ function InfoRow({ icon, color, children }) {
         fontWeight: 400,
         color,
         lineHeight: '17px',
-        fontFamily: "'Goldman Sans', sans-serif",
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',

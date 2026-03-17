@@ -93,7 +93,6 @@ export default function SpeedDating() {
             fontWeight: 700,
             color: colors.grey1000,
             lineHeight: '36px',
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             marginBottom: 12,
           }}>
             Blind Speed Dating
@@ -105,7 +104,6 @@ export default function SpeedDating() {
             fontWeight: 400,
             color: colors.grey600,
             lineHeight: '22px',
-            fontFamily: "'Goldman Sans', sans-serif",
             marginBottom: 28,
           }}>
             We'll pair you for a chat. After, you decide if it is a match or to meet someone else
@@ -131,7 +129,6 @@ export default function SpeedDating() {
                   fontWeight: 400,
                   color: colors.grey400,
                   lineHeight: '18px',
-                  fontFamily: "'Goldman Sans', sans-serif",
                 }}>
                   Conversation Type
                 </div>
@@ -140,7 +137,6 @@ export default function SpeedDating() {
                   fontWeight: 700,
                   color: colors.grey1000,
                   lineHeight: '20px',
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                 }}>
                   5 Minute Text Chat
                 </div>
@@ -170,7 +166,6 @@ export default function SpeedDating() {
                   fontWeight: 400,
                   color: colors.grey400,
                   lineHeight: '18px',
-                  fontFamily: "'Goldman Sans', sans-serif",
                 }}>
                   Filter Preferences
                 </div>
@@ -179,7 +174,6 @@ export default function SpeedDating() {
                   fontWeight: 700,
                   color: colors.grey1000,
                   lineHeight: '20px',
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                 }}>
                   --
                 </div>

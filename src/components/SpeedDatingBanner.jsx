@@ -36,7 +36,7 @@ export function SpeedDatingBanner({ onDismiss }) {
           fontSize: 13,
           fontWeight: 600,
           color: 'rgba(255,255,255,0.85)',
-          fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+
           whiteSpace: 'nowrap',
         }}>
           Next Session: Wednesday 7PM MST
@@ -89,7 +89,7 @@ export function SpeedDatingBanner({ onDismiss }) {
             fontWeight: 700,
             color: colors.constantWhite,
             lineHeight: '26px',
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+
             marginBottom: 4,
           }}>
             Virtual Speed Dating
@@ -99,7 +99,7 @@ export function SpeedDatingBanner({ onDismiss }) {
             fontWeight: 400,
             color: 'rgba(255,255,255,0.8)',
             lineHeight: '18px',
-            fontFamily: "'Goldman Sans', sans-serif",
+
           }}>
             We'll pair you for 5-min text chats
           </div>

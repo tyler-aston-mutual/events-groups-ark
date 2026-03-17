@@ -9,7 +9,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeProvider defaultBrand="mutual" defaultColorMode="light">
+    <ThemeProvider defaultBrand="ark" defaultColorMode="light">
       <HashRouter>
         <JoinedProvider>
           <App />

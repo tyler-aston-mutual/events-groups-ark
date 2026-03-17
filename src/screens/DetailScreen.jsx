@@ -263,7 +263,6 @@ export default function DetailScreen() {
                       fontSize: 14,
                       fontWeight: 400,
                       color: colors.grey600,
-                      fontFamily: "'Goldman Sans', sans-serif",
                       textAlign: 'left',
                       whiteSpace: 'nowrap',
                     }}
@@ -284,7 +283,6 @@ export default function DetailScreen() {
                     fontSize: 14,
                     fontWeight: 400,
                     color: colors.brandAccent5,
-                    fontFamily: "'Goldman Sans', sans-serif",
                     textAlign: 'left',
                     whiteSpace: 'nowrap',
                   }}
@@ -349,7 +347,6 @@ export default function DetailScreen() {
             fontWeight: 700,
             color: colors.grey1000,
             lineHeight: '26px',
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             textAlign: item.image ? 'left' : 'center',
             paddingRight: 40,
           }}>
@@ -412,7 +409,6 @@ export default function DetailScreen() {
                 fontSize: 16,
                 fontWeight: 700,
                 color: colors.grey1000,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                 marginBottom: 8,
               }}>
                 About
@@ -422,7 +418,6 @@ export default function DetailScreen() {
                 fontWeight: 400,
                 color: colors.grey600,
                 lineHeight: '22px',
-                fontFamily: "'Goldman Sans', sans-serif",
               }}>
                 {item.description || 'No description available.'}
               </div>
@@ -440,7 +435,6 @@ export default function DetailScreen() {
                   fontSize: 16,
                   fontWeight: 700,
                   color: colors.grey1000,
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                   marginBottom: 12,
                 }}>
                   Details
@@ -469,7 +463,6 @@ export default function DetailScreen() {
                           fontSize: 13,
                           fontWeight: 600,
                           color: colors.grey1000,
-                          fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
                           marginBottom: 2,
                         }}>
                           {detail.label}
@@ -479,7 +472,6 @@ export default function DetailScreen() {
                           fontWeight: 400,
                           color: colors.grey600,
                           lineHeight: '20px',
-                          fontFamily: "'Goldman Sans', sans-serif",
                         }}>
                           {detail.value}
                         </div>
@@ -554,7 +546,6 @@ export default function DetailScreen() {
                   fontSize: 13,
                   fontWeight: 400,
                   color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
                   marginBottom: 12,
                 }}>
                   Created by
@@ -575,7 +566,6 @@ export default function DetailScreen() {
                       fontSize: 17,
                       fontWeight: 700,
                       color: colors.grey1000,
-                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                     }}>
                       {item.creator.name}
                     </span>
@@ -583,7 +573,6 @@ export default function DetailScreen() {
                       fontSize: 17,
                       fontWeight: 400,
                       color: colors.grey400,
-                      fontFamily: "'Goldman Sans', sans-serif",
                       marginLeft: 6,
                     }}>
                       {item.creator.age}
@@ -621,7 +610,6 @@ export default function DetailScreen() {
                   fontSize: 15,
                   fontWeight: 400,
                   color: colors.grey1000,
-                  fontFamily: "'Goldman Sans', sans-serif",
                 }}
               />
             </div>
@@ -647,7 +635,6 @@ export default function DetailScreen() {
                     color: participantFilter === opt.key ? colors.grey0 : colors.grey600,
                     fontSize: 13,
                     fontWeight: 600,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                     cursor: 'pointer',
                     transition: 'background-color 0.2s ease, color 0.2s ease',
                   }}
@@ -715,7 +702,6 @@ export default function DetailScreen() {
                           fontSize: 16,
                           fontWeight: 700,
                           color: '#FFFFFF',
-                          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                           lineHeight: '20px',
                         }}>
                           {p.name}, {p.age}
@@ -724,7 +710,6 @@ export default function DetailScreen() {
                           fontSize: 13,
                           fontWeight: 400,
                           color: 'rgba(255,255,255,0.75)',
-                          fontFamily: "'Goldman Sans', sans-serif",
                           marginTop: 2,
                         }}>
                           {p.location}
@@ -759,7 +744,6 @@ export default function DetailScreen() {
                       fontSize: 12,
                       fontWeight: 600,
                       color: 'rgb(149, 150, 153)',
-                      fontFamily: "'Goldman Sans', sans-serif",
                     }}>
                       Visible after 10 guys and girls have joined or after you are in this event or group
                     </span>
@@ -811,7 +795,6 @@ export default function DetailScreen() {
                         fontSize: 15,
                         fontWeight: 700,
                         color: colors.grey900,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                         lineHeight: '20px',
                         marginBottom: 10,
                       }}>
@@ -827,7 +810,6 @@ export default function DetailScreen() {
                         padding: '8px 16px',
                         fontSize: 13,
                         fontWeight: 700,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                       }}>
                         + Create Event
                       </div>
@@ -877,7 +859,6 @@ export default function DetailScreen() {
                         fontSize: 15,
                         fontWeight: 700,
                         color: colors.grey900,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                         lineHeight: '20px',
                         marginBottom: 10,
                       }}>
@@ -893,7 +874,6 @@ export default function DetailScreen() {
                         padding: '8px 16px',
                         fontSize: 13,
                         fontWeight: 700,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                       }}>
                         + Create Event
                       </div>
@@ -929,7 +909,6 @@ export default function DetailScreen() {
                           borderRadius: '18px 18px 4px 18px',
                           fontSize: 15,
                           fontWeight: 400,
-                          fontFamily: "'Goldman Sans', sans-serif",
                           maxWidth: 260,
                           lineHeight: '20px',
                         }}>
@@ -938,7 +917,6 @@ export default function DetailScreen() {
                         <div style={{
                           fontSize: 11,
                           color: colors.grey400,
-                          fontFamily: "'Goldman Sans', sans-serif",
                           textAlign: 'right',
                           marginTop: 4,
                         }}>
@@ -964,7 +942,6 @@ export default function DetailScreen() {
                           fontSize: 13,
                           fontWeight: 700,
                           color: colors.grey800,
-                          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                           marginBottom: 3,
                         }}>
                           {msg.name}
@@ -975,7 +952,6 @@ export default function DetailScreen() {
                           borderRadius: '4px 18px 18px 18px',
                           fontSize: 15,
                           fontWeight: 400,
-                          fontFamily: "'Goldman Sans', sans-serif",
                           maxWidth: 260,
                           lineHeight: '20px',
                           color: colors.grey1000,
@@ -985,7 +961,6 @@ export default function DetailScreen() {
                         <div style={{
                           fontSize: 11,
                           color: colors.grey400,
-                          fontFamily: "'Goldman Sans', sans-serif",
                           marginTop: 4,
                         }}>
                           {msg.time}
@@ -1019,7 +994,6 @@ export default function DetailScreen() {
                   alignItems: 'center',
                   fontSize: 15,
                   color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
                 }}>
                   Type a message...
                 </div>
@@ -1063,7 +1037,6 @@ export default function DetailScreen() {
                       fontSize: 12,
                       fontWeight: 600,
                       color: 'rgb(149, 150, 153)',
-                      fontFamily: "'Goldman Sans', sans-serif",
                       textAlign: 'center',
                       padding: '0 20px',
                     }}>
@@ -1099,7 +1072,6 @@ export default function DetailScreen() {
                 fontSize: 15,
                 fontWeight: 500,
                 color: colors.grey500,
-                fontFamily: "'Goldman Sans', sans-serif",
               }}>
                 {isGroup ? 'Joined' : 'Interested'} {getJoinDate(item.id) || ''}
               </span>
@@ -1116,7 +1088,6 @@ export default function DetailScreen() {
                 border: `2px solid ${colors.grey200}`,
                 backgroundColor: colors.grey0,
                 cursor: 'pointer',
-                fontFamily: "'Goldman Sans', sans-serif",
                 fontSize: 16,
                 fontWeight: 600,
                 color: colors.grey500,
@@ -1147,12 +1118,11 @@ export default function DetailScreen() {
           fontSize: 11,
           fontWeight: 400,
           color: colors.grey400,
-          fontFamily: "'Goldman Sans', sans-serif",
           lineHeight: '15px',
           margin: '12px 0 0',
           textAlign: 'center',
         }}>
-          This {isGroup ? 'group' : 'event'} wasn't made by and is not endorsed by Mutual LLC. Please report anything that doesn't meet your expectations for our community.
+          This {isGroup ? 'group' : 'event'} wasn't made by and is not endorsed by Ark. Please report anything that doesn't meet your expectations for our community.
         </p>
       </div>
 
@@ -1293,7 +1263,6 @@ export default function DetailScreen() {
                 fontSize: 24,
                 fontWeight: 700,
                 color: colors.grey1000,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                 margin: '0 0 8px',
               }}>
                 Safety Tips
@@ -1304,7 +1273,6 @@ export default function DetailScreen() {
                 fontSize: 15,
                 fontWeight: 400,
                 color: colors.grey400,
-                fontFamily: "'Goldman Sans', sans-serif",
                 margin: '0 0 24px',
                 lineHeight: 1.5,
               }}>
@@ -1317,7 +1285,7 @@ export default function DetailScreen() {
                 { emoji: '👥', title: 'Bring a Friend', body: 'There\'s safety in numbers. Consider attending with someone you trust, especially if it\'s your first time meeting this group. You\'ll have more fun too!' },
                 { emoji: '📍', title: 'Stay in Public Places', body: 'Meet in well-lit, populated areas. Avoid going to private locations with people you\'ve just met. Coffee shops, parks, and restaurants are great first meeting spots.' },
                 { emoji: '🚗', title: 'Arrange Your Own Transportation', body: 'Drive yourself or use your own rideshare. Don\'t depend on someone you just met for a ride. Having your own transportation means you can leave whenever you want.' },
-                { emoji: '🚨', title: 'Report Anything Suspicious', body: 'If something doesn\'t feel right, trust your instincts. You can report concerns to Mutual at support@mutual.app. We take every report seriously.' },
+                { emoji: '🚨', title: 'Report Anything Suspicious', body: 'If something doesn\'t feel right, trust your instincts. You can report concerns to Ark at support@ark.app. We take every report seriously.' },
               ].map((tip, i) => (
                 <div key={i} style={{ borderTop: `1px solid ${colors.grey100}` }}>
                   <button
@@ -1352,7 +1320,6 @@ export default function DetailScreen() {
                       fontSize: 15,
                       fontWeight: 500,
                       color: colors.grey1000,
-                      fontFamily: "'Goldman Sans', sans-serif",
                     }}>
                       {tip.title}
                     </span>
@@ -1372,7 +1339,6 @@ export default function DetailScreen() {
                       fontSize: 14,
                       fontWeight: 400,
                       color: colors.grey400,
-                      fontFamily: "'Goldman Sans', sans-serif",
                       margin: '0 0 16px',
                       paddingLeft: 44,
                       lineHeight: 1.5,
@@ -1460,7 +1426,6 @@ function InfoRow({ icon, colors, children, tappable, onTap }) {
         fontSize: 15,
         fontWeight: 500,
         color: tappable ? colors.brandPrimary : colors.grey1000,
-        fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
         ...(tappable ? {
           textDecoration: 'underline',
           textDecorationStyle: 'dotted',

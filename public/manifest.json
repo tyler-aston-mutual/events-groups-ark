@@ -1,6 +1,6 @@
 {
-  "name": "Events & Groups",
-  "short_name": "Events",
+  "name": "Ark - Events & Groups",
+  "short_name": "Ark",
   "start_url": "/events-groups-ark/",
   "display": "standalone",
   "background_color": "#ffffff",
