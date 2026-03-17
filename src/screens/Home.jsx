@@ -52,7 +52,7 @@ export const ALL_ITEMS = [
     id: 2,
     type: 'group',
     title: 'Faith & Fellowship',
-    image: BASE + 'solo-saints-logo.png',
+    image: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=400&h=400&fit=crop',
     imageBg: '#FFFFFF',
     location: 'Austin, TX',
     going: 320,
@@ -111,7 +111,7 @@ export const ALL_ITEMS = [
   {
     id: 6,
     title: 'Riverwalk Evening Stroll',
-    image: BASE + 'placeholder_logo.png',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=400&fit=crop',
     imageBg: '#FFFFFF',
     date: 'March 8, 2026 - 19:30',
     location: 'San Antonio Riverwalk',
@@ -199,7 +199,7 @@ export const ALL_ITEMS = [
   {
     id: 14,
     title: 'Texas Young Adults Conference',
-    image: BASE + 'ysa_conference_logo.png',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=400&fit=crop',
     imageBg: '#FFFFFF',
     date: 'April 25, 2026 - 09:00',
     location: 'Dallas Convention Center',
@@ -771,7 +771,7 @@ export default function Home() {
                     <div style={{ pointerEvents: 'none', paddingBottom: 24 }}>
                       <EventCard
                         title="Sunset Walk & Talk"
-                        image={BASE + 'provo-utah-rock-canyon-temple-45659.png'}
+                        image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop"
                         date="April 5, 2026 - 6:30 PM"
                         location="Lady Bird Lake Trail"
                         going={0}
