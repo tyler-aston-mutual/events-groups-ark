@@ -111,7 +111,7 @@ export const ALL_ITEMS = [
   {
     id: 6,
     title: 'Riverwalk Evening Stroll',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=400&h=400&fit=crop',
     imageBg: '#FFFFFF',
     date: 'March 8, 2026 - 19:30',
     location: 'San Antonio Riverwalk',
