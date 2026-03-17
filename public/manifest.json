@@ -1,19 +1,19 @@
 {
   "name": "Events & Groups",
   "short_name": "Events",
-  "start_url": "/events-groups/",
+  "start_url": "/events-groups-ark/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/events-groups/icon-192.png",
+      "src": "/events-groups-ark/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/events-groups/icon-512.png",
+      "src": "/events-groups-ark/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

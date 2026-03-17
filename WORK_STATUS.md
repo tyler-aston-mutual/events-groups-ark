@@ -4,7 +4,7 @@
 Circles tab prototype is functional with a full feed, detail screens, create flow (event + group forms), filtering, and participant profiles. Ready for interview testing.
 
 ## Live URL
-https://tyler-aston-mutual.github.io/events-groups/
+https://tyler-aston-mutual.github.io/events-groups-ark/
 
 ## Screens
 | Screen | Status | Notes |

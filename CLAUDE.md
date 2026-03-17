@@ -24,7 +24,7 @@ This is a **research prototype** used in user interviews. The goal is to learn w
 | Hosting | GitHub Pages |
 | Deploy | GitHub Actions (auto-deploys on push to `main`) |
 
-**Live URL:** https://tyler-aston-mutual.github.io/events-groups/
+**Live URL:** https://tyler-aston-mutual.github.io/events-groups-ark/
 
 **Local dev note:** Node 20 is keg-only. Prefix npm commands with:
 `PATH="/opt/homebrew/opt/node@20/bin:$PATH"`
