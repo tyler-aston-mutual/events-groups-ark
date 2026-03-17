@@ -4,7 +4,7 @@ import { StatusBar } from '../components/StatusBar'
 import { TabBar } from '../components/TabBar'
 import { EventCard } from '../components/EventCard'
 import { SpeedDatingBanner } from '../components/SpeedDatingBanner'
-import { Heading3, Chip, ThemedDialog } from '../design-system'
+import { Heading3, Chip } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 import { useJoined } from '../context/JoinedContext'
 
@@ -1011,61 +1011,6 @@ export default function Home() {
             )
           })}
 
-          {/* Help / Contact card — My Stuff tab only */}
-          {isYoursTab && (
-            <div
-              onClick={() => setHelpOpen(true)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 14,
-                padding: '14px 16px',
-                marginTop: 8,
-                borderRadius: 14,
-                backgroundColor: colors.grey50,
-                cursor: 'pointer',
-                border: `1px solid ${colors.grey100}`,
-              }}
-            >
-              <div style={{
-                width: 40,
-                height: 40,
-                borderRadius: 10,
-                backgroundColor: colors.grey100,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}>
-                <HelpIcon color={colors.grey600} />
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{
-                  fontSize: 15,
-                  fontWeight: 700,
-                  color: colors.grey1000,
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                  lineHeight: '20px',
-                }}>
-                  Questions or Feedback?
-                </div>
-                <div style={{
-                  fontSize: 13,
-                  fontWeight: 400,
-                  color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
-                  marginTop: 2,
-                }}>
-                  Reach out to the Mutual team
-                </div>
-              </div>
-              <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                stroke={colors.grey300} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M1 1l6 6-6 6" />
-              </svg>
-            </div>
-          )}
-
           {/* Past Activity section — My Stuff tab only */}
           {isYoursTab && pastItems.length > 0 && (
             <>
@@ -1086,6 +1031,58 @@ export default function Home() {
                 </div>
               ))}
             </>
+          )}
+
+          {/* Help / Contact banner — My Stuff tab only, at the very bottom */}
+          {isYoursTab && (
+            <div
+              onClick={() => setHelpOpen(true)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
+                backgroundColor: colors.grey0,
+                borderRadius: 16,
+                border: `1px solid ${colors.grey100}`,
+                padding: '12px 16px',
+                cursor: 'pointer',
+                marginTop: 8,
+              }}
+            >
+              <div style={{
+                width: 80,
+                height: 80,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <div style={{ transform: 'scale(2.2)' }}>
+                  <HelpIcon color={colors.grey600} />
+                </div>
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{
+                  fontSize: 15,
+                  fontWeight: 700,
+                  color: colors.grey900,
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  lineHeight: '20px',
+                  marginBottom: 4,
+                }}>
+                  Questions or Feedback?
+                </div>
+                <div style={{
+                  fontSize: 13,
+                  fontWeight: 400,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                  lineHeight: '17px',
+                }}>
+                  Reach out to the Mutual team
+                </div>
+              </div>
+            </div>
           )}
 
         </div>
@@ -1177,20 +1174,174 @@ export default function Home() {
         </>
       )}
 
-      {/* Help / Contact dialog */}
-      <ThemedDialog
-        open={helpOpen}
-        onClose={() => setHelpOpen(false)}
-        showCloseButton={false}
-        title="Questions or Feedback?"
-        message="We'd love to hear from you! Whether you have a question, feedback, or just want to say hi — reach out and we'll get back to you soon."
-        buttons={[
-          { title: 'Email Us', variant: 'primary', onClick: () => {
-            window.location.href = 'mailto:support@mutual.app?subject=Circles%20Feedback'
-          }},
-          { title: 'Close', variant: 'secondary', onClick: () => setHelpOpen(false) },
-        ]}
-      />
+      {/* Help / Contact full-screen overlay */}
+      {helpOpen && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 200,
+          display: 'flex',
+          flexDirection: 'column',
+          backgroundColor: '#F5F5F5',
+        }}>
+          {/* Blue header */}
+          <div style={{
+            backgroundColor: '#4E5BF2',
+            padding: '48px 20px 28px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            {/* Top bar: tabs + close */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              position: 'relative',
+              marginBottom: 24,
+            }}>
+              <div style={{
+                display: 'flex',
+                gap: 4,
+                backgroundColor: 'rgba(255,255,255,0.15)',
+                borderRadius: 20,
+                padding: 3,
+              }}>
+                <div style={{
+                  padding: '6px 16px',
+                  borderRadius: 18,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  color: 'rgba(255,255,255,0.7)',
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  FAQ
+                </div>
+                <div style={{
+                  padding: '6px 16px',
+                  borderRadius: 18,
+                  backgroundColor: 'rgba(255,255,255,0.2)',
+                  fontSize: 14,
+                  fontWeight: 600,
+                  color: '#FFFFFF',
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                  Ask
+                </div>
+              </div>
+              <button
+                onClick={() => setHelpOpen(false)}
+                style={{
+                  position: 'absolute',
+                  right: 0,
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 4,
+                  color: '#FFFFFF',
+                  fontSize: 22,
+                  fontWeight: 300,
+                  lineHeight: 1,
+                }}
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Title */}
+            <div style={{
+              fontSize: 22,
+              fontWeight: 700,
+              color: '#FFFFFF',
+              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+              marginBottom: 6,
+            }}>
+              How can we help?
+            </div>
+            <div style={{
+              fontSize: 14,
+              fontWeight: 400,
+              color: 'rgba(255,255,255,0.65)',
+              fontFamily: "'Goldman Sans', sans-serif",
+            }}>
+              We usually respond in a few hours
+            </div>
+          </div>
+
+          {/* Content area */}
+          <div style={{
+            flex: 1,
+            padding: '20px 20px',
+          }}>
+            {/* Email Support card */}
+            <div
+              onClick={() => {
+                window.location.href = 'mailto:support@mutual.app?subject=Circles%20Feedback'
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 16,
+                backgroundColor: '#FFFFFF',
+                borderRadius: 16,
+                padding: '18px 20px',
+                cursor: 'pointer',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+              }}
+            >
+              {/* Paper plane icon */}
+              <div style={{
+                width: 48,
+                height: 48,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4E5BF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 2L11 13" />
+                  <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+                </svg>
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{
+                  fontSize: 17,
+                  fontWeight: 700,
+                  color: '#1A1A1A',
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  lineHeight: '22px',
+                }}>
+                  Email Support
+                </div>
+                <div style={{
+                  fontSize: 14,
+                  fontWeight: 400,
+                  color: '#8E8E93',
+                  fontFamily: "'Goldman Sans', sans-serif",
+                  marginTop: 4,
+                  lineHeight: '19px',
+                }}>
+                  No time to wait around? We usually respond within 24 business hours
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -1268,13 +1419,20 @@ function CollapsibleHeader({ label, open, onToggle, colors, style = {} }) {
 
 function HelpIcon({ color }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      {/* Back bubble */}
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-      {/* Question mark */}
-      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-      <circle cx="12" cy="17" r="0.5" fill={color} stroke="none" />
+    <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+      {/* Back bubble — question mark */}
+      <rect x="1" y="1" width="17" height="15" rx="2.5" stroke={color} strokeWidth="2" fill="none" />
+      <path d="M7.2 7.5a2.3 2.3 0 0 1 4.5.7c0 1.5-2.3 2-2.3 2" stroke={color} strokeWidth="1.75" strokeLinecap="round" fill="none" />
+      <circle cx="9.5" cy="12.5" r="0.75" fill={color} />
+      {/* Tail on back bubble */}
+      <path d="M4 16l-1.5 3.5L7 16" stroke={color} strokeWidth="2" strokeLinejoin="round" fill="none" />
+      {/* Front bubble — dots */}
+      <rect x="10" y="10" width="17" height="13" rx="2.5" stroke={color} strokeWidth="2" fill="white" />
+      <circle cx="15.5" cy="16.5" r="1.2" fill={color} />
+      <circle cx="18.5" cy="16.5" r="1.2" fill={color} />
+      <circle cx="21.5" cy="16.5" r="1.2" fill={color} />
+      {/* Tail on front bubble */}
+      <path d="M22 23l2.5 3.5L20 23" stroke={color} strokeWidth="2" strokeLinejoin="round" fill="white" />
     </svg>
   )
 }
